@@ -1,0 +1,20 @@
+.content{
+    min-height: 90%;
+}
+
+@keyframes marquee {
+    0% {
+      background-position: 0 0; // Comienza desde la izquierda
+    }
+    100% {
+      background-position: 2000% 0; // Termina en la derecha
+    }
+  }
+  
+
+
+main {    
+    background-image: url(/assets/img/sky.png) ;
+    min-height: 500px;
+    animation: marquee 60s linear infinite; // Velocidad lenta, repetición infinita
+}

@@ -1,0 +1,38 @@
+/* START OF HEADER STYLES */
+header {
+    background-image: url(/assets/img/banner.jpg) ;
+    background-repeat: no-repeat;
+    padding: 16px 32px;
+    min-height: 200px;
+  }
+  
+  header .wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  header h1 span {
+    margin-right: 10px;
+  }
+  
+  header h1 a {
+    color: #333;
+  }
+  
+  header nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+  
+  header nav > * {
+    margin-left: 24px;
+  }
+
+  .title{
+    text-shadow: 2px 2px 11px #F02DDE;
+    color: #fff;
+  }
+
+  /* END OF HEADER STYLES */
