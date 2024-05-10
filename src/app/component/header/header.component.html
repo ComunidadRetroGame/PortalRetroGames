@@ -6,10 +6,11 @@
       </h1>
   
       <nav class="nav-brand">
-        <a class="nes-btn is-primary" href="#home">Bienvenido</a>
-        <a class="nes-btn is-primary" href="#news">Novedades</a>
-        <a class="nes-btn is-primary" href="#team">Comunidad</a>
-        <a class="nes-btn is-primary" href="#login">Login / Registro</a>
+        <a class="nes-btn is-primary" routerLink="/home">Bienvenido</a>
+        <a class="nes-btn is-warning" routerLink="/news">Novedades</a>
+        <a class="nes-btn is-primary" routerLink="/team">Comunidad</a>
+        <a class="nes-btn is-primary" *ngIf="!online" routerLink="/login">Login / Registro</a>
+        <a class="nes-btn is-success" *ngIf="online" routerLink="/dashboard">Mi Perfil</a>
       </nav>
     </div>
   </header>

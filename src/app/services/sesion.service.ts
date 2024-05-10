@@ -1,21 +1,43 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LoginResponse, UserRetro, UserRetroOnline } from '../interfaces/responses';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SesionService {
 
-  private baseUrl = 'http://localhost:3030'; 
+  private baseUrl: string = 'http://localhost';
+
+  headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  };
+
 
   constructor(private http: HttpClient) { }
 
   login(alias: string, password: string): Observable<any> {
-    // Construir el cuerpo de la solicitud con los datos de inicio de sesión
     const body = { alias: alias, password: password };
+    var httpOptions = { headers: new HttpHeaders(this.headers), }
+    return this.http.post<LoginResponse>(`${this.baseUrl}/portal/login`, body, httpOptions);
+  }
 
-    // Realizar la solicitud HTTP POST al servidor Go
-    return this.http.post<any>(`${this.baseUrl}/portal/login`, body);
+  sesionOnline(): Observable<UserRetroOnline> {
+
+    const sesionHash = window.sessionStorage.getItem('sesionKey') || "";
+
+    var headersInSesion = {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Authorization': sesionHash
+    };
+
+    var httpOptions = { headers: new HttpHeaders(headersInSesion), }
+    
+    return this.http.get<UserRetroOnline>(`${this.baseUrl}/portal/isOnline`, httpOptions);
   }
 }

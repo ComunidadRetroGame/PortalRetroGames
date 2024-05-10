@@ -2,7 +2,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, Injectable } from '@angular/core';
 
 
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
@@ -21,15 +21,6 @@ import { LoginComponent } from './page/login/login.component';
 import { NewsComponent } from './page/news/news.component';
 import { TeamComponent } from './page/team/team.component';
 
-@Injectable()
-export class AddHeaderInterceptor implements HttpInterceptor {
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const clonedRequest = req.clone(
-      { headers: req.headers.append('X-Frame-Options', 'deny') }
-    );
-    return next.handle(clonedRequest);
-  }
-}
 
 @NgModule({
   declarations: [
@@ -53,12 +44,7 @@ export class AddHeaderInterceptor implements HttpInterceptor {
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-    {
-
-      provide: HTTP_INTERCEPTORS,
-      useClass: AddHeaderInterceptor,
-      multi: true,
-    }],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

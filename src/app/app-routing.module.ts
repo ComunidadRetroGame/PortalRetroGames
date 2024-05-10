@@ -6,35 +6,35 @@ import { TeamComponent } from './page/team/team.component';
 import { LoginComponent } from './page/login/login.component';
 
 const routes: Routes = [
-  {
-      path:'',
-      component:HomeComponent,
-      pathMatch:'full'
-  },
-  {
-      path:'home',
-      component:HomeComponent,
+    {
+        path: '',
+        component: HomeComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'home',
+        component: HomeComponent,
 
-  },
-  {
-      path:'news',
-      component:NewsComponent,
+    },
+    {
+        path: 'news',
+        component: NewsComponent,
 
-  },
-  {
-      path:'team',
-      component:TeamComponent,
+    },
+    {
+        path: 'team',
+        component: TeamComponent,
 
-  },
-  {
-      path:'login',
-      component:LoginComponent,
+    },
+    {
+        path: 'login',
+        component: LoginComponent,
 
-  },
+    }, { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }
