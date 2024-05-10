@@ -9,7 +9,7 @@ import { HttpClientModule, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 
-
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,8 +25,8 @@ import { TeamComponent } from './page/team/team.component';
 export class AddHeaderInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const clonedRequest = req.clone(
-        { headers: req.headers.append('X-Frame-Options', 'deny') }
-      );
+      { headers: req.headers.append('X-Frame-Options', 'deny') }
+    );
     return next.handle(clonedRequest);
   }
 }
@@ -43,7 +43,7 @@ export class AddHeaderInterceptor implements HttpInterceptor {
     TeamComponent
   ],
   imports: [
-    HttpClientModule,        
+    HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -51,11 +51,14 @@ export class AddHeaderInterceptor implements HttpInterceptor {
     AppRoutingModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    {
+
+      provide: HTTP_INTERCEPTORS,
       useClass: AddHeaderInterceptor,
-    multi: true,
-  }],
+      multi: true,
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

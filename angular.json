@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/portal-retro-games",
+            "outputPath": "../../backend/PortalCRG/static",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
