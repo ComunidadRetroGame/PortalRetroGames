@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable,OnInit } from '@angular/core';
 import { SesionService } from '../../services/sesion.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { SesionService } from '../../services/sesion.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
   online:boolean=false
 
   constructor(private sesionService: SesionService) { }

@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable ,OnInit} from '@angular/core';
 import { SesionService } from '../../services/sesion.service';
 import { LoginResponse } from '../../interfaces/responses';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   alias: string = '';
   password: string = '';
   responseLogin: LoginResponse = {
@@ -26,14 +26,26 @@ export class LoginComponent {
   };
 
   constructor(private sesionService: SesionService,private router: Router) { }
+  ngOnInit(): void {
+    this.sesionService.sesionOnline().subscribe(
+      response => {
+        if (response.Code==200){
+          this.router.navigate(['/home']);;  
+        }
+        
+      }
+    );
+    
+  }
 
   login(): void {
-    this.sesionService.login(this.alias, this.password).subscribe(
+
+    this.sesionService.login(this.alias.toLowerCase(), this.password).subscribe(
       response => {
         this.responseLogin = response;
         // Manejar la respuesta del servidor (por ejemplo, redireccionar al usuario a otra página)
                 
-        this.router.navigate(['/home']);
+        window.location.reload();
       },
       error => {
         // Manejar el error (por ejemplo, mostrar un mensaje de error al usuario)
