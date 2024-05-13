@@ -81,7 +81,23 @@ export class SesionService {
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
       'Authorization': sesionHash
     };
-    var httpOptions = { headers: new HttpHeaders(this.headers), }
+    var httpOptions = { headers: new HttpHeaders(headersInSesion), }
     return this.http.post<UserRetroOnline>(`${this.baseUrl}/portal/savePassword`, body, httpOptions);
   }
+
+  saveProfile(body : UserRetro): Observable<UserRetroOnline> {
+
+    const sesionHash = window.sessionStorage.getItem('sesionKey') || "";
+
+    var headersInSesion = {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Authorization': sesionHash
+    };
+    var httpOptions = { headers: new HttpHeaders(headersInSesion), }
+    return this.http.post<UserRetroOnline>(`${this.baseUrl}/portal/saveProfile`, body, httpOptions);
+  }
+
+  
 }

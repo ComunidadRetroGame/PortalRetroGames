@@ -11,10 +11,17 @@ export interface UserRetro {
     alias?: string
     password?: string
     reference_text?: string
-    about_me? : string
+    about_me?: string
     user_ref?: string
+    avatar_yt?:string
+    RRSS?: Player_RRSS[]
 }
 
+
+export interface Player_RRSS {
+    type : string
+    URL : string
+}
 
 
 export interface ChangePassword {
