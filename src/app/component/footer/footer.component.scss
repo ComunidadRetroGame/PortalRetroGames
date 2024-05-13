@@ -1,11 +1,10 @@
 /* START OF FOOTER STYLES */
 footer {
-  padding: 16px 32px;
-  padding-bottom: 64px;
-  margin-top: 80px;
   text-align: center;  
   background-image: url(/assets/img/footer.jpg) ;
-  
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 128px;
 }
 
 footer small span {
