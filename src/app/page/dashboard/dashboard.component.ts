@@ -3,6 +3,7 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { SesionService } from '../../services/sesion.service';
 import { Router } from '@angular/router';
 import { ChangePassword, Player_RRSS, RRSS, UserRetro } from '../../interfaces/responses';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +12,10 @@ import { ChangePassword, Player_RRSS, RRSS, UserRetro } from '../../interfaces/r
 })
 export class DashboardComponent implements OnInit {
 
+
+  configDialog: MatSnackBarConfig = {
+    duration: 1000000, verticalPosition: 'top'
+  }
 
   showDashboard: boolean = false;
 
@@ -24,20 +29,20 @@ export class DashboardComponent implements OnInit {
     password_confirm_new: ""
   }
 
-  constructor(private sesionService: SesionService, private router: Router) { }
+  constructor(private sesionService: SesionService, private router: Router, private dialogEvents: MatSnackBar) { }
 
   doChangePassword() {
 
     if (this.changePassword.password_confirm_new != this.changePassword.password_new) {
-      alert("Las password no coinciden");
+      this.dialogEvents.open("Las password no coinciden", "cerrar", this.configDialog); window.scrollTo(0, document.body.scrollHeight);
     } else {
       this.sesionService.changePassword(this.changePassword).subscribe(
         response => {
           this.player = response.User;
-          alert("Password cambiada");
+          this.dialogEvents.open("Password cambiada", "cerrar", this.configDialog); window.scrollTo(0, document.body.scrollHeight);
         },
         error => {
-          alert("algo malio sal");
+          this.dialogEvents.open("algo malio sal", "cerrar", this.configDialog); window.scrollTo(0, document.body.scrollHeight);
         }
       );
     }
@@ -47,7 +52,7 @@ export class DashboardComponent implements OnInit {
   saveProfile() {
 
     if (!this.validUser()) {
-      alert("algo malio sal");
+      this.dialogEvents.open("algo malio sal", "cerrar", this.configDialog); window.scrollTo(0, document.body.scrollHeight);
 
     } else {
       var rrss: Player_RRSS[] = [
@@ -64,10 +69,10 @@ export class DashboardComponent implements OnInit {
 
       this.sesionService.saveProfile(this.player).subscribe(
         response => {
-          alert("Listo!");
+          this.dialogEvents.open("Listo!", "cerrar", this.configDialog); window.scrollTo(0, document.body.scrollHeight);;
         },
         error => {
-          alert("algo malio sal");
+          this.dialogEvents.open("algo malio sal", "cerrar", this.configDialog); window.scrollTo(0, document.body.scrollHeight);
         }
       );
     }
@@ -106,7 +111,7 @@ export class DashboardComponent implements OnInit {
           }
         })
 
-        if (this.player.name == "") {
+        if (this.player.alias == "") {
 
           this.router.navigate(['/home']);
         } else {

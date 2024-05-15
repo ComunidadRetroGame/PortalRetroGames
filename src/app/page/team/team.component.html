@@ -1,43 +1,37 @@
 <span class="main-content">
 
     <section class="coreteam">
-        <h3 class="topic-title"><i class="nes-icon star"></i> Comunidad</h3>
-        <p>Nuestro grupo!!</p>
+        <h3 class="topic-title title_team"><i class="nes-icon star"></i> Comunidad</h3>
+
         <section class="topic">
             <div class="coreteam-members">
-                <span class="row">
-                    <section class="nes-container is-dark member-card">
+                <span class="row"><span class="col-3" *ngFor="let player of teams">
+                        <section class="nes-container is-dark member-card" *ngIf="player.RRSS!=null">
 
-                        <div class="avatar"><img data-src="https://github.com/BcRikko.png?size=80"
-                                alt="Core Member B.C.Rikko" class="" src="https://github.com/BcRikko.png?size=80"></div>
-                        <div class="profile">
-                            <h4 class="name">Viejo Rata</h4>
-                            <p>Me gusta los juegos clasicos</p>
-                            <div><a href="https://github.com/BcRikko" target="_blank" rel="noopener"
-                                    aria-label="youtube"><i class="nes-icon youtube"></i></a> 
-                                    <a
-                                    href="https://twitter.com/bc_rikko" target="_blank" rel="noopener"
-                                    aria-label="twitter"><i class="nes-icon twitch"></i></a>
+                            <div class="avatar"><img width="128px" [alt]="player.name" class=""
+                                    [src]="player.avatar_yt"></div>
+
+                            <div class="profile">
+                                <h4 class="name" style="color: yellow;">{{player.name}}</h4>
+                                <p style="width: 100%; min-height: 100px; overflow-y: scroll;">{{player.about_me}}</p>
+                                <span class="row">
+                                    <span  *ngFor="let rrss of player.RRSS">
+                                        <span *ngIf="rrss.URL!=''" class="col-2">
+
+                                            <a *ngIf="rrss.type!='email'" [href]="rrss.URL" target="_blank"
+                                                rel="noopener"><i
+                                                    [class]="'nes-icon '+ (rrss.type=='other'?'coin':rrss.type)"></i></a>
+
+                                            <a *ngIf="rrss.type=='email'" [title]="rrss.URL"
+                                                [href]="'mailto:' + rrss.URL" rel="noopener"><i
+                                                    class="nes-icon gmail"></i></a>
+                                        </span>
+                                    </span>
+                                </span>
                             </div>
-                        </div>
-                    </section>
+                        </section>
 
-                    <section class="nes-container is-dark member-card">
-                        <div class="avatar"><img data-src="https://github.com/guastallaigor.png?size=80"
-                                alt="Core Member Igor Guastalla" class=""
-                                src="https://github.com/guastallaigor.png?size=80">
-                        </div>
-                        <div class="profile">
-                            <h4 class="name">Goruta</h4>
-                            <p>Nada superara al sega!!</p>
-                            <div><a href="https://github.com/BcRikko" target="_blank" rel="noopener"
-                                aria-label="youtube"><i class="nes-icon youtube"></i></a> 
-                                <a
-                                href="https://twitter.com/bc_rikko" target="_blank" rel="noopener"
-                                aria-label="twitter"><i class="nes-icon twitch"></i></a></div>
-                        </div>
-                    </section>
-
+                    </span>
                 </span>
             </div>
         </section>

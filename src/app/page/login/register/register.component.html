@@ -1,0 +1,96 @@
+<span class="row">
+    <span class="col-12">
+        <br>
+    </span>
+    <span class="col-1">
+    </span>
+    <span class="col-10">
+
+        <div class="nes-container is-rounded is-dark with-title">
+
+            <p class="title" style="color: white;">Bienvenido</p>
+            <table *ngIf="!perfect">
+                <tr>
+                    <td><img width="256px" src="/assets/img/lobby.gif"></td>
+                    <td><img width="32px" height="0"> </td>
+                    <td>
+
+                        <div class="nes-field">
+                            <label for="alias_field" style="color: yellow;">Frase de recomendacion</label>
+                            <input type="text" name="alias" id="alias_field" class="nes-input" [(ngModel)]="code">
+                            <button class="nes-btn" (click)="esRecomendado()">Ingresar! <img width="32px"
+                                    src="/assets/img/load.gif"></button>
+                        </div>
+
+
+                    </td>
+
+
+                </tr>
+            </table>
+
+            <span *ngIf="perfect ">
+                <table>
+                    <tr>
+
+                        <td>
+                            Asi que eres un recomendado de <strong style="color: yellow;">{{userRef.name}}</strong>,
+                            excelente!!, antes de comenzar necesito que crees un nombre
+                            de cuenta para tu usuario de <strong style="color: blueviolet;">portal retro games</strong>,
+                            este debe ser un nombre que haga
+                            referencia a tus RRSS y contenidos, idealmente. Luego presiona el boton para validar tu
+                            nombre.
+                        </td>
+                        <td><img class="nes-avatar is-large is-rounded" width="256px" [src]="userRef.avatar_yt"></td>
+                    </tr>
+                </table>
+                <span class="nes-field" *ngIf="!showForm">
+                    <span class="row">
+                        <span class="col-3">
+                            <label for="alias_field" style="color: yellow;">Nuevo Player</label>
+                            <input type="text" style="background-color: blue;" name="alias" id="alias_field"
+                                class="nes-input" [(ngModel)]="newUser.alias" maxlength="128">
+                        </span>
+                        <span class="col-3">
+                            <hr>
+                            <button class="nes-btn" (click)="checkAlias()">Validar Nombre</button>
+                        </span>
+
+                    </span>
+
+
+                </span>
+                <span class="nes-field" *ngIf="showForm">
+                    <span class="row">
+                        <span class="col-12">
+                            <hr>
+                            Excelente <strong style="color: aqua;"> {{newUser.alias}}</strong>!! eres unico, ahora
+                            debemos crear
+                            una clave.
+                        </span>
+                        <span class="col-3">
+                            <label for="password_field" style="color: yellow;">Password</label>
+                            <input type="password" name="password" id="password_field" class="nes-input"
+                                [(ngModel)]="newUser.password" maxlength="128">
+                            <label for="password_field" style="color: yellow;">Repetir Password</label>
+                            <input type="password" name="password" id="password_field" class="nes-input"
+                                [(ngModel)]="confirmPassword" maxlength="128">
+                        </span>
+                        <span class="col-3">
+                            <br><br><br>
+                            <hr>
+                            <button class="nes-btn  is-success" (click)="makeUser()"><img width="32px"
+                                src="/assets/img/insert.gif"> Crear Clave</button>
+                        </span>
+
+                    </span>
+
+
+                </span>
+            </span>
+        </div>
+
+    </span>
+    <span class="col-1">
+    </span>
+</span>

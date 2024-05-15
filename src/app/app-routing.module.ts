@@ -5,6 +5,7 @@ import { NewsComponent } from './page/news/news.component';
 import { TeamComponent } from './page/team/team.component';
 import { LoginComponent } from './page/login/login.component';
 import { DashboardComponent } from './page/dashboard/dashboard.component';
+import { RegisterComponent } from './page/login/register/register.component';
 
 const routes: Routes = [
     {
@@ -31,11 +32,18 @@ const routes: Routes = [
         path: 'login',
         component: LoginComponent,
 
-    }, {
+    }, 
+    {
         path: 'dashboard',
         component: DashboardComponent,
 
-    }, { path: '**', redirectTo: 'home' }
+    }, 
+    {
+        path: 'newPlayer',
+        component: RegisterComponent,
+
+    }, 
+    { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({

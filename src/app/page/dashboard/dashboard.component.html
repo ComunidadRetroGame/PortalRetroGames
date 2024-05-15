@@ -7,14 +7,14 @@
 
         <span class="row">
             <span class="col-10">
-                <h1><img *ngIf="player.avatar_yt"  width="128px" [src]="player.avatar_yt"> <span style="color:#000"> {{player.alias}} </span></h1>
+                <h1><img  *ngIf="player.avatar_yt" class="nes-avatar is-large is-rounded" width="128px" [src]="player.avatar_yt"> <span style="color:#000"> {{player.alias}} </span></h1>
             </span>
             <span class="col-2">
                 <button type="button" class="nes-btn is-error" (click)="logout()">Cerrar Sesión</button>
             </span>
             <span class="col-6">
                 <div class="nes-field">
-                    <label for="name_field">Nombre Player</label>
+                    <label for="name_field">Nick Player </label>
                     <input type="text" id="Nombre" [(ngModel)]="player.name" class="nes-input">
                 </div>
                 <div class="nes-field">
@@ -30,7 +30,7 @@
                 </div>
                 <div class="nes-field">
                     <label for="name_field">Sobre mi..</label>
-                    <textarea id="Sobre" rows="10" [(ngModel)]="player.about_me" class="nes-input"></textarea>
+                    <textarea id="Sobre" maxlength="4000" rows="10" [(ngModel)]="player.about_me" class="nes-input"></textarea>
                 </div>
                 <div class="nes-field">
 

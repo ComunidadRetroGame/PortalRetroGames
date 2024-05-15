@@ -30,12 +30,16 @@ export class LoginComponent implements OnInit {
     this.sesionService.sesionOnline().subscribe(
       response => {
         if (response.Code==200){
-          this.router.navigate(['/home']);;  
+          this.router.navigate(['/home']);
         }
         
       }
     );
     
+  }
+
+  newPlayer():void{
+    this.router.navigate(['/newPlayer']);
   }
 
   login(): void {

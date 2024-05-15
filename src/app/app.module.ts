@@ -1,14 +1,14 @@
 
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, Injectable } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
 
-
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Observable } from 'rxjs';
 
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,10 +20,12 @@ import { HomeComponent } from './page/home/home.component';
 import { LoginComponent } from './page/login/login.component';
 import { NewsComponent } from './page/news/news.component';
 import { TeamComponent } from './page/team/team.component';
+import { RegisterComponent } from './page/login/register/register.component';
 
 
 @NgModule({
   declarations: [
+
     AppComponent,
     FooterComponent,
     HeaderComponent,
@@ -31,10 +33,12 @@ import { TeamComponent } from './page/team/team.component';
     HomeComponent,
     LoginComponent,
     NewsComponent,
-    TeamComponent
+    TeamComponent,
+    RegisterComponent
   ],
   imports: [
-    HttpClientModule,
+    
+    MatDialogModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,

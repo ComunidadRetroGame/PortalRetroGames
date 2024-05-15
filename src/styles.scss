@@ -8,6 +8,20 @@
     src: url('/assets/font/ARCADE.TTF');
 }
 
+
+
+
+
+.title_team {
+    font-family: "BIG_ARCADE" !important;
+    color: #FFF !important;
+}
+
+.mat-mdc-snack-bar-label {
+    font-family: "BIG_ARCADE" !important;
+    color: #00FF00 !important;
+}
+
 $ease-out-quint: cubic-bezier(0.230, 1.000, 0.320, 1.000);
 $ease-in-quint: cubic-bezier(0.755, 0.050, 0.855, 0.060);
 $screen-background: #121010;
@@ -234,3 +248,8 @@ body {
     animation-fill-mode: forwards;
 }
 
+.mat-mdc-simple-snack-bar {
+    position: relative;
+    top: 40px;
+    left: 40px;
+}
