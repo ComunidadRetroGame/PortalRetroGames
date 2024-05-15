@@ -6,7 +6,7 @@ import { TeamComponent } from './page/team/team.component';
 import { LoginComponent } from './page/login/login.component';
 import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { RegisterComponent } from './page/login/register/register.component';
-
+import { CreateComponent } from './page/news/create/create.component'; 
 const routes: Routes = [
     {
         path: '',
@@ -24,6 +24,11 @@ const routes: Routes = [
 
     },
     {
+        path: 'create',
+        component: CreateComponent,
+
+    },
+    {
         path: 'team',
         component: TeamComponent,
 
@@ -32,17 +37,17 @@ const routes: Routes = [
         path: 'login',
         component: LoginComponent,
 
-    }, 
+    },
     {
         path: 'dashboard',
         component: DashboardComponent,
 
-    }, 
+    },
     {
         path: 'newPlayer',
         component: RegisterComponent,
 
-    }, 
+    },
     { path: '**', redirectTo: 'home' }
 ];
 

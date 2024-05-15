@@ -2,7 +2,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { SesionService } from '../../services/sesion.service';
 import { Router } from '@angular/router';
-import { ChangePassword, Player_RRSS, RRSS, UserRetro } from '../../interfaces/responses';
+import { ChangePassword, Player_RRSS, RRSS, TakeError, UserRetro } from '../../interfaces/responses';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Component({
@@ -71,8 +71,8 @@ export class DashboardComponent implements OnInit {
         response => {
           this.dialogEvents.open("Listo!", "cerrar", this.configDialog); window.scrollTo(0, document.body.scrollHeight);;
         },
-        error => {
-          this.dialogEvents.open("algo malio sal", "cerrar", this.configDialog); window.scrollTo(0, document.body.scrollHeight);
+        error => {          
+          this.dialogEvents.open(error['error'], "cerrar", this.configDialog); window.scrollTo(0, document.body.scrollHeight);
         }
       );
     }

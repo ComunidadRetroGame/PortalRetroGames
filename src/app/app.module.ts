@@ -21,11 +21,15 @@ import { LoginComponent } from './page/login/login.component';
 import { NewsComponent } from './page/news/news.component';
 import { TeamComponent } from './page/team/team.component';
 import { RegisterComponent } from './page/login/register/register.component';
+import { TipsComponent } from './component/tips/tips.component';
+import { SafePipe } from './safe.pipe';
+import { CreateComponent } from './page/news/create/create.component';   
 
 
 @NgModule({
   declarations: [
-
+    SafePipe,
+    TipsComponent,
     AppComponent,
     FooterComponent,
     HeaderComponent,
@@ -34,7 +38,10 @@ import { RegisterComponent } from './page/login/register/register.component';
     LoginComponent,
     NewsComponent,
     TeamComponent,
-    RegisterComponent
+    RegisterComponent,
+    TipsComponent,
+    SafePipe,
+    CreateComponent
   ],
   imports: [
     

@@ -1,57 +1,10 @@
 <span class="row">
-    <span class="col-12">
-        <button type="button" class="nes-btn is-warning">Agregar Novedad!</button>
+    <span class="col-12" *ngIf="online">
+        <button type="button" class="nes-btn is-warning"  routerLink="/create">Agregar Novedad!</button>
     </span>
 
-        <div class="nes-container is-rounded  scanlines is-dark" style="max-width: 620px;">
-            <p>street fighter 2 turbo vs shadaloo organization. #ikemengo #gameplays.</p>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/gvMh_RLHR4Q?si=ODGkDxkZ4Yqv9Brr"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <div class="nes-container with-title is-centered">
-                <p class="title" style="color:#000">por Doctor Retro TV</p>
-                <small>street fighter 2 turbo vs shadaloo organization.
-                    en este video hicimos una modificaciones de un video juego creado por mi en referencia o decirse
-                    remake del clasico del mitico street fighter
-                    se omitieron algunas cosas para hacer el video mas corto
-                    gameplay jugando con shin ex akuma el personajes mas roto del juego
-                    espero sea de su agrado</small>
-            </div>
 
-        </div>
-
-        <div class="nes-container is-rounded  scanlines is-dark" style="max-width: 560px;">
-            <p>FINAL DOUBLE DRAGON - Avances - Testing Akira.</p>
-            <iframe width="500" height="250" src="https://www.youtube.com/embed/_OuZM1hC-M0?si=SvyRdWlD5IBDUowv"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <div class="nes-container with-title is-centered">
-                <p class="title" style="color:#000">por
-                    Gabo-Hanzo</p>
-                <small>Nuevo video para mostrar los avances de mi actual proyecto desarrollado con el motor Openbor.
-                    Final Double Dragon.
-                    Final Double Dragon es la cuarta parte y final de la saga "Revolution - Gaiden". Esta saga esta
-                    compuesta primeramente por Double Dragon Revolution 1 & 2, seguido por Double Dragon Gaiden y
-                    culmina
-                    finalmente con Final Double Dragon.</small>
-            </div>
-        </div>
-
-        <div class="nes-container is-rounded  scanlines is-dark" style="max-width: 560px;">
-            <p>ROBOCOP Arcade 1CC (💪732.400 Puntos💪) -ロボコップ - "🎮RECREATIVOS HIGH SCORE"</p>
-
-            
-
-            <iframe width="500" height="250" src="https://www.youtube.com/embed/-sd8SwDlXSg"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <div class="nes-container with-title is-centered">
-                <p class="title" style="color:#000">por
-                    GAME NOT OVER</p>
-                <small>Partida terminando el juego con un crédito para el Salón Recreativo "HIGH SCORE", del grupo de TELEGRAM. n.</small>
-            </div>
-        </div>
+        <span>
+            <app-tips [tips]="tips"></app-tips>
+        </span>
 </span>

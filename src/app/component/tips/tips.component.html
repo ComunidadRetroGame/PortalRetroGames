@@ -1,0 +1,12 @@
+<div class="nes-container is-rounded scanlines is-dark" style="max-width: 560px;" *ngIf="tips.type=='youtube'">
+    <p>{{tips.title}}</p>
+    <iframe class="scanlines" sandbox="allow-scripts allow-same-origin allow-presentation" width="500" height="375" [src]="tips.url | safe"
+        [title]="tips.title" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; allow-presentation"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen ></iframe>
+ 
+    <div class="nes-container with-title is-centered">
+        <p class="title" style="color:#000">por {{tips.author}}</p>
+        <small>{{tips.description}}</small>
+    </div>
+</div>

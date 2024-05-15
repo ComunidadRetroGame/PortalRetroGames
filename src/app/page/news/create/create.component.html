@@ -1,0 +1,49 @@
+<div class="nes-container with-title ">
+    <div class="nes-container is-rounded is-dark">
+
+        <span class="row">
+            <span class="col-6">
+                <p class="title createNew">Crear novedad!!</p>
+                <label for="default_select">Sera...</label>
+                <div class="nes-select">
+                    <select required id="default_select" [(ngModel)]="newTips.type">
+                        <option value="" disabled selected hidden>Select...</option>
+                        <option value="youtube">Un video de youtube</option>
+                        <option value="tips">Un truco o tips</option>
+                        <option value="url">Un sitio o descarga</option>
+                    </select>
+                </div>
+                <div class="nes-field" *ngIf="newTips.type=='youtube'">
+
+                    <div class="nes-field">
+                        <label for="Titulo">Titulo</label>
+                        <input type="text" id="Titulo" [(ngModel)]="newTips.title" class="nes-input">
+                    </div>
+                    <div class="nes-field">
+                        <label for="Url">Pega la URL de Youtube</label>
+                        <input type="text" id="Url" title="https://www.youtube.com/watch?v=????" [(ngModel)]="url" (input)="makeUrl()" (keypress)="makeUrl()"
+                            class="nes-input"><button type="button" (click)="cleanUrl()" class="nes-btn is-error">x</button>
+                    </div>
+
+                    <div class="nes-field">
+                        <label for="Novedad">Novedad</label>
+                        <textarea id="Novedad" maxlength="4000" rows="5" class="nes-textarea"
+                            [(ngModel)]="newTips.description" class="nes-input"></textarea>
+                    </div>
+                </div>
+
+            </span><span class="col-6"><img width="300px" src="/assets/img/creando.gif">
+                <div class="nes-container is-rounded is-dark" *ngIf="newTips.type=='youtube'">
+                    RetroBot : Solo recordarte que el video debe tener la tematica idealmente es material retro gamer
+                </div>
+                <br>
+                <button type="button" *ngIf="newTips.type" class="nes-btn is-success">Publicar Noticia</button>
+            </span></span>
+
+    </div>
+    <span class="is-centered">
+        <br><br>
+
+
+        <app-tips [tips]="newTips"></app-tips>
+    </span>

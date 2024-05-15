@@ -51,3 +51,18 @@ export interface RRSS {
     reddit?: string
     other?: string
 }
+
+export interface MessageError {
+    code : number
+    message: string
+}
+
+export class TakeError {
+    returnMessage(response :  any) : MessageError {
+        var messageError : MessageError ={
+             code : response['code'],
+             message: response['message']
+        }
+        return messageError;
+    }
+}
