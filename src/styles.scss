@@ -8,8 +8,20 @@
     src: url('/assets/font/ARCADE.TTF');
 }
 
+.mdc-tab__text-label {
+    font-family: "Press Start 2P";
+    color: #111;
+}
+
+.mdc-tab-indicator {
+    background-color: #777;
+}
 
 
+.ql-editor {
+    font-family: "Press Start 2P";
+    width: 100%;
+}
 
 
 .title_team {
@@ -17,10 +29,21 @@
     color: #FFF !important;
 }
 
-.mat-mdc-snack-bar-label , .createNew{
-    font-family: "BIG_ARCADE" !important;
-    color: #00FF00 !important;
+.big_title {
+    font-family: "BIG_ARCADE" !important;    
 }
+
+
+
+.mdc-snackbar__label,
+.button__label,
+.mdc-button__label,
+.mdc-snackbar__actions
+.tips_content {
+    font-family: "Press Start 2P" !important;
+}
+
+
 
 $ease-out-quint: cubic-bezier(0.230, 1.000, 0.320, 1.000);
 $ease-in-quint: cubic-bezier(0.755, 0.050, 0.855, 0.060);
@@ -247,14 +270,3 @@ body {
     animation: overlay-anim 5s linear;
     animation-fill-mode: forwards;
 }
-
-.mat-mdc-simple-snack-bar {
-    position: relative;
-    top: 40px;
-    left: 40px;
-}
-
-
-
-
-

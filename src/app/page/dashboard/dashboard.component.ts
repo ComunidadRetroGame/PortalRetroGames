@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
 
 
   configDialog: MatSnackBarConfig = {
-    duration: 1000000, verticalPosition: 'top'
+    duration: 10000, verticalPosition: 'top'
   }
 
   showDashboard: boolean = false;
@@ -34,15 +34,15 @@ export class DashboardComponent implements OnInit {
   doChangePassword() {
 
     if (this.changePassword.password_confirm_new != this.changePassword.password_new) {
-      this.dialogEvents.open("Las password no coinciden", "cerrar", this.configDialog); window.scrollTo(0, document.body.scrollHeight);
+      this.dialogEvents.open("Las password no coinciden", "cerrar", this.configDialog); 
     } else {
       this.sesionService.changePassword(this.changePassword).subscribe(
         response => {
           this.player = response.User;
-          this.dialogEvents.open("Password cambiada", "cerrar", this.configDialog); window.scrollTo(0, document.body.scrollHeight);
+          this.dialogEvents.open("Password cambiada", "cerrar", this.configDialog); 
         },
         error => {
-          this.dialogEvents.open("algo malio sal", "cerrar", this.configDialog); window.scrollTo(0, document.body.scrollHeight);
+          this.dialogEvents.open("algo malio sal", "cerrar", this.configDialog); 
         }
       );
     }
@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit {
   saveProfile() {
 
     if (!this.validUser()) {
-      this.dialogEvents.open("algo malio sal", "cerrar", this.configDialog); window.scrollTo(0, document.body.scrollHeight);
+      this.dialogEvents.open("algo malio sal", "cerrar", this.configDialog); 
 
     } else {
       var rrss: Player_RRSS[] = [
@@ -69,10 +69,10 @@ export class DashboardComponent implements OnInit {
 
       this.sesionService.saveProfile(this.player).subscribe(
         response => {
-          this.dialogEvents.open("Listo!", "cerrar", this.configDialog); window.scrollTo(0, document.body.scrollHeight);;
+          this.dialogEvents.open("Listo!", "cerrar", this.configDialog); ;
         },
         error => {          
-          this.dialogEvents.open(error['error'], "cerrar", this.configDialog); window.scrollTo(0, document.body.scrollHeight);
+          this.dialogEvents.open(error['error'], "cerrar", this.configDialog); 
         }
       );
     }

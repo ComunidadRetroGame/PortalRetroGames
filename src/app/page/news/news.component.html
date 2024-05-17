@@ -4,7 +4,7 @@
     </span>
 
 
-        <span>
-            <app-tips [tips]="tips"></app-tips>
+        <span *ngFor="let tip of tips">
+            <app-tips [tips]="tip"></app-tips>
         </span>
 </span>

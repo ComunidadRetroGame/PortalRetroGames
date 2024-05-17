@@ -1,4 +1,4 @@
-<div class="nes-container with-title ">
+<div class="nes-container with-title " *ngIf="online">
     <div class="nes-container is-rounded is-dark">
 
         <span class="row">
@@ -6,13 +6,32 @@
                 <p class="title createNew">Crear novedad!!</p>
                 <label for="default_select">Sera...</label>
                 <div class="nes-select">
-                    <select required id="default_select" [(ngModel)]="newTips.type">
+                    <select required id="default_select" [(ngModel)]="newTips.type" (change)="setTips()">
                         <option value="" disabled selected hidden>Select...</option>
                         <option value="youtube">Un video de youtube</option>
                         <option value="tips">Un truco o tips</option>
                         <option value="url">Un sitio o descarga</option>
                     </select>
                 </div>
+                <div class="nes-field" *ngIf="newTips.type=='url'">
+
+                    <div class="nes-field">
+                        <label for="Titulo">Titulo</label>
+                        <input type="text" id="Titulo" [(ngModel)]="newTips.title" class="nes-input">
+                    </div>
+                    <div class="nes-field">
+                        <label for="Url">Url</label>
+                        <input type="text" id="Url" title="https://www.google.com" [(ngModel)]="newTips.url"
+                            class="nes-input">
+                    </div>
+
+                    <div class="nes-field">
+                        <label for="Novedad">Descripcion</label>
+                        <textarea id="Novedad" maxlength="4000" rows="5" class="nes-textarea"
+                            [(ngModel)]="newTips.content" class="nes-input"></textarea>
+                    </div>
+                </div>
+
                 <div class="nes-field" *ngIf="newTips.type=='youtube'">
 
                     <div class="nes-field">
@@ -21,29 +40,57 @@
                     </div>
                     <div class="nes-field">
                         <label for="Url">Pega la URL de Youtube</label>
-                        <input type="text" id="Url" title="https://www.youtube.com/watch?v=????" [(ngModel)]="url" (input)="makeUrl()" (keypress)="makeUrl()"
-                            class="nes-input"><button type="button" (click)="cleanUrl()" class="nes-btn is-error">x</button>
+                        <input type="text" id="Url" title="https://www.youtube.com/watch?v=????" [(ngModel)]="url"
+                            (input)="makeUrl()" (keypress)="makeUrl()" class="nes-input"><button type="button"
+                            (click)="cleanUrl()" class="nes-btn is-error">x</button>
                     </div>
 
                     <div class="nes-field">
-                        <label for="Novedad">Novedad</label>
+                        <label for="Novedad">Descripcion</label>
                         <textarea id="Novedad" maxlength="4000" rows="5" class="nes-textarea"
-                            [(ngModel)]="newTips.description" class="nes-input"></textarea>
+                            [(ngModel)]="newTips.content" class="nes-input"></textarea>
                     </div>
                 </div>
+                <div class="nes-field" *ngIf="newTips.type=='tips'">
 
+                    <div class="nes-field">
+
+
+
+                        <div class="nes-container is-rounded is-dark">
+
+
+                            <div class="nes-field">
+                                <label for="Titulo" class="big_title">Titulo</label>
+                                <input type="text" id="Titulo" [(ngModel)]="newTips.title" class="nes-input">
+                            </div>
+                            <hr>
+                            <quill-editor style="width: 100%; background-color: #fff;color:black" id="txtContent"
+                                theme="snow" [modules]="modulesQuill"
+                                (onEditorChanged)="onChangedEditor($event)"></quill-editor>
+
+
+
+                        </div>
+                    </div>
+                </div>
             </span><span class="col-6"><img width="300px" src="/assets/img/creando.gif">
                 <div class="nes-container is-rounded is-dark" *ngIf="newTips.type=='youtube'">
                     RetroBot : Solo recordarte que el video debe tener la tematica idealmente es material retro gamer
                 </div>
+                <div class="nes-container is-rounded is-dark" *ngIf="newTips.type=='tips'">
+                    RetroBot : No subas imagenes muy grandes, dado que el servidor es muy humilde, por favor..
+                </div>
                 <br>
-                <button type="button" *ngIf="newTips.type" class="nes-btn is-success">Publicar Noticia</button>
+                <button type="button" *ngIf="newTips.type" class="nes-btn is-success" (click)="crearTips()">Publicar Noticia</button>
             </span></span>
 
     </div>
     <span class="is-centered">
         <br><br>
+        <app-tips id="youtube" [tips]="newTips" *ngIf="newTips.type=='youtube'"></app-tips>
 
+        <app-tips id="tips" [tips]="newTips" *ngIf="newTips.type=='tips'"></app-tips>
 
-        <app-tips [tips]="newTips"></app-tips>
+        <app-tips id="url" [tips]="newTips" *ngIf="newTips.type=='url'"></app-tips>
     </span>

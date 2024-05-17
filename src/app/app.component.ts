@@ -1,4 +1,4 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, ElementRef, Injectable, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-root',
@@ -9,8 +9,11 @@ import { Component, Injectable, OnInit } from '@angular/core';
 
 @Injectable()
 export class AppComponent implements OnInit{
+  constructor(private _elementRef: ElementRef) {
+  }
+
   ngOnInit(): void {
-    
+    this._elementRef.nativeElement.removeAttribute("ng-version");
   }
   title = 'PortalRetroGames';
 }

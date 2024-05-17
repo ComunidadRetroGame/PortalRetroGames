@@ -23,8 +23,12 @@ import { TeamComponent } from './page/team/team.component';
 import { RegisterComponent } from './page/login/register/register.component';
 import { TipsComponent } from './component/tips/tips.component';
 import { SafePipe } from './safe.pipe';
-import { CreateComponent } from './page/news/create/create.component';   
-
+import { CreateComponent } from './page/news/create/create.component';
+import { QuillModule } from 'ngx-quill';
+import { MatTabsModule } from '@angular/material/tabs';
+import { BrowserModule } from '@angular/platform-browser';
+import { NoticeComponent } from './page/notice/notice.component';
+import { JustHostPipe } from './safe.pipe';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,7 @@ import { CreateComponent } from './page/news/create/create.component';
     TipsComponent,
     AppComponent,
     FooterComponent,
+    JustHostPipe,
     HeaderComponent,
     DashboardComponent,
     HomeComponent,
@@ -41,12 +46,27 @@ import { CreateComponent } from './page/news/create/create.component';
     RegisterComponent,
     TipsComponent,
     SafePipe,
-    CreateComponent
+    CreateComponent,
+    NoticeComponent
   ],
   imports: [
-    
+    MatTabsModule,
+    QuillModule.forRoot({
+      modules: {
+        toolbar: [
+          ['bold', 'italic', 'underline', 'strike'],
+          [{ color: [] }, { background: [] }],
+          [{ size: ['small', false, 'large', 'huge'] }],
+          [{ list: 'ordered' }, { list: 'bullet' }],
+          ['link', 'image', 'video'],
+          ['clean'],
+        ],
+        imageResize: true,
+      },
+    }),
     MatDialogModule,
     BrowserAnimationsModule,
+    BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

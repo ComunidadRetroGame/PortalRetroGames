@@ -7,6 +7,7 @@ import { LoginComponent } from './page/login/login.component';
 import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { RegisterComponent } from './page/login/register/register.component';
 import { CreateComponent } from './page/news/create/create.component'; 
+import { NoticeComponent } from './page/notice/notice.component';
 const routes: Routes = [
     {
         path: '',
@@ -26,6 +27,11 @@ const routes: Routes = [
     {
         path: 'create',
         component: CreateComponent,
+
+    },
+    {
+        path: 'notice',
+        component: NoticeComponent,
 
     },
     {

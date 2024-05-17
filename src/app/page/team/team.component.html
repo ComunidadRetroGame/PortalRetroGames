@@ -9,11 +9,13 @@
                         <section class="nes-container is-dark member-card" *ngIf="player.RRSS!=null">
 
                             <div class="avatar"><img width="128px" [alt]="player.name"  style="image-rendering: pixelated;" 
-                                    [src]="player.avatar_yt"></div>
+                                    [src]="player.avatar_yt==''?'/assets/img/logo.jpg':player.avatar_yt"></div>
 
                             <div class="profile">
                                 <h4 class="name" style="color: yellow;">{{player.name}}</h4>
-                                <p style="width: 100%; min-height: 100px; overflow-y: scroll;">{{player.about_me}}</p>
+                                <p style="width: 100%; min-height: 100px;max-height: 100px; overflow-y: scroll;">
+                                   <small> {{player.about_me}}</small>
+                                </p>
                                 <span class="row">
                                     <span  *ngFor="let rrss of player.RRSS">
                                         <span *ngIf="rrss.URL!=''" class="col-2">

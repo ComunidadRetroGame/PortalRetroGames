@@ -133,7 +133,7 @@
                                         <img height="0px" width="600px">
                                         <input type="text" style="font-size: 12px;" id="other" alias="Otra red social o pagina"
                                             [(ngModel)]="rrss_player.other"
-                                            class="nes-input"><a [href]="rrss_player.other" target="_blank">ir..</a>
+                                            class="nes-input"><a *ngIf="rrss_player.other"  [href]="rrss_player.other" target="_blank">ir..</a>
                                     </td>
                                 </tr>
                             </tbody>

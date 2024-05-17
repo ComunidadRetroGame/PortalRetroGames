@@ -1,6 +1,6 @@
 
 import { Tips } from '../../interfaces/portal';
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer } from "@angular/platform-browser";
 
 
@@ -13,7 +13,13 @@ import { DomSanitizer } from "@angular/platform-browser";
 
 export class TipsComponent implements OnInit {
 
-  @Input() tips: Tips = { url: "" };
+  showMoreTips: boolean = false
+
+  showMore() {
+    this.showMoreTips = !this.showMoreTips;
+  }
+
+  @Input() tips: Tips = { url: "", content: "", id:"" };
 
   constructor(private sanitizer: DomSanitizer) { }
 

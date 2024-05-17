@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
               this.userName = userRetro.name || ""
               this.about = userRetro.about_me || ""
               if (this.userName == "") {
-                this.dialogEvents.open("Debe completar su perfil!", "cerrar", this.configDialog);window.scrollTo(0, document.body.scrollHeight);
+                this.dialogEvents.open("Debe completar su perfil!", "cerrar", this.configDialog);
                 this.router.navigate(['/dashboard']);
               }
             }
