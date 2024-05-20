@@ -41,7 +41,7 @@
                             referencia a tus RRSS y contenidos, idealmente. Luego presiona el boton para validar tu
                             nombre.
                         </td>
-                        <td><img class="nes-avatar is-large is-rounded" width="256px" [src]="userRef.avatar_yt"></td>
+                        <td></td>
                     </tr>
                 </table>
                 <span class="nes-field" *ngIf="!showForm">
@@ -49,7 +49,8 @@
                         <span class="col-3">
                             <label for="alias_field" style="color: yellow;">Nuevo Player</label>
                             <input type="text" style="background-color: blue;" name="alias" id="alias_field"
-                                class="nes-input" [(ngModel)]="newUser.alias" (keydown)="preventSpace($event)"  maxlength="128">
+                                class="nes-input" [(ngModel)]="newUser.alias" (keydown)="preventSpace($event)" placeholder="INGRESE NOMBRE DE USUARIO"
+                                maxlength="128">
                         </span>
                         <span class="col-3">
                             <hr>
@@ -80,29 +81,34 @@
                             <br><br><br>
                             <hr>
                             <button class="nes-btn  is-success" (click)="makeUser()"><img width="32px"
-                                src="/assets/img/insert.gif"> Crear Clave</button>
+                                    src="/assets/img/insert.gif"> Crear Clave</button>
                         </span>
 
                     </span>
 
 
                 </span>
-                <span>
-                    Reglas del sitio.
-                    <hr/>
-                    1) Respeto mutuo en todo momento.<br/>
-                    2) Temática exclusiva: juegos retro solamente.<br/>
-                    3) Evitar material inapropiado o violento.<br/>
-                    4) Colaborar y ayudar a otros miembros.<br/>
-                    5) Respetar los derechos de autor.<br/>
-                    6) Colaborar con los moderadores.<br/>
-                    7) Publicar contenido relevante y evitar el spam.<br/>
-                    8) Atención a anuncios y actualizaciones del canal.<br/>
-                    <br/>
-                    <br/>
-                </span>
+                <span class="nes-balloon from-left nes-pointer" style="color: blue;">
+
+                    <span href="#" class="nes-badge is-icon">
+                        <span class="is-warning"><i class="nes-icon star is-small"></i></span>
+                        <span class="is-primary">Reglas del sitio</span>
+                    </span>
+                    <hr />
+                    1) Respeto mutuo en todo momento.<br />
+                    2) Temática exclusiva: juegos retro solamente.<br />
+                    3) Evitar material inapropiado o violento.<br />
+                    4) Colaborar y ayudar a otros miembros.<br />
+                    5) Respetar los derechos de autor.<br />
+                    6) Colaborar con los moderadores.<br />
+                    7) Publicar contenido relevante.<br />
+                    8) Atención a anuncios y actualizaciones del canal.<br />
+                    <br />
+                    <br />
+                </span><br>
+                <img class="nes-avatar is-large is-rounded" width="256px" [src]="userRef.avatar_yt">
             </span>
-            
+
         </div>
 
     </span>

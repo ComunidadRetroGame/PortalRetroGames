@@ -8,7 +8,13 @@ import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { RegisterComponent } from './page/login/register/register.component';
 import { CreateComponent } from './page/news/create/create.component'; 
 import { NoticeComponent } from './page/notice/notice.component';
+import { MobileHomeComponent } from './mobile/home/home.component';
 const routes: Routes = [
+    {
+        path: 'mobile',
+        component: MobileHomeComponent,
+
+    },
     {
         path: '',
         component: HomeComponent,

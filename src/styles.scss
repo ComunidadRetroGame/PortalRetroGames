@@ -4,8 +4,23 @@
 }
 
 @font-face {
+    font-family: RETRO_TV;
+    src: url('/assets/font/Vintage.ttf');
+}
+
+@font-face {
     font-family: arcade;
     src: url('/assets/font/ARCADE.TTF');
+}
+
+.retro_tv{
+    font-family: RETRO_TV;
+}
+
+body {
+    background-color: black;
+    font-family: "Press Start 2P", cursive; 
+    font-size: 14px;
 }
 
 .mdc-tab__text-label {
@@ -22,6 +37,15 @@
     font-family: "Press Start 2P";
     width: 100%;
 }
+
+.neon{
+    text-shadow: 2px 3px 11px #fc12d5;
+    color: #fff;
+  }
+
+  .neon-white{
+    text-shadow: 2px 3px 11px #000;    
+  }
 
 
 .title_team {
@@ -50,10 +74,7 @@ $ease-in-quint: cubic-bezier(0.755, 0.050, 0.855, 0.060);
 $screen-background: #121010;
 
 
-body {
-    background-color: black;
-    font-family: "Press Start 2P";
-}
+
 
 #switch {
     display: none;

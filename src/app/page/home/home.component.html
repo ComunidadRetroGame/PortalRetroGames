@@ -3,29 +3,74 @@
     <span class="col-2"></span>
     <span class="col-8">
 
-        <div class="nes-container is-dark with-title">
-             <h1 class="title">Bienvenido {{userName}} !!</h1>
+        <div class="nes-container rpgui-container framed rpgui-draggable is-dark with-title">
 
-             <span class="row">
-             <span class="col-9">
-            <div style="color:aliceblue">
+            <h1 class="title ">
+                Bienvenido {{userName}} !!
+            </h1>
+            <span class="row rpgui-container framed-golden-2">
+                <span class="col-3">
+                    <img src="/assets/img/logo.jpg" width="216px" style="image-rendering: pixelated;">
+                </span>
 
-                {{about}}
+                <span class="col-9">
 
-                <hr>
+                    Esta comunidad reune a los generadores de contenido mas retro gamers de la historia!!, aqui
+                    encontraras
+                    Trucos,
+                    videos, gameplays de arcade, consolas clasicas y epicas!, con jugadores expertos y no tanto,
+                    pero si
+                    apasionado
+                    por los beat'em up, carreras, naves, plataformas etc!!.
 
-                Esta comunidad reune a los generadores de contenido mas retro gamers de la historia!!, aqui encontraras
-                Trucos,
-                videos, gameplays de arcade, consolas clasicas y epicas!, con jugadores expertos y no tanto, pero si
-                apasionado
-                por los beat'em up, carreras, naves, plataformas etc!!.
-            </div>
-        </span>
-        <span class="col-3">
-            <img src="/assets/img/logo.jpg" class="scanlines">
-        </span>
-        </span>
+                </span>
+
+            </span>
+            <span class="row">
+                <span class="col-12">
+                    <br>
+                </span>
+            </span>
+            <span class="row">
+                <span class="col-12">
+                    <h1 class="neon-white" style="z-index: 99999;">
+                        <span style="color: rgb(230, 0, 0);">B</span>
+                        <span style="color: rgb(255, 255, 102);">U</span>
+                        <span style="color: rgb(0, 138, 0);">S</span>
+                        <span style="color: rgb(102, 163, 224);">C</span>
+                        <span style="color: rgb(194, 133, 255);">A</span>
+                        <span style="color: rgb(0, 138, 0);">D</span>
+                        <span style="color: rgb(230, 0, 0);">O</span>
+                        <span style="color: rgb(255, 153, 0);">R</span>
+                        -
+                        <span style="color: rgb(0, 138, 0);">R</span>
+                        <span style="color: rgb(255, 255, 0);">E</span>
+                        <span style="color: rgb(255, 153, 0);">T</span>
+                        <span style="color: rgb(230, 0, 0);">R</span>
+                        <span style="color: rgb(0, 102, 204);">O</span>
+                    </h1>
+                </span>
+            </span>
+            <span class="row">
+                <span class="col-10">
+                    <input type="text" style="background-color: #000;color: greenyellow;" id="Titulo" maxlength="256"
+                        class="nes-input" [(ngModel)]="search"
+                        placeholder="Buscador de juegos retros, consejos, tutoriales, videos!">
+                </span><span class="col-2"> <button class="rpgui-button" (click)="onSearch()">BUSCAR!!</button></span>
+            </span>
         </div>
     </span>
     <span class="col-2"></span>
+
 </span>
+
+
+<div class="row">
+    <span class="col-4" *ngFor="let post of posts">
+        <app-tips [tips]="post"></app-tips>
+    </span>
+</div>
+
+<div *ngIf="loading" class="loading">
+    Buscando mas informacion!!
+</div>

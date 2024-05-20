@@ -15,13 +15,13 @@
             <span class="col-6">
                 <div class="nes-field">
                     <label for="name_field">Nick Player </label>
-                    <input type="text" id="Nombre" [(ngModel)]="player.name" class="nes-input">
+                    <input type="text" id="Nombre" [(ngModel)]="player.name" class="nes-input"  placeholder="Nombre de Usuario">
                 </div>
                 <div class="nes-field">
 
                     <p class="nes-balloon from-left nes-pointer">
 
-                        <input type="text" id="Frase" [(ngModel)]="player.reference_text" class="nes-input">
+                        <input type="text" id="Frase" [(ngModel)]="player.reference_text" class="nes-input"   placeholder="Tiene que ser una frase unica, es tu sello de recomendacion">
                         <br>
                         La frase de recomendación, es un codigo que puedes compartir con alguien que quieres que se una
                         la comunidad, asi como <strong>{{player.user_ref}}</strong>, te recomendó.
@@ -30,7 +30,7 @@
                 </div>
                 <div class="nes-field">
                     <label for="textarea_field">Sobre mi..</label>
-                    <textarea maxlength="4000" rows="10" id="textarea_field" class="nes-textarea" [(ngModel)]="player.about_me" class="nes-input"></textarea>
+                    <textarea maxlength="4000" placeholder="Cuentanos sobre ti :D" rows="10" id="textarea_field" class="nes-textarea" [(ngModel)]="player.about_me" class="nes-input"></textarea>
                 </div>
                 <div class="nes-field">
 
@@ -80,8 +80,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
-
                                 <tr>
                                     <td> <i class="nes-icon gmail is-large"></i> </td>
 
@@ -94,35 +92,35 @@
 
                                 <tr>
                                     <td> <i class="nes-icon youtube is-large"></i> </td>
-                                    <td> <input type="text" style="font-size: 12px;" id="youtube" [(ngModel)]="rrss_player.youtube"
+                                    <td> <input type="text" style="font-size: 12px;" id="youtube" [(ngModel)]="rrss_player.youtube" placeholder="https://www.youtube.com/@NOMBRECANAL"
                                             class="nes-input"><a *ngIf="rrss_player.youtube"
                                             [href]="rrss_player.youtube" target="_blank">ir..</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td> <i class="nes-icon twitch is-large"></i> </td>
-                                    <td> <input type="text" style="font-size: 12px;" id="twitch" [(ngModel)]="rrss_player.twitch"
+                                    <td> <input type="text" style="font-size: 12px;" id="twitch" [(ngModel)]="rrss_player.twitch"  placeholder="https://www.twitch.tv/NOMBRECANAL"
                                             class="nes-input"><a *ngIf="rrss_player.twitch" [href]="rrss_player.twitch"
                                             target="_blank">ir..</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td> <i class="nes-icon twitter is-large"></i> </td>
-                                    <td> <input type="text" style="font-size: 12px;" id="twitter" [(ngModel)]="rrss_player.twitter"
+                                    <td> <input type="text" style="font-size: 12px;" id="twitter" [(ngModel)]="rrss_player.twitter"  placeholder="https://twitter.com/NOMBRECUENTA"
                                             class="nes-input"><a *ngIf="rrss_player.twitter"
                                             [href]="rrss_player.twitter" target="_blank">ir..</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td> <i class="nes-icon instagram is-large"></i> </td>
-                                    <td> <input type="text" style="font-size: 12px;" id="instagram" [(ngModel)]="rrss_player.instagram"
+                                    <td> <input type="text" style="font-size: 12px;" id="instagram" [(ngModel)]="rrss_player.instagram"  placeholder="https://www.instagram.com/NOMBRECUENTA/"
                                             class="nes-input"><a *ngIf="rrss_player.instagram"
                                             [href]="rrss_player.instagram" target="_blank">ir..</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td> <i class="nes-icon reddit is-large"></i> </td>
-                                    <td> <input type="text" style="font-size: 12px;" id="reddit" [(ngModel)]="rrss_player.reddit"
+                                    <td> <input type="text" style="font-size: 12px;" id="reddit" [(ngModel)]="rrss_player.reddit"  placeholder="https://www.reddit.com/r/NOMBRECUENTA/"
                                             class="nes-input"><a *ngIf="rrss_player.reddit" [href]="rrss_player.reddit"
                                             target="_blank">ir..</a>
                                     </td>
@@ -131,7 +129,7 @@
                                     <td> <i class="nes-icon coin is-large"></i> </td>
                                     <td> 
                                         <img height="0px" width="600px">
-                                        <input type="text" style="font-size: 12px;" id="other" alias="Otra red social o pagina"
+                                        <input type="text" style="font-size: 12px;" id="other" alias="Otra red social o pagina"  placeholder="https://"
                                             [(ngModel)]="rrss_player.other"
                                             class="nes-input"><a *ngIf="rrss_player.other"  [href]="rrss_player.other" target="_blank">ir..</a>
                                     </td>

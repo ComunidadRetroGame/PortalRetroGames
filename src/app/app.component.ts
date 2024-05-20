@@ -1,4 +1,6 @@
+import { Platform } from '@angular/cdk/platform';
 import { Component, ElementRef, Injectable, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-root',
@@ -9,11 +11,20 @@ import { Component, ElementRef, Injectable, OnInit } from '@angular/core';
 
 @Injectable()
 export class AppComponent implements OnInit{
-  constructor(private _elementRef: ElementRef) {
+
+  isDesktop : boolean = true;
+
+  constructor(private _elementRef: ElementRef,public platform: Platform, private router: Router) {
+    if (this.platform.ANDROID ||this.platform.IOS) {
+      this.isDesktop=false
+      this.router.navigate(['/mobile']);
+    }
   }
 
   ngOnInit(): void {
     this._elementRef.nativeElement.removeAttribute("ng-version");
   }
   title = 'PortalRetroGames';
+
+  
 }

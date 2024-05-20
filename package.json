@@ -22,6 +22,7 @@
     "@angular/router": "^17.3.0",
     "ngx-quill": "^25.3.2",
     "quill": "^2.0.2",
+    "quill-image-compress": "^1.2.32",
     "quill-image-resize-module": "^3.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

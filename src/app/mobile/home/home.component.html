@@ -1,0 +1,31 @@
+<span style="background-color: cornsilk; min-height: 100%;min-width: 100%;">
+    <input type="checkbox" id="switch" checked>
+    <input type="checkbox" id="switch-v">
+    <input type="checkbox" id="switch-t">
+    <input type="checkbox" id="switch-s">
+
+    <label for="switch" class="switch-label" (click)="refresh()"></label>
+    <h3 class="retro_tv" style="color:aliceblue">Retro-Televisor</h3>
+
+    <div class="container ">
+        <iframe [src]="signal| safe" sandbox="allow-scripts allow-same-origin allow-presentation"
+            class="screen scanlines" width="100%" height="100%" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; allow-presentation"
+            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <div class="overlay" style="font-size: small;">AV-1</div>
+    </div>
+    <hr>
+
+    <span class="row">
+        <span class="col-4"> <label for="switch-v"
+                class="switch-label-btn" (click)="youtube()">VIDEO</label> </span>
+        <span class="col-4"> <label for="switch-t" 
+                class="switch-label-btn" (click)="tips()">TIPS</label></span>
+        <span class="col-4"> <label for="switch-s" 
+                class="switch-label-btn" (click)="web()">SITIOS</label></span>
+    </span>
+
+
+
+
+</span>

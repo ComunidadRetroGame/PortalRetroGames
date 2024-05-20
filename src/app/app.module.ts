@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,15 +24,20 @@ import { TipsComponent } from './component/tips/tips.component';
 import { SafePipe } from './safe.pipe';
 import { CreateComponent } from './page/news/create/create.component';
 import { QuillModule } from 'ngx-quill';
+import ImageCompress from 'quill-image-compress';
+
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserModule } from '@angular/platform-browser';
 import { NoticeComponent } from './page/notice/notice.component';
 import { JustHostPipe } from './safe.pipe';
+import { MobileHomeComponent } from './mobile/home/home.component';
+import { ListComponent } from './page/news/list/list.component';
 
 @NgModule({
   declarations: [
     SafePipe,
     TipsComponent,
+    MobileHomeComponent,
     AppComponent,
     FooterComponent,
     JustHostPipe,
@@ -47,21 +51,32 @@ import { JustHostPipe } from './safe.pipe';
     TipsComponent,
     SafePipe,
     CreateComponent,
-    NoticeComponent
+    NoticeComponent,
+    ListComponent
   ],
   imports: [
+    
     MatTabsModule,
     QuillModule.forRoot({
       modules: {
+        imageCompress: {
+          quality: 0.7, // Predeterminada 0.7
+          maxWidth: 1000, // Predeterminada 1000
+          maxHeight: 1000, // Predeterminada 1000
+          imageType: 'image/jpeg', // Predeterminada image/jpeg
+          debug: true, // Predeterminada false
+        },
+        imageResize: {
+          displaySize: true
+        },
         toolbar: [
           ['bold', 'italic', 'underline', 'strike'],
           [{ color: [] }, { background: [] }],
           [{ size: ['small', false, 'large', 'huge'] }],
           [{ list: 'ordered' }, { list: 'bullet' }],
-          ['link', 'image', 'video'],
+          ['link', 'image'],
           ['clean'],
         ],
-        imageResize: true,
       },
     }),
     MatDialogModule,

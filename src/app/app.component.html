@@ -1,9 +1,14 @@
-<app-header></app-header>
+<app-header *ngIf="isDesktop"></app-header>
 
-<main>
+<main *ngIf="isDesktop" style="min-width: 580px;">
   <div class="wrapper  content">
     <router-outlet></router-outlet>
   </div>
 </main>
 
-<app-footer></app-footer>
+<app-footer *ngIf="isDesktop"></app-footer>
+
+
+
+
+<router-outlet *ngIf="!isDesktop"></router-outlet>

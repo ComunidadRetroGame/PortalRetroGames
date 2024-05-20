@@ -6,13 +6,13 @@
         <section class="topic">
             <div class="coreteam-members">
                 <span class="row"><span class="col-3" *ngFor="let player of teams">
-                        <section class="nes-container is-dark member-card" *ngIf="player.RRSS!=null">
+                        <section style="background-color:#000055;min-height:400px;min-width: 400px;max-width: 410px;" class="rpgui-container framed rpgui-draggable" *ngIf="player.RRSS!=null">
 
-                            <div class="avatar"><img width="128px" [alt]="player.name"  style="image-rendering: pixelated;" 
+                            <div class="avatar"><img width="128px" class="rpgui-container framed-golden" [alt]="player.name"  style="image-rendering: pixelated;" 
                                     [src]="player.avatar_yt==''?'/assets/img/logo.jpg':player.avatar_yt"></div>
 
                             <div class="profile">
-                                <h4 class="name" style="color: yellow;">{{player.name}}</h4>
+                                <h4 class="name neon" style="color: white;">{{player.name}}</h4>
                                 <p style="width: 100%; min-height: 100px;max-height: 100px; overflow-y: scroll;">
                                    <small> {{player.about_me}}</small>
                                 </p>
