@@ -3,11 +3,10 @@
 
         <span class="row">
             <span class="col-6">
-                <p class="title createNew">Crear novedad!!</p>
+                <p class="title createNew neon">Crear novedad!!</p>
                 <label for="default_select">Sera...</label>
                 <div class="nes-select">
-                    <select required id="default_select" [(ngModel)]="newTips.type"
-                        (change)="setTips()">
+                    <select required id="default_select" [(ngModel)]="newTips.type" (change)="setTips()">
                         <option value="" disabled selected hidden>Select...</option>
                         <option value="youtube">Un video de youtube</option>
                         <option value="tips">Un truco o tips</option>
@@ -66,7 +65,6 @@
                             <input type="text" id="Titulo" maxlength="256" [(ngModel)]="newTips.title" class="nes-input"
                                 placeholder="Titulo de la noticia o tips!">
                         </div>
-                        <hr>
                         <quill-editor style="width: 100%;min-height: 400px; background-color: #fff;color:black"
                             id="txtContent" theme="snow" (onEditorChanged)="onChangedEditor($event)"></quill-editor>
 
@@ -77,6 +75,19 @@
                     RetroBot : Solo recordarte que el video debe tener la tematica idealmente es material retro gamer
                 </div>
                 <div class="rpgui-container framed-grey" *ngIf="newTips.type=='tips'">
+
+
+                    <a href="#" class="nes-badge">
+                        <span class="is-primary"> {{MAX_TIPS_CONTENT -newTips.content.length | formatMiles}}bits</span>
+                    </a>
+
+                    <progress class="nes-progress is-success" [value]="newTips.content.length"
+                        *ngIf="newTips.content.length<MAX_TIPS_CONTENT" [max]="MAX_TIPS_CONTENT"></progress>
+
+                    <progress class="nes-progress is-error" [value]="newTips.content.length"
+                        *ngIf="newTips.content.length>=MAX_TIPS_CONTENT" [max]="MAX_TIPS_CONTENT"></progress>
+
+                    <hr>
                     RetroBot : No subas imagenes muy grandes, dado que el servidor es muy humilde, por favor..
                     <hr>
                     <span class="row"> <span class="col-1"><img width="32px" height="32px" src="/assets/img/link.jpg">
@@ -91,7 +102,7 @@
                 </div>
 
                 <br>
-                <button type="button" class="nes-btn is-primary"
+                <button type="button" class="nes-btn is-success"
                     onclick="document.getElementById('dialog-dark').showModal();">
                     Publicar Noticia
                 </button>

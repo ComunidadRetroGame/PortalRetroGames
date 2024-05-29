@@ -1,9 +1,9 @@
 <!-- src/app/components/post-list/post-list.component.html -->
-<div class="row">
-  <span class="col-4" *ngFor="let post of posts">
+<div clasS="flex-container" >
+  <span  *ngFor="let post of posts">
     <app-tips [isDelete]="aliasOnline==post.author" [tips]="post"></app-tips>
   </span>
 </div>
-<div *ngIf="loading" class="loading">
-  Buscando mas informacion...
+<div *ngIf="loading" class="loading neon-light">
+  <img src="/assets/img/load.gif" width="32px"><span style="color: greenyellow;" >Buscando mas informacion... </span>
 </div>

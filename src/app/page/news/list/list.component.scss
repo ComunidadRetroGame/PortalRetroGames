@@ -3,3 +3,16 @@
   text-align: center;
   padding: 10px 0;
 }
+
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Espacio entre los elementos */
+}
+
+.flex-container span {
+  padding: 10px;
+  flex: 1 0 100px; /* Los elementos tendrán al menos 100px de ancho y se expandirán para llenar el espacio disponible */
+  box-sizing: border-box;
+}

@@ -3,14 +3,14 @@
     <span class="col-2"></span>
     <span class="col-8">
 
-        <div class="nes-container rpgui-container framed rpgui-draggable is-dark with-title">
+        <div class="nes-container rpgui-container framed  is-dark with-title">
 
-            <h1 class="title ">
+            <h1 class="title neon " *ngIf="posts.length==0">
                 Bienvenido {{userName}} !!
             </h1>
-            <span class="row rpgui-container framed-golden-2">
+            <span class="row rpgui-container framed-golden-2" *ngIf="posts.length==0">
                 <span class="col-3">
-                    <img src="/assets/img/logo.jpg" width="216px" style="image-rendering: pixelated;">
+                    <img  src="/assets/img/logo_bordeNegro.png" width="216px" style="image-rendering: pixelated;">
                 </span>
 
                 <span class="col-9">
@@ -56,7 +56,7 @@
                     <input type="text" style="background-color: #000;color: greenyellow;" id="Titulo" maxlength="256"
                         class="nes-input" [(ngModel)]="search"
                         placeholder="Buscador de juegos retros, consejos, tutoriales, videos!">
-                </span><span class="col-2"> <button class="rpgui-button" (click)="onSearch()">BUSCAR!!</button></span>
+                </span><span class="col-2"> <button class="rpgui-button" (click)="onSearch()">BUSCAR</button></span>
             </span>
         </div>
     </span>

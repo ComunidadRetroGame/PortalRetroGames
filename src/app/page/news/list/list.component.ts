@@ -3,6 +3,7 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { PostService } from '../../../services/post.service';
 import { Tips } from '../../../interfaces/portal';
+import { SesionService } from '../../../services/sesion.service';
 
 @Component({
   selector: 'app-post-list',
@@ -16,9 +17,11 @@ export class ListComponent implements OnInit {
   loading: boolean = false;
   allLoaded: boolean = false;
 
-  @Input() aliasOnline: string = "";
+  @Input() perfil: string = "";
 
-  constructor(private postService: PostService) { }
+  aliasOnline: string = "";
+
+  constructor(private postService: PostService, private sesionService: SesionService) { }
 
   ngOnInit(): void {
     this.loadPosts();
@@ -35,19 +38,37 @@ export class ListComponent implements OnInit {
 
   loadPosts(): void {
     this.loading = true;
-    this.postService.getPosts(this.page, this.limit).subscribe(
-      (newPosts) => {
-        if (newPosts.length < this.limit) {
-          this.allLoaded = true;
+
+    if (this.perfil == "") {
+      this.postService.getPosts(this.page, this.limit).subscribe(
+        (newPosts) => {
+          if (newPosts.length < this.limit) {
+            this.allLoaded = true;
+          }
+          this.posts = [...this.posts, ...newPosts];
+          this.page++;
+          this.loading = false;
+        },
+        (error) => {
+          console.error('Error loading posts', error);
+          this.loading = false;
         }
-        this.posts = [...this.posts, ...newPosts];
-        this.page++;
-        this.loading = false;
-      },
-      (error) => {
-        console.error('Error loading posts', error);
-        this.loading = false;
-      }
-    );
+      );
+    } else {
+      this.postService.getPostsByAlias(this.perfil, this.page, this.limit).subscribe(
+        (newPosts) => {
+          if (newPosts.length < this.limit) {
+            this.allLoaded = true;
+          }
+          this.posts = [...this.posts, ...newPosts];
+          this.page++;
+          this.loading = false;
+        },
+        (error) => {
+          console.error('Error loading posts', error);
+          this.loading = false;
+        }
+      );
+    }
   }
 }

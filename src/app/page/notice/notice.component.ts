@@ -4,6 +4,7 @@ import { Tips } from '../../interfaces/portal';
 import { PortalService } from '../../services/portal.service';
 import { Title } from '@angular/platform-browser';
 import { Meta } from '@angular/platform-browser';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-notice',
@@ -12,11 +13,16 @@ import { Meta } from '@angular/platform-browser';
 })
 export class NoticeComponent implements OnInit {
 
+  configDialog: MatSnackBarConfig = {
+    duration: 10000, verticalPosition: 'top'
+  }
+
+
   id: string = ""
 
   tips: Tips = { content: "", url: "", id: "" }
 
-  constructor(private activatedRoute: ActivatedRoute, private portalService: PortalService, private titleService: Title, private metaService: Meta) {
+  constructor(private activatedRoute: ActivatedRoute, private portalService: PortalService, private titleService: Title, private metaService: Meta,private dialogEvents: MatSnackBar) {
 
     this.activatedRoute.queryParams.subscribe(params => { 
 
@@ -45,7 +51,16 @@ export class NoticeComponent implements OnInit {
     });
   }
 
+  shared() {
+    this.dialogEvents.open("Url Copiada lista para compartir!", "cerrar", this.configDialog);
+    navigator.clipboard.writeText("https://" + document.location.hostname + "/s?id=" + this.tips.id);
+  }
 
+
+  msgText() : string{
+    var url : string = "https://" + document.location.hostname + "/s?id=" + this.tips.id
+    return this.tips.title + ", " + url; 
+  }
   ngOnInit(): void {
 
 

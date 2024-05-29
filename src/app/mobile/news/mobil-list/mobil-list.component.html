@@ -1,0 +1,9 @@
+<!-- src/app/components/post-list/post-list.component.html -->
+<div clasS="flex-container" style="width: 98%;">
+    <span  *ngFor="let post of posts">
+      <app-mobil-tips [isDelete]="false" [tips]="post"></app-mobil-tips>
+    </span>
+  </div>
+  <div *ngIf="loading" class="loading neon-light">
+    <img src="/assets/img/load.gif" width="32px"><span style="color: greenyellow;" >Buscando mas informacion... </span>
+  </div>

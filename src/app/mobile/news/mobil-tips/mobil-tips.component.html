@@ -1,0 +1,53 @@
+
+<div class="rpgui-content">
+    <div class="rpgui-container framed" >
+
+    <i class="nes-icon is-small star" (click)="shared()" title="Compartir"></i>
+    <a [href]="'https://wa.me/?text=' + msgText()"><i class="nes-icon whatsapp is-small"
+            title="Compartir en whatsapp"></i></a>
+
+    <span *ngIf="tips.type=='youtube'">
+        <p class="big_title neon-white" style="color: red;">{{tips.title}} </p>
+        <span class=" content ">
+            <iframe sandbox="allow-scripts allow-same-origin allow-presentation allow-popups" width="500" height="375" class="container"
+                [src]="tips.url | safe" [title]="tips.title" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; allow-presentation"
+                referrerpolicy="strict-origin-when-cross-origin" allowfull></iframe>
+        </span>
+        <div class="rpgui-container framed-golden">
+            <h1>Video</h1>
+            <span class="content-tips">{{tips.content}}</span>
+        </div>
+    </span>
+
+
+    <span *ngIf="tips.type=='tips'">
+
+        <p class="big_title neon-white" style="color:greenyellow;">{{tips.title}}</p>
+        <div class="nes-container "
+            style="background-color: #FFF;color: #000;width: 100%;overflow-y: hidden;overflow-x:hidden;padding: 2px;"
+            [innerHTML]="tips.content">
+        </div>
+        <br>
+        <div class="rpgui-container framed-golden framed-golden ">
+            <h1>RetroTips</h1>
+            <a [href]="tips.url" target="_blank">Ver publicacion Completa</a>
+        </div>
+    </span>
+
+    <span *ngIf="tips.type=='url'">
+        <p class="big_title neon" style="color:cyan;">{{tips.title}}</p>
+        
+        <div class="rpgui-container framed-golden framed-golden">
+            <h1>RetroRecomendación</h1>
+            <span class="content-tips">{{tips.content}}</span>
+            <br>
+            <hr>
+
+            <a [href]="tips.url" target="_blank" style="color:#5aff39" [title]="tips.content"> {{tips.url | justHost}}</a>
+        </div>
+    </span>
+
+    por <a style="color:yellow" target="_blank" [href]="'/#/about/@' + tips.author">&#64;{{tips.author}}</a>
+</div>
+</div>

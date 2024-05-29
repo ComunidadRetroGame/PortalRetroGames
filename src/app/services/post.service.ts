@@ -12,15 +12,24 @@ export class PostService {
   
   private loadTips = '/public/loadTips';
 
+  private loadTipsByPerfil = '/public/loadTipsByPerfil';
+
+  
+
   private search = '/public/search';
 
-  private delete = '/public/deleteTip';
+  private delete = '/portal/deleteTips';
 
   constructor(private http: HttpClient) { }
+
+  getPostsByAlias(alias :string ,page: number, limit: number = 10): Observable<Tips[]> {
+    return this.http.get<Tips[]>(`${this.loadTipsByPerfil}?page=${page}&limit=${limit}&alias=${alias}`);
+  }
 
   getPosts(page: number, limit: number = 10): Observable<Tips[]> {
     return this.http.get<Tips[]>(`${this.loadTips}?page=${page}&limit=${limit}`);
   }
+
 
   getPostsFind(page: number, limit: number = 10, search: string = ''): Observable<Tips[]> {
     let url = `${this.search}?page=${page}&limit=${limit}`;

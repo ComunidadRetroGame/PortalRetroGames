@@ -20,6 +20,16 @@ export class SafePipe implements PipeTransform {
 
 
 @Pipe({
+  name: 'formatMiles'
+})
+
+export class formatMiles implements PipeTransform {
+  public transform(value: any) {
+      return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");;
+  }
+}
+
+@Pipe({
   name: 'justHost'
 })
 export class JustHostPipe implements PipeTransform {

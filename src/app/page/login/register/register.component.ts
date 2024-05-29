@@ -79,6 +79,8 @@ export class RegisterComponent {
     if (event.key === ' ') {
       event.preventDefault();
     }
+
+    this.newUser.alias = this.newUser.alias?.trim()
   }
 
 }

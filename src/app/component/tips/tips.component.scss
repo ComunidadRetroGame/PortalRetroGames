@@ -135,30 +135,6 @@ $scan-opacity: .75;
 
 /* PRESENTATION STUFF */
 
-a {
-    display: block;
-    padding: 1em;
-    margin: 0 auto;
-    width: 80%;
-    color: rgba(#fff, .5);
-    text-transform: uppercase;
-    text-decoration: none;
-    background: rgba(#000, .8);
-    border: 1px solid rgba(#fff, .5);
-
-    &#togglescanlines {
-        position: absolute;
-        width: 182px;
-        top: 300px;
-        right: 58px;
-        border-width: 10px;
-        background: rgba(#000, .4);
-    }
-
-    &:hover {
-        color: #fff;
-    }
-}
 
 nav {
     float: right;
@@ -199,3 +175,61 @@ ul {
 }
 
 
+
+.content-tips {
+    
+    /* Altura fija */
+    width: 450px;
+    /* Ancho fijo */
+    overflow-y: scroll;
+    /* Solo scroll vertical */
+    overflow-x: hidden;
+    /* Ocultar scroll horizontal */
+    box-sizing: border-box;
+    /* Incluir padding y border en el tamaño total */
+    display: block;
+    /* Asegurar que el span se comporte como bloque para aceptar el tamaño fijo */
+    font-family: content_tips;
+}
+
+/* Asegurar que ningún estilo externo modifique estas propiedades */
+.content-tips,
+.content-tips * {
+    max-height: 250px !important;
+    max-width: 450px !important;
+    width: 450px !important;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+    display: block !important;
+}
+
+/* Estilos para WebKit (Chrome, Safari) */
+.content-tips::-webkit-scrollbar {
+    width: 8px; /* Ancho del scrollbar */
+  }
+  
+.content-tips::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color del thumb (la parte que se mueve) */
+    border-radius: 4px; /* Radio de borde para el thumb */
+  }
+  
+.content-tips::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Color del thumb cuando está en hover */
+  }
+  
+.content-tips::-webkit-scrollbar-track {
+    background: transparent; /* Fondo transparente para la pista */
+  }
+  
+  /* Estilos para Firefox */
+.content-tips {
+    scrollbar-width: thin; /* Ancho del scrollbar */
+    scrollbar-color: #888 transparent; /* Color del thumb y la pista */
+  }
+  
+  /* Estilos para Internet Explorer y Edge */
+.content-tips {
+    -ms-overflow-style: -ms-autohiding-scrollbar; /* Scrollbar autohiding */
+  }
+  

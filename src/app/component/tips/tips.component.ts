@@ -1,12 +1,11 @@
 
-import { Tips } from '../../interfaces/portal';
-import { Component, OnInit, Input } from '@angular/core';
-import { DomSanitizer } from "@angular/platform-browser";
-import { SesionService } from '../../services/sesion.service';
-import { PortalService } from '../../services/portal.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
-import { PostService } from '../../services/post.service';
+import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from '@angular/router';
+import { Tips } from '../../interfaces/portal';
+import { PostService } from '../../services/post.service';
+import { SesionService } from '../../services/sesion.service';
 
 
 
@@ -19,15 +18,12 @@ import { Router } from '@angular/router';
 export class TipsComponent implements OnInit {
 
 
-  showMoreTips: boolean = false
-
+  
   constructor(private router: Router, private sanitizer: DomSanitizer, private sesionService: SesionService, private postService: PostService, private dialogEvents: MatSnackBar) {
 
   }
 
-  showMore() {
-    this.showMoreTips = !this.showMoreTips;
-  }
+
 
   @Input() tips: Tips = { url: "", content: "", id: "" };
 
@@ -54,6 +50,17 @@ export class TipsComponent implements OnInit {
         this.dialogEvents.open("No fue posible eliminar", "cerrar", this.configDialog);
       }
     );
+  }
+
+  shared() {
+    this.dialogEvents.open("Url Copiada lista para compartir!", "cerrar", this.configDialog);
+    navigator.clipboard.writeText("https://" + document.location.hostname + "/s?id=" + this.tips.id);
+  }
+
+
+  msgText() : string{
+    var url : string = "https://" + document.location.hostname + "/s?id=" + this.tips.id
+    return this.tips.title + ", " + url; 
   }
 
 

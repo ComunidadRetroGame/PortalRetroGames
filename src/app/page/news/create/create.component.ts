@@ -18,6 +18,7 @@ export class CreateComponent implements OnInit {
   }
 
   @ViewChild('editor') editor: any;
+  MAX_TIPS_CONTENT: number = 250000;
 
 
   onChangedEditor(event: any): void {
@@ -26,6 +27,8 @@ export class CreateComponent implements OnInit {
       window.localStorage.setItem("newTips", JSON.stringify(this.newTips))
     }
   }
+
+
 
   constructor(private sesionService: SesionService, private router: Router, private portalService: PortalService, private dialogEvents: MatSnackBar) { }
 
@@ -87,7 +90,7 @@ export class CreateComponent implements OnInit {
 
         if (this.url.indexOf("youtu.be") > -1) {
           var idYoutube: string = this.url.split('/')[3]
-          var idYoutube= this.url.split('/')[3].split('?')[0]
+          var idYoutube = this.url.split('/')[3].split('?')[0]
           this.newTips.url = "https://www.youtube.com/embed/" + idYoutube;
         } else {
           var idYoutube: string = this.url.split('=')[1]
@@ -140,15 +143,19 @@ export class CreateComponent implements OnInit {
     }
 
 
-    this.portalService.saveTips(this.newTips).subscribe(
-      response => {
-        this.dialogEvents.open("Listo!", "cerrar", this.configDialog);
-        this.router.navigate(['/news']);
-      },
-      error => {
-        this.dialogEvents.open(error['error'], "cerrar", this.configDialog);
-      }
-    );
+    if (this.newTips.content.length >= this.MAX_TIPS_CONTENT) {
+      this.dialogEvents.open("Creo que las imagenes que subistes son muy grandes para poder guardar tu noticia, por favor escoge algunas mas pequeñas", "cerrar", this.configDialog);
+    } else {
+      this.portalService.saveTips(this.newTips).subscribe(
+        response => {
+          this.dialogEvents.open("Listo!", "cerrar", this.configDialog);
+          this.router.navigate(['/news']);
+        },
+        error => {
+          this.dialogEvents.open(error['error'], "cerrar", this.configDialog);
+        }
+      );
+    }
   }
 
   generateUniqueId(): string {

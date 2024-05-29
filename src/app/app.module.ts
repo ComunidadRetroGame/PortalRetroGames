@@ -23,24 +23,47 @@ import { RegisterComponent } from './page/login/register/register.component';
 import { TipsComponent } from './component/tips/tips.component';
 import { SafePipe } from './safe.pipe';
 import { CreateComponent } from './page/news/create/create.component';
-import { QuillModule } from 'ngx-quill';
-import ImageCompress from 'quill-image-compress';
 
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserModule } from '@angular/platform-browser';
 import { NoticeComponent } from './page/notice/notice.component';
-import { JustHostPipe } from './safe.pipe';
+import { JustHostPipe, formatMiles } from './safe.pipe';
 import { MobileHomeComponent } from './mobile/home/home.component';
 import { ListComponent } from './page/news/list/list.component';
+import { PerfilComponent } from './page/team/perfil/perfil.component';
+import { environment } from '../environments/environment';
+import { QuillModule } from 'ngx-quill';
+
+import ImageCompress from 'quill-image-compress';
+//import { ImageResize } from 'quill-image-resize-module';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
+
+
+
+import Quill from 'quill';
+import { StreamComponent } from './page/news/stream/stream.component';
+import { CalendarComponent } from './page/news/events/calendar/calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { MobilListComponent } from './mobile/news/mobil-list/mobil-list.component';
+import { MobilTipsComponent } from './mobile/news/mobil-tips/mobil-tips.component';
+
+
+
+
+//Quill.register('modules/imageResize', ImageResize);
+Quill.register('modules/imageCompress', ImageCompress);
 
 @NgModule({
-  declarations: [
+  declarations: [    
     SafePipe,
     TipsComponent,
     MobileHomeComponent,
     AppComponent,
     FooterComponent,
     JustHostPipe,
+    formatMiles,
     HeaderComponent,
     DashboardComponent,
     HomeComponent,
@@ -52,22 +75,29 @@ import { ListComponent } from './page/news/list/list.component';
     SafePipe,
     CreateComponent,
     NoticeComponent,
-    ListComponent
+    ListComponent,
+    PerfilComponent,
+    StreamComponent,
+    CalendarComponent,
+    MobilListComponent,
+    MobilTipsComponent
   ],
   imports: [
     
+    AngularFireModule.initializeApp(environment.firebase),
+    FullCalendarModule,
+    AngularFireMessagingModule,
     MatTabsModule,
     QuillModule.forRoot({
       modules: {
         imageCompress: {
-          quality: 0.7, // Predeterminada 0.7
-          maxWidth: 1000, // Predeterminada 1000
-          maxHeight: 1000, // Predeterminada 1000
-          imageType: 'image/jpeg', // Predeterminada image/jpeg
-          debug: true, // Predeterminada false
-        },
-        imageResize: {
-          displaySize: true
+          quality: 0.7, // default
+          maxWidth: 1000, // default
+          maxHeight: 1000, // default
+          imageType: 'image/jpeg', // default
+          debug: true, // default
+          suppressErrorLogging: false, // default
+          insertIntoEditor: undefined, // default
         },
         toolbar: [
           ['bold', 'italic', 'underline', 'strike'],
@@ -89,6 +119,7 @@ import { ListComponent } from './page/news/list/list.component';
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
+
     { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent]

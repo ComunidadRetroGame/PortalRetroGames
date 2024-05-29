@@ -2,6 +2,12 @@
     font-family: BIG_ARCADE;
     src: url('/assets/font/ARCADE_I.TTF');
 }
+@font-face {
+    font-family: content_tips;
+    src: url('/assets/font/pixeloid.sans-bold.ttf');
+}
+
+
 
 @font-face {
     font-family: RETRO_TV;
@@ -11,6 +17,14 @@
 @font-face {
     font-family: arcade;
     src: url('/assets/font/ARCADE.TTF');
+}
+
+.big_title_retro{
+    font-family: BIG_ARCADE;
+}
+
+.subtitle{
+    font-family:arcade
 }
 
 .retro_tv{
@@ -47,6 +61,9 @@ body {
     text-shadow: 2px 3px 11px #000;    
   }
 
+  .neon-light{
+    text-shadow: 2px 3px 11px #fff;    
+  }
 
 .title_team {
     font-family: "BIG_ARCADE" !important;

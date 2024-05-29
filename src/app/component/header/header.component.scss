@@ -1,9 +1,14 @@
 /* START OF HEADER STYLES */
+.header-title{
+  position: relative;
+}
+
 header {
-    background-image: url(/assets/img/banner.jpg) ;
-    background-repeat: no-repeat;
-    padding: 16px 32px;
-    min-height: 200px;    
+    background-image: url(/assets/img/banner.png) ;
+    background-repeat: no-repeat;    
+    background-size: cover;
+    padding: 16px 32px;    
+    max-height: 240px;        
   }
   
   header .wrapper {

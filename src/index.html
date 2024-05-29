@@ -3,20 +3,20 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Portal Retro Gamer</title>
+  <title>Retro-Masters : Portal Retro-Streamers</title>
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
   <script type="application/ld+json">
   { "@context": "http://schema.org",
     "@type": "NewsArticle",
     "mainEntityOfPage":{
     "@type":"WebPage",
-    "@id":"https://portalcomunidadretrogames.up.railway.app/"
+    "@id":"https://retromasters.up.railway.app/"
     },
     "headline": "Comunidad Retro Games",
     "alternativeHeadline":"Portal Comunidad Retro Game",
     
     "image": {
-    "@type": "ImageObject",   "url": "https://portalcomunidadretrogames.up.railway.app/assets/img/logo.jpg",
+    "@type": "ImageObject",   "url": "https://retromasters.up.railway.app/assets/img/logo.jpg",
     
     "height": 481,
     "width": 663
@@ -44,15 +44,15 @@
   <meta property="og:updated_time" content="2019-05-06T13:47:00-03:00" />
   <meta property="article:modified_time" content="2019-05-06T13:47:00-03:00" />
   <meta property="article:published_time" content="2019-05-06T10:23:00-03:00" />
-  <meta property="og:url" content="https://portalcomunidadretrogames.up.railway.app/" />
-  <link rel="canonical" href="https://portalcomunidadretrogames.up.railway.app/" />
-  <link rel="image_src" href="https://portalcomunidadretrogames.up.railway.app/assets/img/logo.jpg" />
-  <meta property="og:image" content="https://portalcomunidadretrogames.up.railway.app/assets/img/logo.jpg" />
-  
-  <meta name="twitter:image" content="https://portalcomunidadretrogames.up.railway.app/assets/img/logo.jpg">
+  <meta property="og:url" content="https://retromasters.up.railway.app/" />
+  <link rel="canonical" href="https://retromasters.up.railway.app/" />
+  <link rel="image_src" href="https://retromasters.up.railway.app/assets/img/logo.jpg" />
+  <meta property="og:image" content="https://retromasters.up.railway.app/assets/img/logo.jpg" />
+
+  <meta name="twitter:image" content="https://retromasters.up.railway.app/assets/img/logo.jpg">
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
   <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
-  <link href="/assets/css/rpgui.css" rel="stylesheet" />
+
   <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -63,16 +63,41 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+  <script src='https://meet.jit.si/external_api.js'></script>
   <script crossorigin="anonymous" defer="defer" type="application/javascript" src="/assets/js/rpgui.js"></script>
 </head>
 
 
-<body class="container scanlines">
+<body class="scanlines container">
 
   <span class="screen ">
     <app-root></app-root>
   </span>
 
+  <script>
+
+    function checkAllIframesLoaded() {
+
+      var iframes = document.getElementsByTagName('iframe');
+      var totalIframes = iframes.length;
+      // Recorrer todos los iframes y verificar si han fallado
+      for (var i = 0; i < totalIframes; i++) {
+        if (iframes[i].contentDocument && iframes[i].contentDocument.body && iframes[i].contentDocument.body.innerHTML === '') {
+          if (iframes[i].lang == "link") {
+            iframes[i].src = "/assets/img/noload.jpg"
+          }
+
+        }
+      }
+
+    }
+
+    setInterval(function () {
+      // Reiniciar el contador de iframes fallados
+
+      checkAllIframesLoaded();
+    }, 1600);
+  </script>
 </body>
 
 </html>

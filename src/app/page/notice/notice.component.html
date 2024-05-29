@@ -1,11 +1,14 @@
 <section class="nes-container is-rounded scanlines is-dark" style="min-width: 98%;" >
-    <p class="big_title neon"  style="color:greenyellow;">{{tips.title}}</p>
+    <p class="big_title neon"  style="color:greenyellow;">{{tips.title}}         <i class="nes-icon is-small star" (click)="shared()" title="Compartir"></i>
+        <a [href]="'https://wa.me/?text=' + msgText()"><i class="nes-icon whatsapp is-small" title="Compartir en whatsapp"></i></a></p>
 
     <section class="nes-container is-rounded scanlines is-dark" [innerHTML]="tips.content" style="min-width: 100%;background-color: #FFF;color: #000;" >
     </section>
 
     <div class="nes-container with-title is-centered">
         <p class="title" style="color:#000">por {{tips.author}}</p>
+        
+
     </div>
 
 </section>

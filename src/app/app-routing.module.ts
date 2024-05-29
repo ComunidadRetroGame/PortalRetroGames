@@ -6,10 +6,25 @@ import { TeamComponent } from './page/team/team.component';
 import { LoginComponent } from './page/login/login.component';
 import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { RegisterComponent } from './page/login/register/register.component';
-import { CreateComponent } from './page/news/create/create.component'; 
+import { CreateComponent } from './page/news/create/create.component';
 import { NoticeComponent } from './page/notice/notice.component';
 import { MobileHomeComponent } from './mobile/home/home.component';
+import { PerfilComponent } from './page/team/perfil/perfil.component';
+import { StreamComponent } from './page/news/stream/stream.component';
+import { CalendarComponent } from './page/news/events/calendar/calendar.component';
 const routes: Routes = [
+    {
+        path: 'events',
+        component: CalendarComponent
+    },
+    {
+        path: 'stream/:username',
+        component: StreamComponent
+    },
+    {
+        path: 'about/:username',
+        component: PerfilComponent
+    },
     {
         path: 'mobile',
         component: MobileHomeComponent,

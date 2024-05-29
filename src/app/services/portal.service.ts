@@ -36,6 +36,7 @@ export class PortalService {
 
     return this.http.get<UserRetro[]>(`${this.baseUrl}/public/team`, httpOptions);
   }
+  
   checkAlias(newUser: UserRetro): Observable<UserRetro> {
 
     const sesionHash = window.sessionStorage.getItem('sesionKey') || "";

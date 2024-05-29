@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MobilListComponent } from '../news/mobil-list/mobil-list.component';
+
 
 @Component({
   selector: 'app-home',
@@ -6,22 +8,13 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.scss'
 })
 export class MobileHomeComponent {
+  @ViewChild(MobilListComponent) mobilListComponent!: MobilListComponent;
+  query: string = "";
+  showLogo: boolean = true;
 
-  signal: string = "/assets/img/nosignal.gif";
-
-
-  refresh() {
-    this.signal = "/assets/img/nosignal.gif";
-  }
-  
-  web() {
-
-  }
-  tips() {
-
-  }
-  youtube() {
-    this.signal = "https://www.youtube.com/embed/FrxDvI6vmAg?si=RV_TZM0r7EUI-Jz3"
+  find() {
+    this.showLogo = false;
+    this.mobilListComponent.findPosts();
   }
 
 }
