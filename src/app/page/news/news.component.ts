@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Tips } from '../../interfaces/portal';
+import {  Component, OnInit, ViewChild } from '@angular/core';
 import { SesionService } from '../../services/sesion.service';
-import { PortalService } from '../../services/portal.service';
-import { Title} from '@angular/platform-browser';
+import { ListComponent } from './list/list.component';
+
 
 @Component({
   selector: 'app-news',
@@ -12,35 +11,34 @@ import { Title} from '@angular/platform-browser';
 export class NewsComponent implements OnInit {
   online: boolean = false
 
-  tips: Tips[] =[]
-
   author : string = ""
 
-  constructor(private sesionService: SesionService, private portalService : PortalService,private titleService: Title) {
-    
+  showList : boolean=false;
+
+  @ViewChild(ListComponent) listTips!: ListComponent;
+
+  constructor(private sesionService: SesionService) {
+
   }
+
 
   ngOnInit(): void {
     this.sesionService.sesionOnline().subscribe(
       response => {
         this.online = response.User.online;
-        this.author = response.User.alias;
-        this.portalService.getTips().subscribe(
-          response => {
-    
-            response.forEach(player => {
-    
-              this.tips.push(player)
-    
-            })
-          }
-        );
+        this.author = response.User.alias;        
 
+        
       },
       error => {
         this.online = false
       }
     );
+    
+    setTimeout(() => {
+      this.showList=true;
+      this.listTips.loadPosts();  
+    }, 1000);
   }
 
 }

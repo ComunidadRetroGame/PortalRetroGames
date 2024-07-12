@@ -13,7 +13,8 @@ export class MobileHomeComponent {
   showLogo: boolean = true;
 
   find() {
-    this.showLogo = false;
+    this.showLogo = false;    
+    this.mobilListComponent.reset();
     this.mobilListComponent.findPosts();
   }
 

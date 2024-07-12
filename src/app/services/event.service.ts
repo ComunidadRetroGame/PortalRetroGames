@@ -8,7 +8,7 @@ import { Tips } from '../interfaces/portal';
   providedIn: 'root'
 })
 export class EventService {
-  private apiUrl = 'events'; // Adjust this URL as needed
+  private apiUrl = '/portal/saveTips'; // Adjust this URL as needed
 
   constructor(private http: HttpClient) {}
 

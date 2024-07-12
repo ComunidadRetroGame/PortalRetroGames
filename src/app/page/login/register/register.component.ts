@@ -9,7 +9,16 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
+  reDo() {
+    this.newUser.alias=""
+    this.showForm=false;
+  }
 
+  toLowerCase(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.toLowerCase();
+    this.newUser.alias =input.value;
+  }
 
   configDialog: MatSnackBarConfig = {
     duration: 1000, verticalPosition: 'top'
@@ -44,7 +53,7 @@ export class RegisterComponent {
   }
   //Crea un usuario nuevo
   esRecomendado() {
-    if (this.code!=""){
+    if (this.code.trim()!=""){
     this.portalService.checkNewUser(this.code).subscribe(
       response => {
         this.perfect = response.reference_text == this.code

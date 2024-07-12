@@ -35,3 +35,5 @@ ng generate service portal/services
 ng generate guard auth
 
 ng generate interface portal/interfaces
+
+

@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Tips } from '../../../interfaces/portal';
 import { SesionService } from '../../../services/sesion.service';
 import { Router } from '@angular/router';
 import { PortalService } from '../../../services/portal.service';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+
 
 
 @Component({
@@ -17,33 +18,31 @@ export class CreateComponent implements OnInit {
     duration: 10000, verticalPosition: 'top'
   }
 
-  @ViewChild('editor') editor: any;
-  MAX_TIPS_CONTENT: number = 250000;
+  MAX_TIPS_CONTENT: number = 450000;
 
 
   onChangedEditor(event: any): void {
     if (event.html) {
-      this.newTips.content = event.html;
       window.localStorage.setItem("newTips", JSON.stringify(this.newTips))
     }
   }
 
+  constructor(private sesionService: SesionService, private router: Router, private portalService: PortalService, private dialogEvents: MatSnackBar) {
 
+    if (this.newTips != undefined) {
+      this.isEdit = true;
+    } else {
+      this.cleanTips();
+    }
+  }
 
-  constructor(private sesionService: SesionService, private router: Router, private portalService: PortalService, private dialogEvents: MatSnackBar) { }
+  isEdit: boolean = false;
 
   online: boolean = false
 
   url: string = ""
 
-  newTips: Tips = {
-    id: "",
-    author: "",
-    content: "",
-    title: "",
-    type: "",
-    url: "/assets/img/nosignal.gif"
-  }
+  @Input() newTips!: Tips;
 
   cleanTips() {
     this.newTips = {
@@ -86,18 +85,24 @@ export class CreateComponent implements OnInit {
 
   makeUrl() {
     if (this.url.length > 0) {
+
       if (this.newTips.type == "youtube" && this.url.split('=').length > 0) {
-
-        if (this.url.indexOf("youtu.be") > -1) {
-          var idYoutube: string = this.url.split('/')[3]
-          var idYoutube = this.url.split('/')[3].split('?')[0]
-          this.newTips.url = "https://www.youtube.com/embed/" + idYoutube;
+        
+        var idYoutube: string = ""
+        
+        if (this.url.indexOf("shorts") > -1 || this.url.indexOf("live") > -1) {
+            //https://youtube.com/shorts/hLzj3wMmmRw?feature=share  
+            idYoutube = this.url.split('/')[4].split('?')[0]
         } else {
-          var idYoutube: string = this.url.split('=')[1]
-          idYoutube = idYoutube.split('&').length > 0 ? idYoutube.split('&')[0] : idYoutube
-          this.newTips.url = "https://www.youtube.com/embed/" + idYoutube;
-        }
 
+          if (this.url.indexOf("youtu.be") > -1) {            
+            idYoutube = this.url.split('/')[3].split('?')[0]
+          } else {
+            idYoutube = this.url.split('=')[1]
+            idYoutube = idYoutube.split('&').length > 0 ? idYoutube.split('&')[0] : idYoutube
+          }
+        }
+        this.newTips.url = "https://www.youtube.com/embed/" + idYoutube;
       } else {
         this.newTips.url = "/assets/img/nosignal.gif"
       }
@@ -112,6 +117,8 @@ export class CreateComponent implements OnInit {
 
         this.newTips.author = response.User.alias
         this.online = response.User.online;
+
+
       },
       error => {
         this.online = false
@@ -134,12 +141,24 @@ export class CreateComponent implements OnInit {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   }
 
+  validateNewTips(tips: Tips): boolean {
+    const requiredFields: (keyof Tips)[] = ['id', 'title', 'date', 'content', 'url', 'type'];
+    return requiredFields.every(field => !!tips[field]);
+  }
+
   crearTips() {
-    this.newTips.id = this.generateUniqueId();
-    this.newTips.date = this.getCurrentFormattedDate();
+
+    if (this.newTips.id == "") {
+      this.newTips.id = this.generateUniqueId();
+    }
+    this.newTips.date = new Date();//this.getCurrentFormattedDate();
 
     if (this.newTips.type == "tips") {
       this.newTips.url = "/#/notice?id=" + this.newTips.id
+    }
+    if (!this.validateNewTips(this.newTips)) {
+      this.dialogEvents.open("Por favor completa todos los campos requeridos.", "cerrar");
+      return;
     }
 
 

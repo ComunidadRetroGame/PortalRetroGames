@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Tips } from '../../interfaces/portal';
+import { RetroComment, Tips } from '../../interfaces/portal';
 import { PortalService } from '../../services/portal.service';
 import { Title } from '@angular/platform-browser';
 import { Meta } from '@angular/platform-browser';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { UserRetro } from '../../interfaces/responses';
+import { SesionService } from '../../services/sesion.service';
+import { PostService } from '../../services/post.service';
 
 @Component({
   selector: 'app-notice',
@@ -12,6 +15,12 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
   styleUrl: './notice.component.scss'
 })
 export class NoticeComponent implements OnInit {
+
+
+
+  author: UserRetro = {}
+
+  isOnline: boolean = false;
 
   configDialog: MatSnackBarConfig = {
     duration: 10000, verticalPosition: 'top'
@@ -22,13 +31,20 @@ export class NoticeComponent implements OnInit {
 
   tips: Tips = { content: "", url: "", id: "" }
 
-  constructor(private activatedRoute: ActivatedRoute, private portalService: PortalService, private titleService: Title, private metaService: Meta,private dialogEvents: MatSnackBar) {
+  comment: RetroComment = {};
 
-    this.activatedRoute.queryParams.subscribe(params => { 
+  constructor(private sesionService: SesionService, private postService: PostService, private activatedRoute: ActivatedRoute, private portalService: PortalService, private titleService: Title, private metaService: Meta, private dialogEvents: MatSnackBar) {
+
+
+    this.sesionService.userData().subscribe(
+      response => {
+        this.author = response;
+        this.isOnline = response.alias != "";
+      });
+
+    this.activatedRoute.queryParams.subscribe(params => {
 
       this.id = params['id'];
-
-      console.log(this.id)
 
       if (this.id == "new") {
         var jsonTips: string = window.localStorage.getItem("newTips") || ""
@@ -44,6 +60,9 @@ export class NoticeComponent implements OnInit {
           }
         );
       }
+
+
+
       this.titleService.setTitle(this.tips.title || "");
       this.metaService.addTags([
         { name: 'description', content: this.tips.title || "" },
@@ -51,15 +70,34 @@ export class NoticeComponent implements OnInit {
     });
   }
 
+
+  send(): void {
+    this.comment.tipsId = this.id;
+    this.comment.author = this.author.alias
+    if (this.comment.comment!= "") {
+      this.postService.comment(this.comment).subscribe(
+        comments => {
+          console.log(JSON.stringify(comments))
+          this.tips.comments = comments
+          this.comment.comment = ""
+        },
+        (error) => {
+
+        }
+      );
+    }
+  }
+
+
   shared() {
     this.dialogEvents.open("Url Copiada lista para compartir!", "cerrar", this.configDialog);
     navigator.clipboard.writeText("https://" + document.location.hostname + "/s?id=" + this.tips.id);
   }
 
 
-  msgText() : string{
-    var url : string = "https://" + document.location.hostname + "/s?id=" + this.tips.id
-    return this.tips.title + ", " + url; 
+  msgText(): string {
+    var url: string = "https://" + document.location.hostname + "/s?id=" + this.tips.id
+    return this.tips.title + ", " + url;
   }
   ngOnInit(): void {
 

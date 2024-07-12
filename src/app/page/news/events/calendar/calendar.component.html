@@ -1,35 +1,60 @@
-<div class="rpgui-content">
+<br>
+<span class="row">
+    <span class="col-md-2"> </span>
+    <span class="col-md-8">
+        <div class="rpgui-content">
 
-    <div class="rpgui-container framed " style="height:500px; width:60%; top: 50px; left: 50px;">
-        <h1 class="big_title_retro">Crear Evento</h1>
-        <hr />
+            <div class="rpgui-container framed">
+                <img src="/assets/img/make_event.png">
+                <hr class="golden"/>
 
-        <label>URL Youtube</label>
-        <input type="text" name="url"  placeholder="https://www.youtube.com/watch?v=iddqd">
-        <span class="row">
-            <span class="col-6">
-                <label>Fecha</label>
-                <input type="datetime-local" name="event" >
-            </span>
-            <span class="col-6">
-                <label>URL Youtube</label>
-                <input type="text" name="url"  placeholder="https://www.youtube.com/watch?v=iddqd">
-            </span>
-        </span>
-        <span class="row">
-            <span class="col-12">
-                <label>Descripcion</label>
-                <textarea rows="4" cols="50" placeholder="De que trata el evento"></textarea>
-            </span>
-            <div class="col-8"></div>
-            <div class="col-4">
+                <label>Titulo del Evento</label>
+                <input type="text"  maxlength="256" name="title" [(ngModel)]="event.title" >
+                <span class="row">
+                    <span class="col-md-3">
+                        <mat-form-field color="accent" appearance="fill">
+                            <mat-label>¿Cuándo?</mat-label>
+                            <input matInput [(ngModel)]="date" [matDatepicker]="picker2" (dateChange)="validateDate()">
+                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                            <mat-datepicker #picker2></mat-datepicker>
+                        </mat-form-field>
+                    </span>
+                    <span class="col-md-3">
+                        <label>Horario aprox</label>
+                        <input type="time" [(ngModel)]="time" name="time" (change)="combineDateTime()">
+                    </span>
+                    
+                    <span class="col-md-6">
+                        <label>URL Youtube</label>
+                        <input type="text"  maxlength="256" name="url" [(ngModel)]="url"  (input)="makeUrl()" >
+                    </span>
+                    <span class="col-md-6">
+                        <label>Descripcion</label>
+                        <textarea style="min-height: 300px;" rows="60" cols="50" placeholder="De que trata el evento"  [(ngModel)]="event.content"  >
 
-                <button class="rpgui-button golden" type="button" >
-                    <p style="font-size: large;">Crear EVENTO</p>
-                </button>
+                        </textarea>
+                    </span>
+                    <span class="col-md-6">
+                        <iframe sandbox="allow-scripts allow-same-origin allow-presentation allow-popups" width="500" height="375" class="container"
+                        [src]="event.url | safe" [title]="event.title" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; allow-presentation"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </span>
+
+                </span>
+                <span class="row">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4">
+
+                        <button class="rpgui-button" type="button" (click)="makeEvent()" >
+                            <br>CREAR EVENTO
+                        </button>
+                    </div>
+                </span>
+
+
             </div>
-        </span>
-
-
-    </div>
-</div>
+        </div>
+    </span>
+    <span class="col-md-2"> </span>
+</span>

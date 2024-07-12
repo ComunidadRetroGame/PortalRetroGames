@@ -12,14 +12,16 @@ import { MobileHomeComponent } from './mobile/home/home.component';
 import { PerfilComponent } from './page/team/perfil/perfil.component';
 import { StreamComponent } from './page/news/stream/stream.component';
 import { CalendarComponent } from './page/news/events/calendar/calendar.component';
+
+
 const routes: Routes = [
     {
         path: 'events',
-        component: CalendarComponent
-    },
+        component: CalendarComponent,
+    }, 
     {
         path: 'stream/:username',
-        component: StreamComponent
+        component: StreamComponent,
     },
     {
         path: 'about/:username',
@@ -28,7 +30,6 @@ const routes: Routes = [
     {
         path: 'mobile',
         component: MobileHomeComponent,
-
     },
     {
         path: '',
@@ -47,28 +48,23 @@ const routes: Routes = [
     },
     {
         path: 'create',
-        component: CreateComponent,
-
+        component: CreateComponent,      
     },
     {
         path: 'notice',
         component: NoticeComponent,
-
     },
     {
         path: 'team',
         component: TeamComponent,
-
     },
     {
         path: 'login',
         component: LoginComponent,
-
     },
     {
         path: 'dashboard',
         component: DashboardComponent,
-
     },
     {
         path: 'newPlayer',

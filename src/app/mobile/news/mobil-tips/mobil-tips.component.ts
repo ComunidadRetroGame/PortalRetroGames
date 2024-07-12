@@ -35,21 +35,7 @@ export class MobilTipsComponent {
   ngOnInit(): void {
   }
 
-  killme() {
-    this.gameOver(this.tips.id)
-  }
 
-  gameOver(id: string): void {
-    this.postService.deletePost(id).subscribe(
-      () => {
-        this.dialogEvents.open("Noticia eliminada!", "cerrar", this.configDialog);
-        this.router.navigate(['/news']);
-      },
-      (error) => {
-        this.dialogEvents.open("No fue posible eliminar", "cerrar", this.configDialog);
-      }
-    );
-  }
 
   shared() {
     this.dialogEvents.open("Url Copiada lista para compartir!", "cerrar", this.configDialog);

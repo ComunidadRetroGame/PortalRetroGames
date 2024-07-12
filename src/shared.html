@@ -21,8 +21,8 @@
           "description": "{{.Content}}"
         }
     </script>
-    <meta property="og:title" content="{{.Title}}" />
-    <meta name="twitter:title" content="{{.Title}}" />
+    <meta property="og:title" content="{{.Content}}" />
+    <meta name="twitter:title" content="{{.Content}}" />
     <meta name="DC.title" content="{{.Title}}" />
     <meta id="ctl00_ctl00_MetaDescription" name="Description" content="{{.Content}}" />
     <meta property="og:description" content="{{.Content}}" />
@@ -39,8 +39,11 @@
     <meta name="twitter:image" content="{{.AvatarYT}}">
 </head>
 <body>
-    <script>
-        window.location.href = "{{.URL}}";
-    </script>
+  <script>
+    // Detectar si el dispositivo es móvil
+
+    window.location.href = "{{.URL}}";
+
+</script>
 </body>
 </html>

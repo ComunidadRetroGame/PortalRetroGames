@@ -1,9 +1,10 @@
-<div class="nes-container with-title " *ngIf="online">
-    <div class="nes-container is-rounded is-dark">
+
+    <div class="rpgui-container framed " style="color:yellow">
 
         <span class="row">
-            <span class="col-6">
-                <p class="title createNew neon">Crear novedad!!</p>
+            <span class="col-md-6">
+                <p class="title createNew neon  title-psico" *ngIf="isEdit">Editar</p>
+                <p class="title createNew neon title-psico" *ngIf="!isEdit">Crear novedad!!</p>
                 <label for="default_select">Sera...</label>
                 <div class="nes-select">
                     <select required id="default_select" [(ngModel)]="newTips.type" (change)="setTips()">
@@ -18,12 +19,12 @@
 
                     <div class="nes-field">
                         <label for="Titulo">Titulo</label>
-                        <input type="text" id="Titulo" maxlength="256" placeholder="Titulo referencial del contenido"
+                        <input type="text"  maxlength="256" id="Titulo" maxlength="256" placeholder="Titulo referencial del contenido"
                             [(ngModel)]="newTips.title" class="nes-input">
                     </div>
                     <div class="nes-field">
                         <label for="Url">Url</label>
-                        <input type="text" id="Url" placeholder="Ejemplo : https://www.geocities.com"
+                        <input type="text"  maxlength="256" id="Url" placeholder="Ejemplo : https://www.geocities.com"
                             title="https://www.google.com" [(ngModel)]="newTips.url" class="nes-input">
                     </div>
 
@@ -39,15 +40,16 @@
 
                     <div class="nes-field">
                         <label for="Titulo">Titulo</label>
-                        <input type="text" id="Titulo" maxlength="256" placeholder="Titulo del video"
+                        <input type="text"  maxlength="256" id="Titulo" maxlength="256" placeholder="Titulo del video"
                             [(ngModel)]="newTips.title" class="nes-input">
                     </div>
                     <div class="nes-field">
                         <label for="Url">Pega la URL de Youtube</label>
-                        <input type="text" id="Url" placeholder="Ejemplo : https://www.youtube.com/watch?v=????"
+                        <input type="text"  maxlength="256" id="Url" placeholder="Ejemplo : https://www.youtube.com/watch?v=????"
                             title="https://www.youtube.com/watch?v=????" [(ngModel)]="url" (input)="makeUrl()"
-                            (keypress)="makeUrl()" class="nes-input"><button type="button" (click)="cleanUrl()"
-                            class="nes-btn is-error">x</button>
+                            (keypress)="makeUrl()" class="nes-input">
+                            
+                            <button type="button" (click)="cleanUrl()" *ngIf="url.length>0" class="nes-btn is-error">Borrar Url</button>
                     </div>
 
                     <div class="nes-field">
@@ -62,16 +64,18 @@
 
                         <div class="nes-field">
                             <label for="Titulo" class="big_title">Titulo</label>
-                            <input type="text" id="Titulo" maxlength="256" [(ngModel)]="newTips.title" class="nes-input"
+                            <input type="text"  maxlength="256" id="Titulo" maxlength="256" [(ngModel)]="newTips.title" class="nes-input"
                                 placeholder="Titulo de la noticia o tips!">
                         </div>
-                        <quill-editor style="width: 100%;min-height: 400px; background-color: #fff;color:black"
+                        <quill-editor style="width: 100%;min-height: 400px; background-color: #fff;color:black"  [(ngModel)]="newTips.content"
                             id="txtContent" theme="snow" (onEditorChanged)="onChangedEditor($event)"></quill-editor>
 
                     </div>
                 </div>
-            </span><span class="col-6"><img width="300px" src="/assets/img/creando.gif">
+            </span><span class="col-md-6">
                 <div class="rpgui-container framed-grey" *ngIf="newTips.type=='youtube'">
+                    <h4>¿Como copiar el video aqui?</h4>
+                    <img src="/assets/img/compartir_yb.jpg" width="300px"><br>
                     RetroBot : Solo recordarte que el video debe tener la tematica idealmente es material retro gamer
                 </div>
                 <div class="rpgui-container framed-grey" *ngIf="newTips.type=='tips'">
@@ -90,51 +94,52 @@
                     <hr>
                     RetroBot : No subas imagenes muy grandes, dado que el servidor es muy humilde, por favor..
                     <hr>
-                    <span class="row"> <span class="col-1"><img width="32px" height="32px" src="/assets/img/link.jpg">
-                        </span> <span class="col-11">Sirve para linkear un sitio.</span>
+                    <span class="row"> <span class="col-md-1"><img width="32px" height="32px" src="/assets/img/link.jpg">
+                        </span> <span class="col-md-11">Sirve para linkear un sitio.</span>
 
                     </span>
-                    <span class="row"> <span class="col-1"><img width="32px" height="32px" src="/assets/img/imagen.jpg">
-                        </span> <span class="col-11">Puedes subir una imagen a tu noticia, que no sea muy
+                    <span class="row"> <span class="col-md-1"><img width="32px" height="32px" src="/assets/img/imagen.jpg">
+                        </span> <span class="col-md-11">Puedes subir una imagen a tu noticia, que no sea muy
                             grande!!</span>
 
                     </span>
                 </div>
 
+                <span class="is-centered" *ngIf="!isEdit">
+                    <br><br>
+                    <app-tips id="youtube" [preEdit]="true" [isDelete]="false" [tips]="newTips" *ngIf="newTips.type=='youtube'"></app-tips>
+             
+                    <app-tips id="tips" [preEdit]="true" [isDelete]="false" [tips]="newTips" *ngIf="newTips.type=='tips'"></app-tips>
+            
+                    <app-tips id="url" [preEdit]="true" [isDelete]="false" [tips]="newTips" *ngIf="newTips.type=='url'"></app-tips>
+                </span>
                 <br>
-                <button type="button" class="nes-btn is-success"
-                    onclick="document.getElementById('dialog-dark').showModal();">
-                    Publicar Noticia
+                <button type="button" class="nes-btn is-success" *ngIf="newTips.type!='' || isEdit" [lang]="'save_' + newTips.id"
+                    onclick="document.getElementById(this.lang).showModal();">                    
+                    <h3 class="title-psico">
+                    {{isEdit?'EDITAR':'PUBLICAR'}}  NOVEDAD
+                    </h3>
                 </button>
             </span></span>
 
-    </div>
+
 
     <section>
 
-        <dialog class="nes-dialog is-dark rpgui-container framed-golden-2" style="overflow: hidden" id="dialog-dark">
+        <dialog class="nes-dialog is-dark rpgui-container framed-golden-2" style="overflow: hidden" [id]="'save_' + newTips.id">
             <form method="dialog">
                 <menu class="dialog-menu">
                     <button class="nes-btn is-error">Volver</button>
-                    <button class="nes-btn is-success " (click)="crearTips()">PUBLICAR!</button>
+                    <button class="nes-btn is-success " (click)="crearTips()"> {{isEdit?'EDITAR':'PUBLICAR!'}} </button>
                 </menu>
                 <span class="is-centered">
-                    <app-tips id="pre_youtube" [tips]="newTips" *ngIf="newTips.type=='youtube'"></app-tips>
+                    <app-tips id="pre_youtube" [preEdit]="true" [tips]="newTips" *ngIf="newTips.type=='youtube'"></app-tips>
 
-                    <app-tips id="pre_tips" [tips]="newTips" *ngIf="newTips.type=='tips'"></app-tips>
+                    <app-tips id="pre_tips" [preEdit]="true"  [tips]="newTips" *ngIf="newTips.type=='tips'"></app-tips>
 
-                    <app-tips id="pre_url" [tips]="newTips" *ngIf="newTips.type=='url'"></app-tips>
+                    <app-tips id="pre_url" [preEdit]="true"  [tips]="newTips" *ngIf="newTips.type=='url'"></app-tips>
                 </span>
 
             </form>
         </dialog>
     </section>
-
-    <span class="is-centered">
-        <br><br>
-        <app-tips id="youtube" [isDelete]="false" [tips]="newTips" *ngIf="newTips.type=='youtube'"></app-tips>
-
-        <app-tips id="tips" [isDelete]="false" [tips]="newTips" *ngIf="newTips.type=='tips'"></app-tips>
-
-        <app-tips id="url" [isDelete]="false" [tips]="newTips" *ngIf="newTips.type=='url'"></app-tips>
-    </span>

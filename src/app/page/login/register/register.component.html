@@ -1,10 +1,10 @@
 <span class="row">
-    <span class="col-12">
+    <span class="col-md-12">
         <br>
     </span>
-    <span class="col-1">
+    <span class="col-md-1">
     </span>
-    <span class="col-10">
+    <span class="col-md-10">
 
         <div class="nes-container is-rounded is-dark with-title">
 
@@ -17,7 +17,7 @@
 
                         <div class="nes-field">
                             <label for="alias_field" style="color: yellow;">Frase de recomendacion</label>
-                            <input type="text" name="alias" id="alias_field" class="nes-input" [(ngModel)]="code">
+                            <input type="text"  maxlength="256" name="alias" id="alias_field" class="nes-input" [(ngModel)]="code">
                             <button class="nes-btn" (click)="esRecomendado()">Ingresar! <img width="32px"
                                     src="/assets/img/load.gif"></button>
                         </div>
@@ -36,7 +36,7 @@
                         <td>
                             Asi que eres un recomendado de <strong style="color: yellow;">{{userRef.name}}</strong>,
                             excelente!!, antes de comenzar necesito que crees un nombre
-                            de cuenta para tu usuario de <strong style="color: blueviolet;">portal retro games</strong>,
+                            de cuenta para tu usuario de <strong style="color: blueviolet;" class="title-psico">RETRO-MASTER</strong>,
                             este debe ser un nombre que haga
                             referencia a tus RRSS y contenidos, idealmente. Luego presiona el boton para validar tu
                             nombre.
@@ -46,13 +46,13 @@
                 </table>
                 <span class="nes-field" *ngIf="!showForm">
                     <span class="row">
-                        <span class="col-3">
+                        <span class="col-md-3">
                             <label for="alias_field" style="color: yellow;">Nuevo Player</label>
-                            <input type="text" style="background-color: blue;" name="alias" id="alias_field"
+                            <input type="text" (input)="toLowerCase($event)" maxlength="128" style="background-color: blue;" name="alias" id="alias_field"
                                 class="nes-input" [(ngModel)]="newUser.alias" (keydown)="preventSpace($event)" placeholder="INGRESE NOMBRE DE USUARIO"
                                 maxlength="128">
                         </span>
-                        <span class="col-3">
+                        <span class="col-md-3">
                             <hr>
                             <button class="nes-btn" (click)="checkAlias()">Validar Nombre</button>
                         </span>
@@ -63,13 +63,15 @@
                 </span>
                 <span class="nes-field" *ngIf="showForm">
                     <span class="row">
-                        <span class="col-12">
+                        <span class="col-md-12">
                             <hr>
-                            Excelente <strong style="color: aqua;"> {{newUser.alias}}</strong>!! eres unico, ahora
-                            debemos crear
-                            una clave.
+                            Excelente <h4 style="color: aqua;" class="title-psico"> {{newUser.alias}}</h4>Tu nombre eres unico!!, recuerda una vez inicies no tienes posibilidad de cambiar tu nombre, ahora debemos crear una clave, 
+                            <br>
+                            <small>
+                                <span style="color:red">en el caso que no te guste tu nombre puedes presionar este boton y</span> <button (click)="reDo()" class="nes-btn is-error">Empezar de nuevo</button>
+                            </small>
                         </span>
-                        <span class="col-3">
+                        <span class="col-md-3">
                             <label for="password_field" style="color: yellow;">Password</label>
                             <input type="password" name="password" id="password_field" class="nes-input"
                                 [(ngModel)]="newUser.password" maxlength="128">
@@ -77,7 +79,7 @@
                             <input type="password" name="password" id="password_field" class="nes-input"
                                 [(ngModel)]="confirmPassword" maxlength="128">
                         </span>
-                        <span class="col-3">
+                        <span class="col-md-3">
                             <br><br><br>
                             <hr>
                             <button class="nes-btn  is-success" (click)="makeUser()"><img width="32px"
@@ -112,6 +114,6 @@
         </div>
 
     </span>
-    <span class="col-1">
+    <span class="col-md-1">
     </span>
 </span>

@@ -1,14 +1,93 @@
-<section class="nes-container is-rounded scanlines is-dark" style="min-width: 98%;" >
-    <p class="big_title neon"  style="color:greenyellow;">{{tips.title}}         <i class="nes-icon is-small star" (click)="shared()" title="Compartir"></i>
-        <a [href]="'https://wa.me/?text=' + msgText()"><i class="nes-icon whatsapp is-small" title="Compartir en whatsapp"></i></a></p>
+<section class="is-rounded scanlines rpgui-container framed-golden" style="min-width: 98%;">
 
-    <section class="nes-container is-rounded scanlines is-dark" [innerHTML]="tips.content" style="min-width: 100%;background-color: #FFF;color: #000;" >
+    <section *ngIf="tips.type=='tips'" class="nes-container is-rounded scanlines is-dark" [innerHTML]="tips.content"
+        style="min-width: 100%;background-color: #FFF;color: #000;">
     </section>
+    <span *ngIf="tips.type=='url'">
+        <iframe class="scanlines" sandbox="allow-scripts allow-same-origin allow-presentation" width="100%"
+            height="600px" [src]="tips.url | safe" [title]="tips.title" frameborder="0"
+            referrerpolicy="strict-origin-when-cross-origin"></iframe>
 
-    <div class="nes-container with-title is-centered">
-        <p class="title" style="color:#000">por {{tips.author}}</p>
-        
 
+        <div class="rpgui-container framed-golden  nes-container with-title is-centered">
+            <p class="title" style="color:#000">RetroRecomendación</p>
+            <span class="content-tips">{{tips.content}}</span>
+            <br>
+            <hr>
+
+            <a [href]="tips.url" target="_blank" style="color:#5aff39" [title]="tips.content"> {{tips.url |
+                justHost}}</a>
+        </div>
+
+    </span>
+
+    <div class="nes-container with-title">
+        <p class="title" style="color:#000">por <a style="color:blue;" target="_blank" [href]="'/#/about/@' + tips.author">&#64;{{tips.author}}</a></p>
+
+        <p class="big_title neon" style="color:greenyellow;">{{tips.title}} <i class="nes-icon  star"
+            (click)="shared()" title="Compartir"></i>
+        <a [href]="'https://wa.me/?text=' + msgText()"><i class="nes-icon whatsapp"
+                title="Compartir en whatsapp"></i></a>
+        </p>
+
+        <span *ngIf="isOnline">
+            <!-- Listado Comentarios -->
+            <span class="row" *ngFor="let commentTip of tips.comments">
+                <!-- OTROS -->
+                <span class="col-md-2" *ngIf="commentTip.author!=author.alias"  ></span>
+                <span class="col-md-8" *ngIf="commentTip.author!=author.alias" 
+                    style="display: block; flex-direction: column; align-items: flex-start;">
+
+                    <p class="nes-balloon from-right nes-pointer" style="width: 100%;min-width: 200px;">
+                        {{commentTip.comment}}
+                    </p>
+                </span>
+                <span class="col-md-2" *ngIf="commentTip.author!=author.alias"
+                    style="color:#fff; display: flex;flex-direction: column;justify-content: flex-end;height: 100%;">
+                    <br>
+                    <span class="neon-white"><a style="color: chartreuse;" target="_blank" [href]="'/#/about/@' + commentTip.author">&#64;{{commentTip.author}}</a></span>
+                    <small>{{commentTip.date | haceCuanto}}</small>
+                    <img [title]="commentTip.author" class="nes-avatar  is-large  is-rounded" [src]="commentTip.avatar">
+                </span>
+                
+                <!-- YO -->
+                <span class="col-md-2" *ngIf="commentTip.author==author.alias"
+                    style="color: #fff; display: flex; flex-direction: column; align-items: flex-end; height: 100%;">
+                    <br>
+                    <span class="neon-white"><a style="color: chartreuse;" target="_blank" [href]="'/#/about/@' + commentTip.author">&#64;{{commentTip.author}}</a></span>
+                    <small>{{commentTip.date | haceCuanto}}</small>
+                    <img [title]="commentTip.author" class="nes-avatar  is-large  is-rounded" [src]="commentTip.avatar">
+                </span>
+                <span class="col-md-8" *ngIf="commentTip.author==author.alias" 
+                    style="display: block; flex-direction: column; align-items: flex-start;">
+
+                    <p class="nes-balloon from-left nes-pointer" style="width: 100%;min-width: 200px;">
+                        {{commentTip.comment}}
+                    </p>
+
+                </span>
+                <span class="col-md-2" *ngIf="commentTip.author==author.alias"></span>
+
+            </span>
+            <hr class="golden">
+            <!-- Comentar -->
+            <span class="col-md-2"></span>
+            <span class="col-md-8">
+                <p class="nes-balloon from-left nes-pointer" style="width: 90%;">
+                    <textarea row="2" maxlength="1000" [(ngModel)]="comment.comment" placeholder="Comente aquí"
+                        style="background-color: transparent; border: none; outline: none; width: 100%; height: 100%;">
+                    </textarea>
+                </p><br>
+                <img [title]="author.name" class="nes-avatar is-large is-rounded" [src]="author.avatar_yt">
+                <button class="nes-btn is-dark" (click)="send()">Comentar</button>
+                <a class="nes-btn is-warning" routerLink="/news">Novedades</a>
+            </span>
+            <span class="col-md-2">
+
+            </span>
+
+        </span>
     </div>
 
 </section>
+<br>

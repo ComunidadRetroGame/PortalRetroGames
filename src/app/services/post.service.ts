@@ -2,27 +2,48 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Tips } from '../interfaces/portal';
+import { RetroComment, Tips } from '../interfaces/portal';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  
+
   private loadTips = '/public/loadTips';
 
   private loadTipsByPerfil = '/public/loadTipsByPerfil';
 
-  
+
 
   private search = '/public/search';
 
   private delete = '/portal/deleteTips';
 
+  private send = '/portal/comment';
+
   constructor(private http: HttpClient) { }
 
-  getPostsByAlias(alias :string ,page: number, limit: number = 10): Observable<Tips[]> {
+  comment(comment: RetroComment ): Observable<RetroComment[]> {
+
+    comment.date = new Date();
+
+    const sesionHash = window.sessionStorage.getItem('sesionKey') || "";
+
+    var headersInSesion = {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Authorization': sesionHash
+    };
+
+
+
+    var httpOptions = { headers: new HttpHeaders(headersInSesion), }
+    return this.http.post<RetroComment[]>(`${this.send}`, comment, httpOptions);
+  }
+
+  getPostsByAlias(alias: string, page: number, limit: number = 10): Observable<Tips[]> {
     return this.http.get<Tips[]>(`${this.loadTipsByPerfil}?page=${page}&limit=${limit}&alias=${alias}`);
   }
 
@@ -49,9 +70,9 @@ export class PostService {
     };
 
     const url = `${this.delete}`;
-    
 
-    return this.http.delete<void>(url, { body: { id } ,headers: new HttpHeaders(headersInSesion)});
+
+    return this.http.delete<void>(url, { body: { id }, headers: new HttpHeaders(headersInSesion) });
   }
 }
 

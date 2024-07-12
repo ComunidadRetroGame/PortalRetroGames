@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: BIG_ARCADE;
     src: url('/assets/font/ARCADE_I.TTF');
@@ -308,3 +309,59 @@ $screen-background: #121010;
     animation: overlay-anim 5s linear;
     animation-fill-mode: forwards;
 }
+
+
+  /* Define el estilo base para el texto */
+  .title-psico{    
+    color: #000; /* Color del texto */
+    text-shadow: 2px 2px 5px #f700ff; /* Sombra inicial */
+    animation: colorChange 8s infinite; /* Aplica la animación */
+  }
+  
+  /* Define la animación */
+  @keyframes colorChange {
+    0% {
+      text-shadow: 2px 2px 5px #ff0000; /* Rojo */
+    }
+    25% {
+      text-shadow: 2px 2px 5px #00ff00; /* Verde */
+    }
+    50% {
+      text-shadow: 2px 2px 5px #0000ff; /* Azul */
+    }
+    75% {
+      text-shadow: 2px 2px 5px #ff00ff; /* Magenta */
+    }
+    100% {
+      text-shadow: 2px 2px 5px #ff0000; /* Volver al Rojo */
+    }
+  }
+
+  
+body {
+    --sb-track-color: #000000;
+    --sb-thumb-color: #af00ff;
+    --sb-size: 24px;
+  }
+  
+  body::-webkit-scrollbar {
+    width: var(--sb-size)
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 13px;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 13px;
+    border: 5px solid #edffbc;
+  }
+  
+  @supports not selector(::-webkit-scrollbar) {
+    body {
+      scrollbar-color: var(--sb-thumb-color)
+                       var(--sb-track-color);
+    }
+  }

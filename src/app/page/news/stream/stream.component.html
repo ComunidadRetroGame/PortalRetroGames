@@ -2,16 +2,18 @@
     <div class="nes-container is-rounded" style="width: 40%; min-width: 100px;">
         <div class="nes-field">
             <label for="alias_field" style="color: yellow;">ID de Transmicion de Youtube</label>
-            <input type="text" name="alias" id="alias_field" [(ngModel)]="streamID" class="nes-input">
+            <input type="text"  maxlength="256" name="alias" id="alias_field" [(ngModel)]="streamID" class="nes-input">
         </div>
         <button class="nes-btn" (click)="transmitir()">Iniciar Transmicion</button>
     </div>
 </span>
 <div id="jitsi-iframe" style="height: 100%;"></div>
 <span *ngIf="isLive">
+    <!--
+    <iframe src="https://meet.jit.si/retromasterpresenta_A" width="80%" height="800px"></iframe>
+    -->
+    
 
-
-    <!--For Custom Controls-->
 
     <div class="item-center">
         <i (click)="executeCommand('toggleAudio')" class="fas fa-2x grey-color"

@@ -1,4 +1,6 @@
+import { Platform } from '@angular/cdk/platform';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-
+  constructor(public platform: Platform, private router: Router) {
+    if (this.platform.ANDROID || this.platform.IOS) {      
+      this.router.navigate(['/mobile']);
+    }
+  }
 }

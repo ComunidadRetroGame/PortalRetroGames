@@ -1,19 +1,19 @@
-<section class="nes-container is-rounded scanlines is-dark" style="min-width: 570px;max-width: 570px;">
+<section [class]="event?'rpgui-container framed-golden':'nes-container is-rounded scanlines is-dark'"
+    style="min-width: 570px;max-width: 570px;">
 
-    <button title="Eliminar noticia" type="button" *ngIf="isDelete" [lang]="tips.id"
-        onclick="document.getElementById(this.lang).showModal();" class="nes-btn is-error">x</button>
 
-    <i class="nes-icon is-small star" (click)="shared()" title="Compartir"></i>
-    <a [href]="'https://wa.me/?text=' + msgText()"><i class="nes-icon whatsapp is-small"
-            title="Compartir en whatsapp"></i></a>
+    <h5 *ngIf="event" class="nes-badge is-icon">
+        <span class="is-warning"><i class="nes-icon star is-small"></i></span>
+        <span class="is-primary " [title]="'exactamente el ' + tips.date">EVENTO <span
+                class="title-event">{{falta}}!!</span></span>
+    </h5>
+
 
     <span *ngIf="tips.type=='youtube'">
         <p class="big_title neon-white" style="color: red;">{{tips.title}} </p>
         <span class="scanlines content screen">
-            <iframe sandbox="allow-scripts allow-same-origin allow-presentation allow-popups" width="500" height="375" class="container"
-                [src]="tips.url | safe" [title]="tips.title" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; allow-presentation"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="500" height="375" class="container" [src]="tips.url | safe" [title]="tips.title"
+                frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </span>
         <div class="rpgui-container framed-golden nes-container with-title is-centered">
             <p class="title" style="color:#000">Video</p>
@@ -26,43 +26,72 @@
 
         <p class="big_title neon-white" style="color:greenyellow;">{{tips.title}}</p>
         <div class="nes-container scanlines"
-            style="background-color: #FFF;color: #000;width: 100%;overflow-y: hidden;overflow-x:hidden;padding: 2px;"
+            style="width: 100%;overflow-y: hidden;overflow-x:hidden;padding: 2px; min-height: 300px;max-height: 420px;"
             [innerHTML]="tips.content">
         </div>
         <br>
         <div class="rpgui-container framed-golden  nes-container with-title is-centered">
             <p class="title" style="color:#000">RetroTips</p>
-            <a [href]="tips.url" target="_blank">Ver publicacion Completa</a>
+            <a [href]="tips.url" class="title-psico" [target]="preEdit?'_blank':'_self'">Ver publicacion Completa</a>
         </div>
+
     </span>
 
     <span *ngIf="tips.type=='url'">
         <p class="big_title neon" style="color:cyan;">{{tips.title}}</p>
         <iframe class="scanlines" sandbox="allow-scripts allow-same-origin allow-presentation" width="500" height="375"
-        [src]="tips.url | safe" [title]="tips.title" frameborder="0"
-        style="background-color: #FFF;color: #000;width: 500px; height: 360px; overflow-y: hidden;overflow-x:hidden"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; allow-presentation"
-        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            [src]="tips.url | safe" [title]="tips.title" frameborder="0"
+            style="background-color: #FFF;color: #000;width: 500px; height: 360px; overflow-y: hidden;overflow-x:hidden"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; allow-presentation"
+            referrerpolicy="strict-origin-when-cross-origin"></iframe>
 
-        
+
         <div class="rpgui-container framed-golden  nes-container with-title is-centered">
             <p class="title" style="color:#000">RetroRecomendación</p>
             <span class="content-tips">{{tips.content}}</span>
             <br>
             <hr>
 
-            <a [href]="tips.url" target="_blank" style="color:#5aff39" [title]="tips.content"> {{tips.url | justHost}}</a>
+            <a [href]="tips.url" target="_blank" style="color:#5aff39" [title]="tips.content"> {{tips.url |
+                justHost}}</a>
         </div>
+
+    </span>
+    <span class="row"><span class="col-md-8">
+            por <a style="color:yellow" target="_blank" [href]="'/#/about/@' + tips.author">&#64;{{tips.author}}</a> -
+            <i class="nes-icon is-small star" (click)="shared()" title="Compartir"></i>
+            <a [href]="'https://wa.me/?text=' + msgText()" target="_blank"><i class="nes-icon whatsapp is-small"
+                    title="Compartir en whatsapp"></i></a>
+        </span>
+        <span class="col-md-4" >
+            <a *ngIf="tips.type!='youtube' && isOnline " [href]="'/#/notice?id=' + tips.id">
+                <img src="/assets/img/comentar.png" width="128px">
+            </a>
+        </span>
     </span>
 
-    por <a style="color:yellow" target="_blank" [href]="'/#/about/@' + tips.author">&#64;{{tips.author}}</a>
 
+    <button *ngIf="isDelete" class="rpgui-button" [lang]="'kill_' + tips.id"
+        onclick="document.getElementById(this.lang).showModal();" type="button" style="width:40%">
+        <p>Eliminar</p>
+    </button>
+    <button *ngIf="isDelete" class="rpgui-button" [lang]="'edit_' + tips.id"
+        onclick="document.getElementById(this.lang).showModal();" type="button" style="width:40%">
+        <p>Editar</p>
+    </button>
 </section>
 
 <section>
-    <dialog class="nes-dialog" [id]="tips.id" *ngIf="isDelete">
+    <dialog class="nes-dialog" [id]="'kill_' + tips.id" *ngIf="isDelete">
         <form method="dialog">
-            <p class="title">¿¿Desea eliminar el post <strong>{{tips.title}}??</strong></p>
+            <p class="title">¿¿Desea ELIMINAR el post <strong class="title-event">{{tips.title}}??</strong></p>
+
+
+            <label>
+                <input type="checkbox" class="nes-checkbox" [(ngModel)]="finish" />
+                <span class="title-psico">Si, deseo eliminarlo.</span>
+            </label>
+
             <menu class="dialog-menu">
                 <button class="nes-btn is-primary">Cancelar</button>
                 <button class="nes-btn is-error" (click)="killme()">ELIMINAR</button>
@@ -70,3 +99,13 @@
         </form>
     </dialog>
 </section>
+
+
+<dialog class="nes-dialog " [id]="'edit_' + tips.id" *ngIf="isDelete">
+    <app-create [newTips]="tips"></app-create>
+    <form method="dialog">
+        <menu class="dialog-menu">
+            <button class="nes-btn is-primary">Cancelar</button>
+        </menu>
+    </form>
+</dialog>

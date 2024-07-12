@@ -6,22 +6,22 @@
     <div class="nes-container is-rounded dashboard">
 
         <span class="row">
-            <span class="col-10">
+            <span class="col-md-10">
                 <h1><img  *ngIf="player.avatar_yt" class="nes-avatar is-large is-rounded" width="128px" [src]="player.avatar_yt"> <span style="color:#000"> {{player.alias}} </span></h1>
             </span>
-            <span class="col-2">
+            <span class="col-md-2">
                 <button type="button" class="nes-btn is-error" (click)="logout()">Cerrar Sesión</button>
             </span>
-            <span class="col-6">
+            <span class="col-md-6">
                 <div class="nes-field">
                     <label for="name_field">Nick Player </label>
-                    <input type="text" id="Nombre" [(ngModel)]="player.name" class="nes-input"  placeholder="Nombre de Usuario">
+                    <input type="text"  maxlength="256" id="Nombre" [(ngModel)]="player.name" class="nes-input"  placeholder="Nombre de Usuario">
                 </div>
                 <div class="nes-field">
 
                     <p class="nes-balloon from-left nes-pointer">
 
-                        <input type="text" id="Frase" [(ngModel)]="player.reference_text" class="nes-input"   placeholder="Tiene que ser una frase unica, es tu sello de recomendacion">
+                        <input type="text"  maxlength="256" id="Frase" [(ngModel)]="player.reference_text" class="nes-input"   placeholder="Tiene que ser una frase unica, es tu sello de recomendacion">
                         <br>
                         La frase de recomendación, es un codigo que puedes compartir con alguien que quieres que se una
                         la comunidad, asi como <strong>{{player.user_ref}}</strong>, te recomendó.
@@ -30,7 +30,7 @@
                 </div>
                 <div class="nes-field">
                     <label for="textarea_field">Sobre mi..</label>
-                    <textarea maxlength="4000" placeholder="Cuentanos sobre ti :D" rows="10" id="textarea_field" class="nes-textarea" [(ngModel)]="player.about_me" class="nes-input"></textarea>
+                    <textarea maxlength="3000" placeholder="Cuentanos sobre ti :D" rows="10" id="textarea_field" class="nes-textarea" [(ngModel)]="player.about_me" class="nes-input"></textarea>
                 </div>
                 <div class="nes-field">
 
@@ -69,7 +69,7 @@
                     <button class="nes-btn  is-success" (click)="saveProfile()">Guardar cambios</button>
                 </div>
             </span>
-            <span class="col-6">
+            <span class="col-md-6">
                 <div class="nes-field">
                     <div class="nes-table-responsive">
                         Debe ingresar la URL completa de su RRSS 
@@ -92,35 +92,35 @@
 
                                 <tr>
                                     <td> <i class="nes-icon youtube is-large"></i> </td>
-                                    <td> <input type="text" style="font-size: 12px;" id="youtube" [(ngModel)]="rrss_player.youtube" placeholder="https://www.youtube.com/@NOMBRECANAL"
+                                    <td> <input type="text"  maxlength="256" style="font-size: 12px;" id="youtube" [(ngModel)]="rrss_player.youtube" placeholder="https://www.youtube.com/@NOMBRECANAL"
                                             class="nes-input"><a *ngIf="rrss_player.youtube"
                                             [href]="rrss_player.youtube" target="_blank">ir..</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td> <i class="nes-icon twitch is-large"></i> </td>
-                                    <td> <input type="text" style="font-size: 12px;" id="twitch" [(ngModel)]="rrss_player.twitch"  placeholder="https://www.twitch.tv/NOMBRECANAL"
+                                    <td> <input type="text"  maxlength="256" style="font-size: 12px;" id="twitch" [(ngModel)]="rrss_player.twitch"  placeholder="https://www.twitch.tv/NOMBRECANAL"
                                             class="nes-input"><a *ngIf="rrss_player.twitch" [href]="rrss_player.twitch"
                                             target="_blank">ir..</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td> <i class="nes-icon twitter is-large"></i> </td>
-                                    <td> <input type="text" style="font-size: 12px;" id="twitter" [(ngModel)]="rrss_player.twitter"  placeholder="https://twitter.com/NOMBRECUENTA"
+                                    <td> <input type="text"  maxlength="256" style="font-size: 12px;" id="twitter" [(ngModel)]="rrss_player.twitter"  placeholder="https://twitter.com/NOMBRECUENTA"
                                             class="nes-input"><a *ngIf="rrss_player.twitter"
                                             [href]="rrss_player.twitter" target="_blank">ir..</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td> <i class="nes-icon instagram is-large"></i> </td>
-                                    <td> <input type="text" style="font-size: 12px;" id="instagram" [(ngModel)]="rrss_player.instagram"  placeholder="https://www.instagram.com/NOMBRECUENTA/"
+                                    <td> <input type="text"  maxlength="256" style="font-size: 12px;" id="instagram" [(ngModel)]="rrss_player.instagram"  placeholder="https://www.instagram.com/NOMBRECUENTA/"
                                             class="nes-input"><a *ngIf="rrss_player.instagram"
                                             [href]="rrss_player.instagram" target="_blank">ir..</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td> <i class="nes-icon reddit is-large"></i> </td>
-                                    <td> <input type="text" style="font-size: 12px;" id="reddit" [(ngModel)]="rrss_player.reddit"  placeholder="https://www.reddit.com/r/NOMBRECUENTA/"
+                                    <td> <input type="text"  maxlength="256" style="font-size: 12px;" id="reddit" [(ngModel)]="rrss_player.reddit"  placeholder="https://www.reddit.com/r/NOMBRECUENTA/"
                                             class="nes-input"><a *ngIf="rrss_player.reddit" [href]="rrss_player.reddit"
                                             target="_blank">ir..</a>
                                     </td>
@@ -129,7 +129,7 @@
                                     <td> <i class="nes-icon coin is-large"></i> </td>
                                     <td> 
                                         <img height="0px" width="600px">
-                                        <input type="text" style="font-size: 12px;" id="other" alias="Otra red social o pagina"  placeholder="https://"
+                                        <input type="text"  maxlength="256" style="font-size: 12px;" id="other" alias="Otra red social o pagina"  placeholder="https://"
                                             [(ngModel)]="rrss_player.other"
                                             class="nes-input"><a *ngIf="rrss_player.other"  [href]="rrss_player.other" target="_blank">ir..</a>
                                     </td>
@@ -144,4 +144,12 @@
         </span>
 
     </div>
+    <button type="button" class="nes-btn is-warning"  routerLink="/create">Agregar Novedad!</button>
+    <button type="button" class="nes-btn is-primary"  routerLink="/events">Agregar Evento</button>
+</span>
+
+<h2 class="big_title neon-light title-psico"> Mis Posteos</h2>
+
+<span class="row" *ngIf="showList">
+    <app-post-list [limit]="5" [perfil]="player.alias||''" [isDelete]="true" ></app-post-list> 
 </span>

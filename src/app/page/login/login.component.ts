@@ -12,6 +12,13 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 })
 
 export class LoginComponent implements OnInit {
+  preventSpace(event: KeyboardEvent) {
+    if (event.key === ' ') {
+      event.preventDefault();
+    }
+
+    this.alias = this.alias?.trim()
+  }
 
   configDialog: MatSnackBarConfig = {
     duration: 10000, verticalPosition: 'top'
@@ -28,9 +35,9 @@ export class LoginComponent implements OnInit {
     },
     Hash: "ketchup"
   };
-  
 
-  constructor(private sesionService: SesionService, private router: Router,private dialogEvents: MatSnackBar) { }
+
+  constructor(private sesionService: SesionService, private router: Router, private dialogEvents: MatSnackBar) { }
   ngOnInit(): void {
     this.sesionService.sesionOnline().subscribe(
       response => {

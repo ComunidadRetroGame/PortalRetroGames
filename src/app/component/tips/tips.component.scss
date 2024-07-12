@@ -233,3 +233,29 @@ ul {
     -ms-overflow-style: -ms-autohiding-scrollbar; /* Scrollbar autohiding */
   }
   
+
+  /* Define el estilo base para el texto */
+.title-event{    
+    color: #000; /* Color del texto */
+    text-shadow: 2px 2px 5px #ff0000; /* Sombra inicial */
+    animation: colorChange 5s infinite; /* Aplica la animación */
+  }
+  
+  /* Define la animación */
+  @keyframes colorChange {
+    0% {
+      text-shadow: 2px 2px 5px #ff0000; /* Rojo */
+    }
+    25% {
+      text-shadow: 2px 2px 5px #00ff00; /* Verde */
+    }
+    50% {
+      text-shadow: 2px 2px 5px #0000ff; /* Azul */
+    }
+    75% {
+      text-shadow: 2px 2px 5px #ff00ff; /* Magenta */
+    }
+    100% {
+      text-shadow: 2px 2px 5px #ff0000; /* Volver al Rojo */
+    }
+  }

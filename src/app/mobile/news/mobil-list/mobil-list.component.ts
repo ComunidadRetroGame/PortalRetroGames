@@ -1,9 +1,8 @@
 // src/app/components/post-list/post-list.component.ts
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { PostService } from '../../../services/post.service';
-import { Tips } from '../../../interfaces/portal';
-import { SesionService } from '../../../services/sesion.service';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { Tips } from '../../../interfaces/portal';
+import { PostService } from '../../../services/post.service';
 @Component({
   selector: 'app-mobil-list',
   templateUrl: './mobil-list.component.html',
@@ -16,8 +15,6 @@ export class MobilListComponent implements OnInit {
   loading: boolean = false;
   allLoaded: boolean = false;
 
-
-  aliasOnline: string = "";
   @Input() search: string | undefined;
 
   constructor(private postService: PostService, private dialogEvents: MatSnackBar) { }
@@ -28,7 +25,7 @@ export class MobilListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.page=0;
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -40,10 +37,13 @@ export class MobilListComponent implements OnInit {
     }
   }
 
+  reset():void{
+    this.posts=[]
+  }
+
   findPosts(): void {
     this.loading = true;
-    this.page=0;
-    this.posts=[]
+       
     this.postService.getPostsFind(this.page, this.limit, this.search).subscribe(
       (newPosts) => {
         if (newPosts != null) {

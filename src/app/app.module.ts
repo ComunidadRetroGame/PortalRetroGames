@@ -7,7 +7,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,7 +27,7 @@ import { CreateComponent } from './page/news/create/create.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserModule } from '@angular/platform-browser';
 import { NoticeComponent } from './page/notice/notice.component';
-import { JustHostPipe, formatMiles } from './safe.pipe';
+import { JustHostPipe, formatMiles,just400,TimeAgoPipe } from './safe.pipe';
 import { MobileHomeComponent } from './mobile/home/home.component';
 import { ListComponent } from './page/news/list/list.component';
 import { PerfilComponent } from './page/team/perfil/perfil.component';
@@ -49,14 +49,28 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { MobilListComponent } from './mobile/news/mobil-list/mobil-list.component';
 import { MobilTipsComponent } from './mobile/news/mobil-tips/mobil-tips.component';
 
+import { MatNativeDateModule } from '@angular/material/core';
 
+
+
+import { MatButtonModule } from
+  '@angular/material/button';
+import { MatButtonToggleModule } from
+  '@angular/material/button-toggle';
+import { MatDatepickerModule } from
+  '@angular/material/datepicker';
+import { MatInputModule } from
+  '@angular/material/input';
+import { MatFormFieldModule } from
+  '@angular/material/form-field';
 
 
 //Quill.register('modules/imageResize', ImageResize);
 Quill.register('modules/imageCompress', ImageCompress);
 
 @NgModule({
-  declarations: [    
+  declarations: [
+
     SafePipe,
     TipsComponent,
     MobileHomeComponent,
@@ -64,6 +78,8 @@ Quill.register('modules/imageCompress', ImageCompress);
     FooterComponent,
     JustHostPipe,
     formatMiles,
+    TimeAgoPipe,
+    just400,
     HeaderComponent,
     DashboardComponent,
     HomeComponent,
@@ -83,17 +99,22 @@ Quill.register('modules/imageCompress', ImageCompress);
     MobilTipsComponent
   ],
   imports: [
-    
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatButtonToggleModule,
     AngularFireModule.initializeApp(environment.firebase),
     FullCalendarModule,
     AngularFireMessagingModule,
+    MatNativeDateModule,
     MatTabsModule,
     QuillModule.forRoot({
       modules: {
         imageCompress: {
           quality: 0.7, // default
-          maxWidth: 1000, // default
-          maxHeight: 1000, // default
+          maxWidth: 800, // default
+          maxHeight: 600, // default
           imageType: 'image/jpeg', // default
           debug: true, // default
           suppressErrorLogging: false, // default
@@ -104,8 +125,7 @@ Quill.register('modules/imageCompress', ImageCompress);
           [{ color: [] }, { background: [] }],
           [{ size: ['small', false, 'large', 'huge'] }],
           [{ list: 'ordered' }, { list: 'bullet' }],
-          ['link', 'image'],
-          ['clean'],
+          ['link', 'image']
         ],
       },
     }),
@@ -119,7 +139,7 @@ Quill.register('modules/imageCompress', ImageCompress);
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
-
+    { provide: MAT_DATE_LOCALE, useValue: 'es-CL' },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent]

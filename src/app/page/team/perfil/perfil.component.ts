@@ -1,8 +1,9 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PortalService } from '../../../services/portal.service';
 import { UserRetro } from '../../../interfaces/responses';
+import { ListComponent } from '../../news/list/list.component';
 
 @Component({
   selector: 'app-team',
@@ -14,6 +15,8 @@ export class PerfilComponent implements OnInit {
 
   perfil: UserRetro = {}
 
+  @ViewChild(ListComponent) listTips!: ListComponent;
+
   constructor(private route: ActivatedRoute,private portalService: PortalService) { }
 
   ngOnInit(): void {
@@ -24,7 +27,7 @@ export class PerfilComponent implements OnInit {
       this.portalService.checkAlias(this.perfil).subscribe(
         response => {
           this.perfil = response
-
+          this.listTips.loadPosts();
         }
       );
 

@@ -1,11 +1,12 @@
 <span class="row rpgui-container framed-golden-2">
     <span class="row">
-        <span class="col-4">
-            <div class="avatar"><img width="250px" class="rpgui-container framed " [alt]="perfil.name" style="image-rendering: pixelated;"
-                    [src]="perfil.avatar_yt==''?'/assets/img/logo.jpg':perfil.avatar_yt"></div>
+        <span class="col-md-4">
+            <div class="avatar"><img width="250px" class="rpgui-container framed " [alt]="perfil.name"
+                    style="image-rendering: pixelated;"
+                    [src]="perfil.avatar_yt==''?'/assets/img/logo.png':perfil.avatar_yt"></div>
 
-        </span><span class="col-2"></span>
-        <span class="col-6">
+        </span><span class="col-md-2"></span>
+        <span class="col-md-6">
             <h1 style="white-space: nowrap;" class="big_title_retro neon-light">{{ perfil.name }}</h1><br>
             <h6 style="white-space: nowrap;">{{ username }}</h6><br>
         </span>
@@ -13,23 +14,21 @@
     </span>
     <br>
     <hr class="golden">
-    <div class="rpgui-container framed-grey neon">
-        
+    <div class="rpgui-container framed-grey neon" *ngIf="perfil.about_me!=''">
+
         {{perfil.about_me}}
-        
+
     </div>
     <br>
     <hr class="golden">
     <span class="row">
-        <span  *ngFor="let rrss of perfil.RRSS">
-            <span *ngIf="rrss.URL!=''" class="col-2">
+        <span *ngFor="let rrss of perfil.RRSS">
+            <span *ngIf="rrss.URL!=''" class="col-md-2">
 
-                <a *ngIf="rrss.type!='email'" [href]="rrss.URL" target="_blank"
-                    rel="noopener"><i
+                <a *ngIf="rrss.type!='email'" [href]="rrss.URL" target="_blank" rel="noopener"><i
                         [class]="'nes-icon '+ (rrss.type=='other'?'coin':rrss.type)"></i></a>
 
-                <a *ngIf="rrss.type=='email'" [title]="rrss.URL"
-                    [href]="'mailto:' + rrss.URL" rel="noopener"><i
+                <a *ngIf="rrss.type=='email'" [title]="rrss.URL" [href]="'mailto:' + rrss.URL" rel="noopener"><i
                         class="nes-icon gmail"></i></a>
             </span>
         </span>
@@ -39,4 +38,6 @@
 
 
 <hr class="golden">
-<app-post-list [perfil]="username" ></app-post-list>
+<span class="row">
+    <app-post-list [perfil]="username"></app-post-list>
+</span>

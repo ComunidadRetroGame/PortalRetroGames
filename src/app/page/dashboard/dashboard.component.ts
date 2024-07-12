@@ -1,9 +1,10 @@
 
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit, ViewChild } from '@angular/core';
 import { SesionService } from '../../services/sesion.service';
 import { Router } from '@angular/router';
 import { ChangePassword, Player_RRSS, RRSS, TakeError, UserRetro } from '../../interfaces/responses';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { ListComponent } from '../news/list/list.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,12 +13,15 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 })
 export class DashboardComponent implements OnInit {
 
+  @ViewChild(ListComponent) listTips!: ListComponent;
 
   configDialog: MatSnackBarConfig = {
     duration: 10000, verticalPosition: 'top'
   }
 
   showDashboard: boolean = false;
+  
+  showList: boolean = false;
 
   player: UserRetro = {}
 
@@ -116,7 +120,11 @@ export class DashboardComponent implements OnInit {
           this.router.navigate(['/home']);
         } else {
           this.showDashboard = true;
+          this.showList=true
+          this.listTips.loadPosts();
         }
+
+        
       },
       error => {
         this.router.navigate(['/home']);

@@ -109,9 +109,6 @@ export class PortalService {
 
   saveTips(body : Tips): Observable<Tips> {
 
-
-
-
     const sesionHash = window.sessionStorage.getItem('sesionKey') || "";
 
     var headersInSesion = {
@@ -121,7 +118,7 @@ export class PortalService {
       'Authorization': sesionHash
     };
     var httpOptions = { headers: new HttpHeaders(headersInSesion), }
-    return this.http.post<Tips>(`${this.baseUrl}/public/saveTips`, body, httpOptions);
+    return this.http.post<Tips>(`${this.baseUrl}/portal/saveTips`, body, httpOptions);
   }
 
   getTip(id : string): Observable<Tips> {

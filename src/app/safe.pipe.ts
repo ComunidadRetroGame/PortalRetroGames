@@ -29,6 +29,19 @@ export class formatMiles implements PipeTransform {
   }
 }
 
+
+
+@Pipe({
+  name: 'just400'
+})
+
+export class just400 implements PipeTransform {
+  public transform(value: string) {
+      return value.substring(0,200) 
+  }
+}
+
+
 @Pipe({
   name: 'justHost'
 })
@@ -42,4 +55,43 @@ export class JustHostPipe implements PipeTransform {
           return '';
       }
   }
+}
+
+
+@Pipe({
+  name: 'haceCuanto'
+})
+export class TimeAgoPipe implements PipeTransform {
+
+  transform(value?: Date | string | number): string {
+    if (!value) return '';
+
+    const date = new Date(value);
+    const now = new Date();
+    const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+
+    let interval = Math.floor(seconds / 31536000);
+
+    if (interval >= 1) {
+      return `hace ${interval} ${interval === 1 ? 'año' : 'años'}`;
+    }
+    interval = Math.floor(seconds / 2592000);
+    if (interval >= 1) {
+      return `hace ${interval} ${interval === 1 ? 'mes' : 'meses'}`;
+    }
+    interval = Math.floor(seconds / 86400);
+    if (interval >= 1) {
+      return `hace ${interval} ${interval === 1 ? 'día' : 'días'}`;
+    }
+    interval = Math.floor(seconds / 3600);
+    if (interval >= 1) {
+      return `hace ${interval} ${interval === 1 ? 'hora' : 'horas'}`;
+    }
+    interval = Math.floor(seconds / 60);
+    if (interval >= 1) {
+      return `hace ${interval} ${interval === 1 ? 'minuto' : 'minutos'}`;
+    }
+    return `hace ${Math.floor(seconds)} ${Math.floor(seconds) === 1 ? 'segundo' : 'segundos'}`;
+  }
+
 }

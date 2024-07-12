@@ -5,20 +5,27 @@
 
         <section class="topic">
             <div class="coreteam-members">
-                <span class="row"><span class="col-3" *ngFor="let player of teams">
-                        <section style="background-color:#000055;min-height:400px;min-width: 400px;max-width: 410px;" class="rpgui-container framed " *ngIf="player.RRSS!=null">
+                <span class="row"><span class="col-md-3" *ngFor="let player of teams">
+                        <section
+                            style="min-height:486px;max-height:486px;min-width: 400px;max-width: 410px;"
+                            class="rpgui-container framed " *ngIf="player.RRSS!=null">
 
-                            <div class="avatar"><img width="128px" class="rpgui-container framed-golden" [alt]="player.name"  style="image-rendering: pixelated;" 
-                                    [src]="player.avatar_yt==''?'/assets/img/logo.jpg':player.avatar_yt"></div>
+                            <div class="avatar"><img width="128px" class="rpgui-container framed-golden"
+                                    [alt]="player.name" style="image-rendering: pixelated;"
+                                    [src]="player.avatar_yt==''?'/assets/img/logo.png':player.avatar_yt"></div>
 
                             <div class="profile">
-                                <h4><a  class="name neon" style="color: white;" [href]="'/#/about/@' + player.alias">{{player.name}}</a></h4>
-                                <p style="width: 100%; min-height: 100px;max-height: 100px; overflow-y: scroll;">
-                                   <small> {{player.about_me}}</small>
-                                </p>
+                                <h4><a class="name neon" style="color: white;"
+                                        [href]="'/#/about/@' + player.alias">{{player.name}}</a></h4>
+                                <span
+                                    style="color: white;width: 100%; min-height: 300px;max-height: 300px; overflow: none;">
+                                    <small> {{(player.about_me||"") | just400}} <a title="Para ver perfil completo haz click aqui!" class="name neon title-psico"
+                                            style="color: white;" [href]="'/#/about/@' + player.alias">...</a></small>
+                                </span>
+                                <hr class="golden">
                                 <span class="row">
-                                    <span  *ngFor="let rrss of player.RRSS">
-                                        <span *ngIf="rrss.URL!=''" class="col-2">
+                                    <span *ngFor="let rrss of player.RRSS">
+                                        <span *ngIf="rrss.URL!=''" class="col-md-2">
 
                                             <a *ngIf="rrss.type!='email'" [href]="rrss.URL" target="_blank"
                                                 rel="noopener"><i
