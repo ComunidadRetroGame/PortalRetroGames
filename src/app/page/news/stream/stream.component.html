@@ -1,30 +1,56 @@
 <span *ngIf="!isLive">
-    <div class="nes-container is-rounded" style="width: 40%; min-width: 100px;">
+    <div class="nes-container rpgui-container framed  is-dark with-title" style="width: 40%; min-width: 100px;">
+
         <div class="nes-field">
-            <label for="alias_field" style="color: yellow;">ID de Transmicion de Youtube</label>
-            <input type="text"  maxlength="256" name="alias" id="alias_field" [(ngModel)]="streamID" class="nes-input">
+
+            <label for="Titulo">Nombre de la Sala</label>
+            <input type="text" maxlength="256" id="Titulo" maxlength="256"
+                placeholder="Titulo referencial del contenido" [(ngModel)]="roomName" class="nes-input">
         </div>
-        <button class="nes-btn" (click)="transmitir()">Iniciar Transmicion</button>
+
+
+        <button class="nes-btn" (click)="transmitir()">Iniciar Transmision</button>
+
     </div>
 </span>
-<div id="jitsi-iframe" style="height: 100%;"></div>
-<span *ngIf="isLive">
-    <!--
-    <iframe src="https://meet.jit.si/retromasterpresenta_A" width="80%" height="800px"></iframe>
-    -->
-    
-
-
-    <div class="item-center">
-        <i (click)="executeCommand('toggleAudio')" class="fas fa-2x grey-color"
-            [ngClass]="isAudioMuted ? 'fa-microphone-slash' : 'fa-microphone'" aria-hidden="true"
-            title="Mute / Unmute"></i>
-        <i (click)="executeCommand('hangup')" class="fas fa-phone-slash fa-2x red-color" aria-hidden="true"
-            title="Leave"></i>
-        <i (click)="executeCommand('toggleVideo')" class="fas fa-2x grey-color"
-            [ngClass]="isVideoMuted ? 'fa-video-slash' : 'fa-video'" aria-hidden="true" title="Start / Stop camera"></i>
-        <i (click)="executeCommand('toggleShareScreen')" class="fas fa-film fa-2x grey-color" aria-hidden="true"
-            title="Share your screen"></i>
-    </div>
-
-</span>
+<div class="nes-container rpgui-container framed  is-dark with-title" style="width: 100%; min-width: 100px;"  *ngIf="isLive">
+    <span>
+        <h1 class="title-psico">Instrucciones</h1>
+        <hr>
+        Inicia sesion en la ventana que acaba de leventarse:
+        <br><img src="/assets/img/paso_transmitir_0.jpg" width="450px" />
+        <br>
+        Si te aparece esto, inicia como anfitrion (Es porque eres el primero en llegar a la sala):
+        <br><img src="/assets/img/paso_transmitir_00.jpg" width="450px" />
+        <br>
+        Una vez iniciado te encontraras con estas opciones, 
+        <br>
+         - lo que esta encerrado en un ciruclo <strong style="color:blue">azul</strong>, es para activar el microfono y la camara
+         <br>
+         - lo que esta encerrado en un ciruclo <strong style="color:red">rojo</strong>, es para compartir pantalla
+         <br>
+         - lo que esta encerrado en un ciruclo <strong style="color:chartreuse">verde</strong>, tiene opciones, donde la que nos interesa es la de iniciar transmision
+         <br><img src="/assets/img/paso_transmitir_000.jpg"  width="450px" />
+        <br>
+        En la parte inferior de la ventana existen un boton con 3 puntos, al presionarlos deberias ver este menu, donde
+        hay que seleccionar la opcion "INICIAR TRANSMISION EN VIVO"
+        <br>
+        <img src="/assets/img/paso_transmitir_1.jpg" width="450px" />
+        <br>
+        Aca debemos iniciar sesion con nuestro usuario de gmail y colocar el ID de transmicion de youtube
+        <br>
+        <img src="/assets/img/paso_transmitir_2.jpg"  width="450px" />
+        <br>
+        Este se obtiene yendo a la opcion "en directo" y copiando el ID de la transmicion, para luego pegarlo en la
+        ventana de la imagen anterior
+        <br>
+        <img src="/assets/img/paso_transmitir_3.jpg"  width="450px" />
+        <br>
+        Ahora con estas instrucciones puedes comenzar a transmitir el en vivo, y con el boton de copiar invitacion
+        enviarlo a los participantes que quieres que ingresen.
+        <hr>
+        <button type="button" (click)="copyURL()" class="nes-btn is-error">Copiar invitacion</button>
+        <h5>Transmitido desde : {{'https://meet.jit.si/retroMasterTV' + this.user.name + '/' + this.roomName}}</h5>
+        
+    </span>
+</div>

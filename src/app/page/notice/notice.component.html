@@ -47,7 +47,7 @@
                     <br>
                     <span class="neon-white"><a style="color: chartreuse;" target="_blank" [href]="'/#/about/@' + commentTip.author">&#64;{{commentTip.author}}</a></span>
                     <small>{{commentTip.date | haceCuanto}}</small>
-                    <img [title]="commentTip.author" class="nes-avatar  is-large  is-rounded" [src]="commentTip.avatar">
+                    <img [title]="commentTip.author" class="nes-avatar  is-large  is-rounded" [src]="commentTip.avatar==''?'/assets/img/logo.png':commentTip.avatar">
                 </span>
                 
                 <!-- YO -->
@@ -56,7 +56,7 @@
                     <br>
                     <span class="neon-white"><a style="color: chartreuse;" target="_blank" [href]="'/#/about/@' + commentTip.author">&#64;{{commentTip.author}}</a></span>
                     <small>{{commentTip.date | haceCuanto}}</small>
-                    <img [title]="commentTip.author" class="nes-avatar  is-large  is-rounded" [src]="commentTip.avatar">
+                    <img [title]="commentTip.author" class="nes-avatar  is-large  is-rounded" [src]="commentTip.avatar==''?'/assets/img/logo.png':commentTip.avatar">
                 </span>
                 <span class="col-md-8" *ngIf="commentTip.author==author.alias" 
                     style="display: block; flex-direction: column; align-items: flex-start;">
