@@ -76,12 +76,14 @@ export class HomeComponent implements OnInit {
   }
 
   onSearch(): void {
-    if (this.search != "" && this.search != this.lastSearch) {
+    if (this.search != "" || this.search != this.lastSearch) {
       this.lastSearch = this.search
       this.page = 0;
       this.posts = [];
       this.allLoaded = false;
       this.loadPosts();
+    }else{
+      this.dialogEvents.open('No tengas verguenza agrega algo al buscador!', "cerrar", this.configDialog);
     }
   }
 
