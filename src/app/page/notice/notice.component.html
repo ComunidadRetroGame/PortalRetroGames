@@ -34,15 +34,15 @@
             <!-- Listado Comentarios -->
             <span class="row" *ngFor="let commentTip of tips.comments">
                 <!-- OTROS -->
-                <span class="col-md-2" *ngIf="commentTip.author!=author.alias"  ></span>
-                <span class="col-md-8" *ngIf="commentTip.author!=author.alias" 
+                <span class="col-xs-12 col-2" *ngIf="commentTip.author!=author.alias"  ></span>
+                <span class="col-xs-12 col-8" *ngIf="commentTip.author!=author.alias" 
                     style="display: block; flex-direction: column; align-items: flex-start;">
 
                     <p class="nes-balloon from-right nes-pointer" style="width: 100%;min-width: 200px;">
                         {{commentTip.comment}}
                     </p>
                 </span>
-                <span class="col-md-2" *ngIf="commentTip.author!=author.alias"
+                <span class="col-xs-12 col-2" *ngIf="commentTip.author!=author.alias"
                     style="color:#fff; display: flex;flex-direction: column;justify-content: flex-end;height: 100%;">
                     <br>
                     <span class="neon-white"><a style="color: chartreuse;" target="_blank" [href]="'/#/about/@' + commentTip.author">&#64;{{commentTip.author}}</a></span>
@@ -51,14 +51,14 @@
                 </span>
                 
                 <!-- YO -->
-                <span class="col-md-2" *ngIf="commentTip.author==author.alias"
+                <span class="col-xs-12 col-2" *ngIf="commentTip.author==author.alias"
                     style="color: #fff; display: flex; flex-direction: column; align-items: flex-end; height: 100%;">
                     <br>
                     <span class="neon-white"><a style="color: chartreuse;" target="_blank" [href]="'/#/about/@' + commentTip.author">&#64;{{commentTip.author}}</a></span>
                     <small>{{commentTip.date | haceCuanto}}</small>
                     <img [title]="commentTip.author" class="nes-avatar  is-large  is-rounded" [src]="commentTip.avatar==''?'/assets/img/logo.png':commentTip.avatar">
                 </span>
-                <span class="col-md-8" *ngIf="commentTip.author==author.alias" 
+                <span class="col-xs-12 col-8" *ngIf="commentTip.author==author.alias" 
                     style="display: block; flex-direction: column; align-items: flex-start;">
 
                     <p class="nes-balloon from-left nes-pointer" style="width: 100%;min-width: 200px;">
@@ -66,13 +66,13 @@
                     </p>
 
                 </span>
-                <span class="col-md-2" *ngIf="commentTip.author==author.alias"></span>
+                <span class="col-xs-12 col-2" *ngIf="commentTip.author==author.alias"></span>
 
             </span>
             <hr class="golden">
             <!-- Comentar -->
-            <span class="col-md-2"></span>
-            <span class="col-md-8">
+            <span class="col-xs-12 col-2"></span>
+            <span class="col-xs-12 col-8">
                 <p class="nes-balloon from-left nes-pointer" style="width: 90%;">
                     <textarea row="2" maxlength="1000" [(ngModel)]="comment.comment" placeholder="Comente aquí"
                         style="background-color: transparent; border: none; outline: none; width: 100%; height: 100%;">
@@ -82,7 +82,7 @@
                 <button class="nes-btn is-dark" (click)="send()">Comentar</button>
                 <a class="nes-btn is-warning" routerLink="/news">Novedades</a>
             </span>
-            <span class="col-md-2">
+            <span class="col-xs-12 col-2">
 
             </span>
 

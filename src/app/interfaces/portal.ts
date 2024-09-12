@@ -7,6 +7,8 @@ export interface Tips {
     type?: string
     author?: string
     comments?: RetroComment[]
+    hash?: string[]
+    match?: number
 }
 
 export interface RetroComment {

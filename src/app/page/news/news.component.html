@@ -1,8 +1,31 @@
 <span class="row">
-    <span class="col-md-12" *ngIf="online">
-        <button type="button" class="nes-btn is-warning"  routerLink="/create">Agregar Novedad!</button>
-        <button type="button" class="nes-btn is-primary"  routerLink="/events">Agregar Evento</button>
-        <button type="button" class="nes-btn is-success"  [routerLink]="'/stream/'+author">Iniciar Transmición</button>
+    <span class="col-xs-12 col-12" *ngIf="online">
+        <button type="button" class="nes-btn is-warning" routerLink="/create">Agregar Novedad!</button>
+        <button type="button" class="nes-btn is-primary" routerLink="/events">Agregar Evento</button>
+        <button type="button" class="nes-btn is-success" [routerLink]="'/stream/'+author">Iniciar Transmición</button>
     </span>
-    <app-post-list [isOnline]="online" [limit]="6" ></app-post-list> 
+
+    <span class="col-xs-12 col-12">
+        <span class="framed-grey">
+            <form>
+                <label>[
+                  <input type="checkbox" [checked]="isSelected('youtube')" (change)="toggleSelection('youtube', $event)">
+                  <small style="color: red;"> Videos </small>]
+                </label>
+              
+                <label>[
+                  <input type="checkbox" [checked]="isSelected('url')" (change)="toggleSelection('url', $event)">
+                  <small style="color: cyan;"> Sitios </small>]
+                </label>
+              
+                <label>[
+                  <input type="checkbox" [checked]="isSelected('tips')" (change)="toggleSelection('tips', $event)">
+                  <small style="color: greenyellow;"> Tips </small>]
+                </label>
+              </form>
+        </span>
+    </span>
+
+
+    <app-post-list [typeOfTips]="typeOfTips" [isOnline]="online" [limit]="6"></app-post-list>
 </span>

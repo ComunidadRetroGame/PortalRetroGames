@@ -17,7 +17,7 @@
         </span>
         <div class="rpgui-container framed-golden nes-container with-title is-centered">
             <p class="title" style="color:#000">Video</p>
-            <span class="content-tips">{{tips.content}}</span>
+            <span class="content-tips" [innerHTML]="tips.content"></span>
         </div>
     </span>
 
@@ -57,18 +57,23 @@
         </div>
 
     </span>
-    <span class="row"><span class="col-md-8">
+    <span class="row"><span class="col-xs-12 col-8">
             por <a style="color:yellow" target="_blank" [href]="'/#/about/@' + tips.author">&#64;{{tips.author}}</a> -
             <i class="nes-icon is-small star" (click)="shared()" title="Compartir"></i>
             <a [href]="'https://wa.me/?text=' + msgText()" target="_blank"><i class="nes-icon whatsapp is-small"
                     title="Compartir en whatsapp"></i></a>
         </span>
-        <span class="col-md-4" >
+        <span class="col-xs-12 col-4">
             <a *ngIf="tips.type!='youtube' && isOnline " [href]="'/#/notice?id=' + tips.id">
                 <img src="/assets/img/comentar.png" width="128px">
             </a>
         </span>
     </span>
+    <span class="nes-badge" *ngFor="let hash of tips.hash">
+        <small class="is-success title-tips" style="color:#FFF !important" *ngIf="tips.match==1000">{{hash}}</small>
+        <small class="is-success " *ngIf="tips.match!=1000">{{hash}}</small>
+    </span>
+
 
 
     <button *ngIf="isDelete" class="rpgui-button" [lang]="'kill_' + tips.id"

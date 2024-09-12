@@ -12,9 +12,10 @@ import { PostService } from '../../../services/post.service';
 export class ListComponent {
   posts: Tips[] = [];
   page: number = 0;
-  @Input() limit: number = 6;
   loading: boolean = false;
   allLoaded: boolean = false;
+
+  @Input() limit: number = 6;
 
   @Input() perfil: string = "";
 
@@ -22,11 +23,19 @@ export class ListComponent {
   
   @Input() isOnline: boolean = false;
 
-  
+  @Input() typeOfTips: string[] = [];
 
   constructor(private postService: PostService) {
 
     
+  }
+
+  clearList(){
+    this.posts=[];
+    this.page = 0;
+    this.loading = false;
+    this.allLoaded = false;
+  
   }
 
 
@@ -46,7 +55,7 @@ export class ListComponent {
 
     if (this.perfil == "") {
     
-      this.postService.getPosts(this.page, this.limit).subscribe(
+      this.postService.getPosts(this.page, this.limit,this.typeOfTips).subscribe(
         (newPosts) => {
 
           if (newPosts != null) {
@@ -65,7 +74,7 @@ export class ListComponent {
         }
       );
     } else {
-      this.postService.getPostsByAlias(this.perfil, this.page, this.limit).subscribe(
+      this.postService.getPostsByAlias(this.perfil, this.page, this.limit,this.typeOfTips).subscribe(
         (newPosts) => {
 
           if (newPosts != null) {

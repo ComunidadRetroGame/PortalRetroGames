@@ -17,6 +17,28 @@ export class NewsComponent implements OnInit {
 
   @ViewChild(ListComponent) listTips!: ListComponent;
 
+  typeOfTips: string[] = ['youtube', 'url', 'tips'];
+
+  // Función que verifica si un valor está seleccionado
+  isSelected(value: string): boolean {
+    return this.typeOfTips.includes(value);
+  }
+
+  // Función que agrega o quita el valor del arreglo dependiendo del estado del checkbox
+  toggleSelection(value: string, event: any): void {
+    if (event.target.checked) {
+      if (!this.typeOfTips.includes(value)) {
+        this.typeOfTips.push(value);
+      }
+    } else {
+      this.typeOfTips = this.typeOfTips.filter(v => v !== value);
+    }
+    this.listTips.clearList();
+    this.listTips.typeOfTips =  this.typeOfTips;
+    this.listTips.loadPosts();  
+    
+  }
+  
   constructor(private sesionService: SesionService) {
 
   }

@@ -310,6 +310,12 @@ $screen-background: #121010;
     animation-fill-mode: forwards;
 }
 
+  /* Define el estilo base para el texto */
+  .title-tips{    
+    color: #FFF; /* Color del texto */
+    text-shadow: 2px 2px 5px #f700ff; /* Sombra inicial */
+    animation: colorChange 8s infinite; /* Aplica la animación */
+  }
 
   /* Define el estilo base para el texto */
   .title-psico{    

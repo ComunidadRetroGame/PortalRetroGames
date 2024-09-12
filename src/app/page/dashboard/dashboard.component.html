@@ -6,13 +6,13 @@
     <div class="nes-container is-rounded dashboard">
 
         <span class="row">
-            <span class="col-md-10">
+            <span class="col-xs-12 col-10">
                 <h1><img  *ngIf="player.avatar_yt" class="nes-avatar is-large is-rounded" width="128px" [src]="player.avatar_yt"> <span style="color:#000"> {{player.alias}} </span></h1>
             </span>
-            <span class="col-md-2">
+            <span class="col-xs-12 col-2">
                 <button type="button" class="nes-btn is-error" (click)="logout()">Cerrar Sesión</button>
             </span>
-            <span class="col-md-6">
+            <span class="col-xs-12 col-6">
                 <div class="nes-field">
                     <label for="name_field">Nick Player </label>
                     <input type="text"  maxlength="256" id="Nombre" [(ngModel)]="player.name" class="nes-input"  placeholder="Nombre de Usuario">
@@ -69,7 +69,7 @@
                     <button class="nes-btn  is-success" (click)="saveProfile()">Guardar cambios</button>
                 </div>
             </span>
-            <span class="col-md-6">
+            <span class="col-xs-12 col-6">
                 <div class="nes-field">
                     <div class="nes-table-responsive">
                         Debe ingresar la URL completa de su RRSS 

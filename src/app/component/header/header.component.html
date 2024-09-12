@@ -2,11 +2,11 @@
     <div class="wrapper">
       <a routerLink="/home"><img src="/assets/img/Titulo.png" class="header-title" height="132px" style="image-rendering: pixelated;"></a>
       <nav class="nav-brand">
-        <a class="nes-btn is-success" routerLink="/home">Buscador</a>
-        <a class="nes-btn is-warning" routerLink="/news">Novedades</a>
-        <a class="nes-btn is-primary" routerLink="/team">Comunidad</a>
-        <a class="nes-btn is-dark" *ngIf="!online" routerLink="/login">Login / Registro</a>
-        <a class="nes-btn is-success" *ngIf="online" routerLink="/dashboard">Mi Perfil</a>
+        <a  routerLink="/home"><img src="/assets/img/x-BUSCADOR.png"  style="image-rendering: pixelated;"></a>
+        <a  routerLink="/news"><img src="/assets/img/x-NOVEDADES.png"  style="image-rendering: pixelated;"></a>
+        <a routerLink="/team"><img src="/assets/img/x-COMUNIDAD.png"  style="image-rendering: pixelated;"></a>
+        <a  *ngIf="!online" routerLink="/login"><img src="/assets/img/x-LOGIN.png"  style="image-rendering: pixelated;"></a>
+        <a  *ngIf="online" routerLink="/dashboard"><img src="/assets/img/x-PERFIL.png"  style="image-rendering: pixelated;"></a>
       </nav>
     </div>
   </header>

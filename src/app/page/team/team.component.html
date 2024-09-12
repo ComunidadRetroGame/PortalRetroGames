@@ -5,10 +5,10 @@
 
         <section class="topic">
             <div class="coreteam-members">
-                <span class="row"><span class="col-md-3" *ngFor="let player of teams">
+                <span class="row"><span class="col-xs-12 col-3" *ngFor="let player of teams" [style]="player.RRSS!=null || player.name!=''?'display:block':'display:none'">
                         <section
-                            style="min-height:486px;max-height:486px;min-width: 400px;max-width: 410px;"
-                            class="rpgui-container framed " *ngIf="player.RRSS!=null || player.name==''">
+                            style="min-height:486px;max-height:486px;min-width: 400px;max-width: 410px;padding: 10px;"
+                            class="rpgui-container framed " *ngIf="player.RRSS!=null || player.name!=''">
 
                             <div class="avatar"><img width="128px" class="rpgui-container framed-golden"
                                     [alt]="player.name" style="image-rendering: pixelated;"
@@ -25,7 +25,7 @@
                                 <hr class="golden">
                                 <span class="row">
                                     <span *ngFor="let rrss of player.RRSS">
-                                        <span *ngIf="rrss.URL!=''" class="col-md-2">
+                                        <span *ngIf="rrss.URL!=''" class="col-xs-12 col-2">
 
                                             <a *ngIf="rrss.type!='email'" [href]="rrss.URL" target="_blank"
                                                 rel="noopener"><i

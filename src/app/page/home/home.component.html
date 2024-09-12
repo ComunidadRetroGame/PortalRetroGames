@@ -1,7 +1,7 @@
 <span class="row">
-    <span class="col-md-12"><br></span>
-    <span class="col-md-2"></span>
-    <span class="col-md-8">
+    <span class="col-xs-12 col-12"><br></span>
+    <span class="col-xs-12 col-2"></span>
+    <span class="col-xs-12 col-8">
 
         <div class="nes-container rpgui-container framed  is-dark with-title">
 
@@ -9,11 +9,11 @@
                 Bienvenido {{userName}} !!
             </h1>
             <span class="row rpgui-container framed-golden-2" *ngIf="posts.length==0">
-                <span class="col-md-3">
-                    <img  src="/assets/img/logo_bordeNegro.png" width="216px" style="image-rendering: pixelated;">
+                <span class="col-xs-12 col-3">
+                    <img src="/assets/img/logo_bordeNegro.png" width="216px" style="image-rendering: pixelated;">
                 </span>
 
-                <span class="col-md-9">
+                <span class="col-xs-12 col-9">
 
                     Esta comunidad reune a los generadores de contenido mas retro gamers de la historia!!, aqui
                     encontraras
@@ -25,16 +25,18 @@
 
                 </span>
                 <hr><small>
-                Si te interesa ser parte, entra a nuestro : <a href="https://discord.com/channels/1263883061976895499/" target="_blank" class="title-psico">Discord </a>                 
+                    Si te interesa ser parte, entra a nuestro : <a
+                        href="https://discord.com/channels/1263883061976895499/" target="_blank"
+                        class="title-psico">Discord </a>
                 </small>
             </span>
             <span class="row">
-                <span class="col-md-12">
+                <span class="col-xs-12 col-12">
                     <br>
                 </span>
             </span>
             <span class="row">
-                <span class="col-md-12">
+                <span class="col-xs-12 col-12">
                     <h1 class="neon-white" style="z-index: 99999;">
                         <span style="color: rgb(230, 0, 0);">B</span>
                         <span style="color: rgb(255, 255, 102);">U</span>
@@ -54,21 +56,58 @@
                 </span>
             </span>
             <span class="row">
-                <span class="col-md-10">
+
+
+
+                <span class="col-xs-12 col-10">
                     <input type="text" style="background-color: #000;color: greenyellow;" id="Titulo" maxlength="256"
                         class="nes-input" [(ngModel)]="search"
                         placeholder="Buscador de juegos retros, consejos, tutoriales, videos!">
-                </span><span class="col-md-2"> <button class="rpgui-button" (click)="onSearch()">BUSCAR</button></span>
+
+                        <span class="col-xs-12 col-12">
+                            <span class="framed-grey">
+                                <form>
+                                    <label>[
+                                      <input type="checkbox" [checked]="isSelected('youtube')" (change)="toggleSelection('youtube', $event)">
+                                      <small style="color: red;"> Videos </small>]
+                                    </label>
+                                  
+                                    <label>[
+                                      <input type="checkbox" [checked]="isSelected('url')" (change)="toggleSelection('url', $event)">
+                                      <small style="color: cyan;"> Sitios </small>]
+                                    </label>
+                                  
+                                    <label>[
+                                      <input type="checkbox" [checked]="isSelected('tips')" (change)="toggleSelection('tips', $event)">
+                                      <small style="color: greenyellow;"> Tips </small>]
+                                    </label>
+                                  </form>
+                                  
+                    
+                                  
+                            </span>
+                        </span>
+
+                </span><span class="col-xs-12 col-2"> <button class="rpgui-button"
+                        (click)="onSearch()">BUSCAR</button></span>
+
+
             </span>
         </div>
+
     </span>
-    <span class="col-md-2"></span>
+    <span class="col-xs-12 col-2">
+
+
+
+    </span>
 
 </span>
 
 
+
 <div class="row">
-    <span class="col-md-4" *ngFor="let post of posts">
+    <span class="col-xs-12 col-4" *ngFor="let post of posts">
         <app-tips [tips]="post"></app-tips>
     </span>
 </div>

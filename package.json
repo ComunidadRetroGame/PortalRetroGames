@@ -31,6 +31,7 @@
     "ng-bootstrap": "^1.6.3",
     "ngx-quill": "^25.3.2",
     "or": "^0.2.0",
+    "portal-retro-games": "file:",
     "quill": "^2.0.2",
     "rxjs": "~7.8.0",
     "zone.js": "~0.14.3"
