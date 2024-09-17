@@ -12,6 +12,7 @@ import { MobileHomeComponent } from './mobile/home/home.component';
 import { PerfilComponent } from './page/team/perfil/perfil.component';
 import { StreamComponent } from './page/news/stream/stream.component';
 import { CalendarComponent } from './page/news/events/calendar/calendar.component';
+import { MobilTipsComponent } from './mobile/news/mobil-tips/mobil-tips.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,10 @@ const routes: Routes = [
     {
         path: 'mobile',
         component: MobileHomeComponent,
+    },
+    {
+        path: 'mobileTips/:id',
+        component: MobilTipsComponent,
     },
     {
         path: '',

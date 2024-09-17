@@ -22,13 +22,19 @@
                     pero si
                     apasionado
                     por los beat'em up, carreras, naves, plataformas etc!!.
-
+                    <small>
+                        Si te interesa ser parte, entra a nuestro :
+                        <br>
+                        <a href="https://discord.com/channels/1263883061976895499/" target="_blank"
+                            class="title-psico">Discord </a>
+                        <br>
+                        <a href="https://chat.whatsapp.com/DlcyF6W8Fjx0zd603ZU4OQ" target="_blank"
+                            class="title-psico">Whatsapp </a>
+    
+    
+                    </small>
                 </span>
-                <hr><small>
-                    Si te interesa ser parte, entra a nuestro : <a
-                        href="https://discord.com/channels/1263883061976895499/" target="_blank"
-                        class="title-psico">Discord </a>
-                </small>
+                <hr>
             </span>
             <span class="row">
                 <span class="col-xs-12 col-12">
@@ -64,29 +70,32 @@
                         class="nes-input" [(ngModel)]="search"
                         placeholder="Buscador de juegos retros, consejos, tutoriales, videos!">
 
-                        <span class="col-xs-12 col-12">
-                            <span class="framed-grey">
-                                <form>
-                                    <label>[
-                                      <input type="checkbox" [checked]="isSelected('youtube')" (change)="toggleSelection('youtube', $event)">
-                                      <small style="color: red;"> Videos </small>]
-                                    </label>
-                                  
-                                    <label>[
-                                      <input type="checkbox" [checked]="isSelected('url')" (change)="toggleSelection('url', $event)">
-                                      <small style="color: cyan;"> Sitios </small>]
-                                    </label>
-                                  
-                                    <label>[
-                                      <input type="checkbox" [checked]="isSelected('tips')" (change)="toggleSelection('tips', $event)">
-                                      <small style="color: greenyellow;"> Tips </small>]
-                                    </label>
-                                  </form>
-                                  
-                    
-                                  
-                            </span>
+                    <span class="col-xs-12 col-12">
+                        <span class="framed-grey">
+                            <form>
+                                <label>[
+                                    <input type="checkbox" [checked]="isSelected('youtube')"
+                                        (change)="toggleSelection('youtube', $event)">
+                                    <small style="color: red;"> Videos </small>]
+                                </label>
+
+                                <label>[
+                                    <input type="checkbox" [checked]="isSelected('url')"
+                                        (change)="toggleSelection('url', $event)">
+                                    <small style="color: cyan;"> Sitios </small>]
+                                </label>
+
+                                <label>[
+                                    <input type="checkbox" [checked]="isSelected('tips')"
+                                        (change)="toggleSelection('tips', $event)">
+                                    <small style="color: greenyellow;"> Tips </small>]
+                                </label>
+                            </form>
+
+
+
                         </span>
+                    </span>
 
                 </span><span class="col-xs-12 col-2"> <button class="rpgui-button"
                         (click)="onSearch()">BUSCAR</button></span>
@@ -112,6 +121,6 @@
     </span>
 </div>
 
-<div *ngIf="loading" class="loading">
-    Buscando mas informacion!!
+<div *ngIf="loading" class="loading title-tips">
+    <img src="/assets/img/load.gif" width="32px"> Buscando material!!
 </div>

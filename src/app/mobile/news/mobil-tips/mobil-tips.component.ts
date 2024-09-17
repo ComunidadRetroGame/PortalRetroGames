@@ -3,10 +3,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { DomSanitizer } from "@angular/platform-browser";
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Tips } from '../../../interfaces/portal';
-import { PostService } from '../../../services/post.service';
-import { SesionService } from '../../../services/sesion.service';
+import { PortalService } from '../../../services/portal.service';
 
 
 @Component({
@@ -16,13 +15,22 @@ import { SesionService } from '../../../services/sesion.service';
 })
 export class MobilTipsComponent {
 
+  idTips: string = "";
 
-  
-  constructor(private router: Router, private sanitizer: DomSanitizer, private sesionService: SesionService, private postService: PostService, private dialogEvents: MatSnackBar) {
+  constructor(private route: ActivatedRoute,private portalService: PortalService,   private dialogEvents: MatSnackBar) {
 
   }
 
-
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      this.idTips = params.get('id') + ""
+      this.portalService.getTip( this.idTips).subscribe(
+        response => {
+          this.tips = response;            
+        }
+      );
+    });
+  }
 
   @Input() tips: Tips = { url: "", content: "", id: "" };
 
@@ -32,20 +40,14 @@ export class MobilTipsComponent {
     duration: 10000, verticalPosition: 'top'
   }
 
-  ngOnInit(): void {
-  }
-
-
-
   shared() {
     this.dialogEvents.open("Url Copiada lista para compartir!", "cerrar", this.configDialog);
     navigator.clipboard.writeText("https://" + document.location.hostname + "/s?id=" + this.tips.id);
   }
 
-
-  msgText() : string{
-    var url : string = "https://" + document.location.hostname + "/s?id=" + this.tips.id
-    return this.tips.title + ", " + url; 
+  msgText(): string {
+    var url: string = "https://" + document.location.hostname + "/s?id=" + this.tips.id
+    return this.tips.title + ", " + url;
   }
 
 

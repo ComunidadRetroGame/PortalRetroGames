@@ -21,21 +21,35 @@
 
     </span>
 
-    <div class="nes-container with-title">
-        <p class="title" style="color:#000">por <a style="color:blue;" target="_blank" [href]="'/#/about/@' + tips.author">&#64;{{tips.author}}</a></p>
+    <span *ngIf="tips.type=='youtube'">
+        <p class="big_title neon-white" style="color: red;">{{tips.title}} </p>
+        <span class="scanlines content screen">
+            <iframe width="500" height="375" class="container" [src]="tips.url | safe" [title]="tips.title"
+                frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </span>
 
-        <p class="big_title neon" style="color:greenyellow;">{{tips.title}} <i class="nes-icon  star"
-            (click)="shared()" title="Compartir"></i>
-        <a [href]="'https://wa.me/?text=' + msgText()"><i class="nes-icon whatsapp"
-                title="Compartir en whatsapp"></i></a>
+        <span class="content-tips" [innerHTML]="tips.content"></span>
+        <hr>
+        <small style="color:#fff">Lo ideal seria que comentes el video en youtube</small>
+
+    </span>
+
+    <div class="nes-container with-title">
+        <p class="title" style="color:#000">por <a style="color:blue;" target="_blank"
+                [href]="'/#/about/@' + tips.author">&#64;{{tips.author}}</a></p>
+
+        <p class="big_title neon" style="color:greenyellow;">{{tips.title}} <i class="nes-icon  star" (click)="shared()"
+                title="Compartir"></i>
+            <a [href]="'https://wa.me/?text=' + msgText()"><i class="nes-icon whatsapp"
+                    title="Compartir en whatsapp"></i></a>
         </p>
 
         <span *ngIf="isOnline">
             <!-- Listado Comentarios -->
             <span class="row" *ngFor="let commentTip of tips.comments">
                 <!-- OTROS -->
-                <span class="col-xs-12 col-2" *ngIf="commentTip.author!=author.alias"  ></span>
-                <span class="col-xs-12 col-8" *ngIf="commentTip.author!=author.alias" 
+                <span class="col-xs-12 col-2" *ngIf="commentTip.author!=author.alias"></span>
+                <span class="col-xs-12 col-8" *ngIf="commentTip.author!=author.alias"
                     style="display: block; flex-direction: column; align-items: flex-start;">
 
                     <p class="nes-balloon from-right nes-pointer" style="width: 100%;min-width: 200px;">
@@ -45,20 +59,24 @@
                 <span class="col-xs-12 col-2" *ngIf="commentTip.author!=author.alias"
                     style="color:#fff; display: flex;flex-direction: column;justify-content: flex-end;height: 100%;">
                     <br>
-                    <span class="neon-white"><a style="color: chartreuse;" target="_blank" [href]="'/#/about/@' + commentTip.author">&#64;{{commentTip.author}}</a></span>
+                    <span class="neon-white"><a style="color: chartreuse;" target="_blank"
+                            [href]="'/#/about/@' + commentTip.author">&#64;{{commentTip.author}}</a></span>
                     <small>{{commentTip.date | haceCuanto}}</small>
-                    <img [title]="commentTip.author" class="nes-avatar  is-large  is-rounded" [src]="commentTip.avatar==''?'/assets/img/logo.png':commentTip.avatar">
+                    <img [title]="commentTip.author" class="nes-avatar  is-large  is-rounded"
+                        [src]="commentTip.avatar==''?'/assets/img/logo.png':commentTip.avatar">
                 </span>
-                
+
                 <!-- YO -->
                 <span class="col-xs-12 col-2" *ngIf="commentTip.author==author.alias"
                     style="color: #fff; display: flex; flex-direction: column; align-items: flex-end; height: 100%;">
                     <br>
-                    <span class="neon-white"><a style="color: chartreuse;" target="_blank" [href]="'/#/about/@' + commentTip.author">&#64;{{commentTip.author}}</a></span>
+                    <span class="neon-white"><a style="color: chartreuse;" target="_blank"
+                            [href]="'/#/about/@' + commentTip.author">&#64;{{commentTip.author}}</a></span>
                     <small>{{commentTip.date | haceCuanto}}</small>
-                    <img [title]="commentTip.author" class="nes-avatar  is-large  is-rounded" [src]="commentTip.avatar==''?'/assets/img/logo.png':commentTip.avatar">
+                    <img [title]="commentTip.author" class="nes-avatar  is-large  is-rounded"
+                        [src]="commentTip.avatar==''?'/assets/img/logo.png':commentTip.avatar">
                 </span>
-                <span class="col-xs-12 col-8" *ngIf="commentTip.author==author.alias" 
+                <span class="col-xs-12 col-8" *ngIf="commentTip.author==author.alias"
                     style="display: block; flex-direction: column; align-items: flex-start;">
 
                     <p class="nes-balloon from-left nes-pointer" style="width: 100%;min-width: 200px;">

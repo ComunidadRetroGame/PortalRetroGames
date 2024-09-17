@@ -8,15 +8,13 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { UserRetro } from '../../interfaces/responses';
 import { SesionService } from '../../services/sesion.service';
 import { PostService } from '../../services/post.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-notice',
   templateUrl: './notice.component.html',
   styleUrl: './notice.component.scss'
 })
 export class NoticeComponent implements OnInit {
-
-
 
   author: UserRetro = {}
 
@@ -33,9 +31,17 @@ export class NoticeComponent implements OnInit {
 
   comment: RetroComment = {};
 
-  constructor(private sesionService: SesionService, private postService: PostService, private activatedRoute: ActivatedRoute, private portalService: PortalService, private titleService: Title, private metaService: Meta, private dialogEvents: MatSnackBar) {
+  constructor(private sesionService: SesionService, private postService: PostService, private activatedRoute: ActivatedRoute, private portalService: PortalService, private titleService: Title, private metaService: Meta, private dialogEvents: MatSnackBar, private meta: Meta,
+    private title: Title,
+    private router: Router,
+    private route: ActivatedRoute) {
+
+      this.context();
+
+  }
 
 
+  context() {
     this.sesionService.userData().subscribe(
       response => {
         this.author = response;
@@ -51,30 +57,37 @@ export class NoticeComponent implements OnInit {
 
         if (jsonTips != "") {
           this.tips = JSON.parse(jsonTips);
+          
         }
       } else {
         this.portalService.getTip(this.id).subscribe(
           response => {
-            this.tips = response;
-
+            this.tips = response;            
           }
         );
       }
-
-
-
       this.titleService.setTitle(this.tips.title || "");
       this.metaService.addTags([
         { name: 'description', content: this.tips.title || "" },
       ]);
     });
-  }
 
+    this.title.setTitle("RetroMaster:"+ this.tips.title );
+
+    this.meta.updateTag({ property: 'og:title', content: this.tips.title + " RetroMaster" });
+    this.meta.updateTag({ property: 'og:description', content: this.tips.content });
+    this.meta.updateTag({ property: 'og:image', content: this.author.avatar_yt + "" });
+    this.meta.updateTag({ property: 'og:url', content: this.router.url });
+
+    this.meta.updateTag({ name: 'twitter:title', content: this.tips.title + " RetroMaster" });
+    this.meta.updateTag({ name: 'twitter:description', content: this.tips.content });
+    this.meta.updateTag({ name: 'twitter:image', content: this.author.avatar_yt + "" });
+  }
 
   send(): void {
     this.comment.tipsId = this.id;
     this.comment.author = this.author.alias
-    if (this.comment.comment!= "") {
+    if (this.comment.comment != "") {
       this.postService.comment(this.comment).subscribe(
         comments => {
           console.log(JSON.stringify(comments))
@@ -101,7 +114,7 @@ export class NoticeComponent implements OnInit {
   }
   ngOnInit(): void {
 
-
+    
 
   }
 }

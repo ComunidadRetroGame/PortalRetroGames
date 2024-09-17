@@ -1,7 +1,8 @@
 import {  Component, OnInit, ViewChild } from '@angular/core';
 import { SesionService } from '../../services/sesion.service';
 import { ListComponent } from './list/list.component';
-
+import { Meta, Title } from '@angular/platform-browser';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-news',
@@ -19,12 +20,12 @@ export class NewsComponent implements OnInit {
 
   typeOfTips: string[] = ['youtube', 'url', 'tips'];
 
-  // Función que verifica si un valor está seleccionado
+  
   isSelected(value: string): boolean {
     return this.typeOfTips.includes(value);
   }
 
-  // Función que agrega o quita el valor del arreglo dependiendo del estado del checkbox
+  
   toggleSelection(value: string, event: any): void {
     if (event.target.checked) {
       if (!this.typeOfTips.includes(value)) {
@@ -39,12 +40,17 @@ export class NewsComponent implements OnInit {
     
   }
   
-  constructor(private sesionService: SesionService) {
-
+  constructor(private sesionService: SesionService,    private meta: Meta,
+    private title: Title,
+    private router: Router,
+    private route: ActivatedRoute) {
+      
   }
 
 
   ngOnInit(): void {
+    this.updateMetaTags();
+
     this.sesionService.sesionOnline().subscribe(
       response => {
         this.online = response.User.online;
@@ -61,6 +67,23 @@ export class NewsComponent implements OnInit {
       this.showList=true;
       this.listTips.loadPosts();  
     }, 1000);
+  }
+
+
+  updateMetaTags() {
+    // Cambia el título dinámicamente
+    this.title.setTitle('Novedades en Retro Master');
+
+    // Añade o actualiza las etiquetas Open Graph
+    this.meta.updateTag({ property: 'og:title', content: 'Novedades en Retro Master' });
+    this.meta.updateTag({ property: 'og:description', content: 'Contenido Maestro' });
+    this.meta.updateTag({ property: 'og:image', content: 'https://retromasters.up.railway.app/assets/img/Titulo.png' });
+    this.meta.updateTag({ property: 'og:url', content: this.router.url });
+
+    // Añade etiquetas para Twitter Cards
+    this.meta.updateTag({ name: 'twitter:title', content: 'Novedades en Retro Master' });
+    this.meta.updateTag({ name: 'twitter:description', content: 'Contenido Maestro' });
+    this.meta.updateTag({ name: 'twitter:image', content: 'https://retromasters.up.railway.app/assets/img/Titulo.png' });
   }
 
 }
