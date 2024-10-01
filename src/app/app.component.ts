@@ -25,13 +25,18 @@ export class AppComponent implements OnInit {
       this.isDesktop = false      
       this.currentUrl = window.location.href;
       var params : string = ""
+      var hashtag : string = ""
 
       if (this.currentUrl.split("?").length>1){
         params = this.currentUrl.split("?")[1]
       }
+      if (this.currentUrl.split("#").length>1){
+        hashtag = this.currentUrl.split("#")[1]
+      }
       console.log(this.currentUrl);
 
       localStorage.setItem("params",params)
+      localStorage.setItem("hashtag",hashtag)
 
       this.router.navigate(['/mobile']);
     }    

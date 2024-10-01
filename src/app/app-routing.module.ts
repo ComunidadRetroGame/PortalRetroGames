@@ -13,7 +13,7 @@ import { PerfilComponent } from './page/team/perfil/perfil.component';
 import { StreamComponent } from './page/news/stream/stream.component';
 import { CalendarComponent } from './page/news/events/calendar/calendar.component';
 import { MobilTipsComponent } from './mobile/news/mobil-tips/mobil-tips.component';
-
+import { TeamMobileComponent } from './mobile/team-mobile/team-mobile.component';
 
 const routes: Routes = [
     {
@@ -31,6 +31,10 @@ const routes: Routes = [
     {
         path: 'mobile',
         component: MobileHomeComponent,
+    },
+    {
+        path: 'mobile/team',
+        component: TeamMobileComponent,
     },
     {
         path: 'mobileTips/:id',

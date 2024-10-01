@@ -15,17 +15,19 @@ export class MobilListComponent implements OnInit {
   loading: boolean = false;
   allLoaded: boolean = false;
 
+  typeOfTips: string[] = ['youtube', 'url', 'tips'];
+
   @Input() search: string | undefined;
 
   constructor(private postService: PostService, private dialogEvents: MatSnackBar) { }
 
-  
+
   configDialog: MatSnackBarConfig = {
     duration: 10000, verticalPosition: 'bottom'
   }
 
   ngOnInit(): void {
-    this.page=0;
+    this.page = 0;
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -37,33 +39,35 @@ export class MobilListComponent implements OnInit {
     }
   }
 
-  reset():void{
-    this.posts=[]
+  reset(): void {
+    this.posts = []
   }
 
   findPosts(): void {
     this.loading = true;
-       
-    this.postService.getPostsFind(this.page, this.limit, this.search).subscribe(
-      (newPosts) => {
-        if (newPosts != null) {
 
-          if (newPosts.length < this.limit) {
-            this.allLoaded = true;
+
+      this.postService.getPostsFind(this.page, this.limit, this.search, this.typeOfTips).subscribe(
+        (newPosts) => {
+          if (newPosts != null) {
+
+            if (newPosts.length < this.limit) {
+              this.allLoaded = true;
+            }
+            this.posts = [...this.posts, ...newPosts];
+            this.page++;
+            this.loading = false;
+          } else {
+            this.loading = false;
+            this.dialogEvents.open("No encontre nada", "cerrar", this.configDialog);
           }
-          this.posts = [...this.posts, ...newPosts];
-          this.page++;
+        },
+        (error) => {
+          console.error('Error loading posts', error);
           this.loading = false;
-        }else{
-          this.loading = false;
-          this.dialogEvents.open("No encontre nada", "cerrar", this.configDialog);
         }
-      },
-      (error) => {
-        console.error('Error loading posts', error);
-        this.loading = false;
-      }
-    );
-  }
+      );
+    }
+  
 
 }

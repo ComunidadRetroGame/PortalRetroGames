@@ -1,0 +1,28 @@
+.mobilTips {
+    background-color: #FFF;
+    color: #000;
+    width: 100%;
+    padding: 2px;
+    max-height: 800px; // Limita el alto a 800px
+    overflow-y: auto; // Habilita el scroll cuando se supera el alto máximo
+    overflow-x: hidden; // Deshabilita el scroll horizontal
+    
+    /* Estilos personalizados para un scrollbar retro */
+    &::-webkit-scrollbar {
+        width: 10px; // Ancho del scrollbar
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #333; // Color de fondo del scrollbar
+        border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: linear-gradient(45deg, #ffcc00, #cc3300); // Color del "pulgar" del scrollbar
+        border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(45deg, #ff6600, #ff3300); // Color al hacer hover
+    }
+}

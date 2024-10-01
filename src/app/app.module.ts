@@ -63,6 +63,7 @@ import { MatInputModule } from
   '@angular/material/input';
 import { MatFormFieldModule } from
   '@angular/material/form-field';
+import { TeamMobileComponent } from './mobile/team-mobile/team-mobile.component';
 
 
 //Quill.register('modules/imageResize', ImageResize);
@@ -96,7 +97,8 @@ Quill.register('modules/imageCompress', ImageCompress);
     StreamComponent,
     CalendarComponent,
     MobilListComponent,
-    MobilTipsComponent
+    MobilTipsComponent,
+    TeamMobileComponent
   ],
   imports: [
     MatButtonModule,

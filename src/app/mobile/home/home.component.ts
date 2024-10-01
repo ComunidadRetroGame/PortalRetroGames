@@ -22,12 +22,20 @@ export class MobileHomeComponent {
   constructor(private router: Router) {
     var params: string = localStorage.getItem("params") + ""
 
-    console.log("DESDE EL MOBIL :" + params)
+    var hashtag: string = localStorage.getItem("hashtag") + ""
 
-    if (params.startsWith("id=")){
-      var idTips : string = params.split("=")[1]
-      this.router.navigate(['/mobileTips/'+idTips]);
+    console.log("[+] DESDE EL MOBIL PARAMS:" + params)
+    console.log("[+] DESDE EL MOBIL HASHTAG:" + hashtag)
+
+    if (params.startsWith("id=")) {
+      var idTips: string = params.split("=")[1]
+      this.router.navigate(['/mobileTips/' + idTips]);
+    } else {
+      if (hashtag.startsWith("/team") || hashtag.startsWith("/mobile/team")) {
+        this.router.navigate(['/mobile/team']);
+      }
     }
+
 
   }
 
