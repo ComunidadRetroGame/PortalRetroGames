@@ -16,7 +16,7 @@
                 frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </span>
         <div class="rpgui-container framed-golden nes-container with-title is-centered">
-            <p class="title" style="color:#000">Video</p>
+            <p class="title  nes-btn is-error"  (click)="showNews()"  style="color:#000">Video</p>
             <span class="content-tips" [innerHTML]="tips.content"></span>
         </div>
     </span>
@@ -31,11 +31,28 @@
         </div>
         <br>
         <div class="rpgui-container framed-golden  nes-container with-title is-centered">
-            <p class="title" style="color:#000">RetroTips</p>
+            <p class="title nes-btn is-warning"  (click)="showNews()"  style="color:#000">RetroTips</p>
             <a [href]="tips.url" class="title-psico" [target]="preEdit?'_blank':'_self'">Ver publicacion Completa</a>
         </div>
 
     </span>
+
+    <span *ngIf="tips.type=='download'">
+
+        <p class="big_title neon-white neon " style="color:yellow;">{{tips.title}}</p>
+        <br>
+        <div class="rpgui-container framed-grey scanlines"
+            style="width: 100%;overflow-y: hidden;overflow-x:hidden;padding: 2px; min-height: 300px;max-height: 420px;"
+            [innerHTML]="tips.content">
+        </div>        
+
+        <div class="rpgui-container framed-golden  nes-container with-title is-centered">
+            <p class="title  nes-btn is-success"  (click)="showNews()"  style="color:#000">RetroDescarga</p>
+            <a [href]="'/public/download?id=' + this.tips.id" class="title-psico"  target="_blank">Descargar</a>
+        </div>
+
+    </span>
+
 
     <span *ngIf="tips.type=='url'">
         <p class="big_title neon" style="color:cyan;">{{tips.title}}</p>
@@ -47,7 +64,7 @@
 
 
         <div class="rpgui-container framed-golden  nes-container with-title is-centered">
-            <p class="title" style="color:#000">RetroRecomendación</p>
+            <p class="title  nes-btn is-info" style="color:#000">RetroRecomendación</p>
             <span class="content-tips">{{tips.content}}</span>
             <br>
             <hr>
@@ -57,6 +74,7 @@
         </div>
 
     </span>
+
     <span class="row"><span class="col-xs-12 col-8">
             por <a style="color:yellow" target="_blank" [href]="'/#/about/@' + tips.author">&#64;{{tips.author}}</a> -
             <i class="nes-icon is-small star" (click)="shared()" title="Compartir"></i>
@@ -70,7 +88,7 @@
         </span>
     </span>
     <span class="nes-badge" *ngFor="let hash of tips.hash">
-        <small class="is-success title-tips" style="color:#FFF !important" *ngIf="tips.match==1000">{{hash}}</small>
+        <small class="is-success title-tips" style="color:yellow !important" *ngIf="tips.match==1000">{{hash}}</small>
         <small class="is-success " *ngIf="tips.match!=1000">{{hash}}</small>
     </span>
 

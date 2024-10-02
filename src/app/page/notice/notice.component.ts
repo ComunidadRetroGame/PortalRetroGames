@@ -87,15 +87,17 @@ export class NoticeComponent implements OnInit {
   send(): void {
     this.comment.tipsId = this.id;
     this.comment.author = this.author.alias
+    this.isOnline=false;
     if (this.comment.comment != "") {
       this.postService.comment(this.comment).subscribe(
         comments => {
           console.log(JSON.stringify(comments))
           this.tips.comments = comments
-          this.comment.comment = ""
+          this.comment.comment = ""    
+          this.isOnline=true;      
         },
         (error) => {
-
+          this.isOnline=true;      
         }
       );
     }
@@ -112,6 +114,12 @@ export class NoticeComponent implements OnInit {
     var url: string = "https://" + document.location.hostname + "/s?id=" + this.tips.id
     return this.tips.title + ", " + url;
   }
+  download() {
+    var downloadURL:string = "/public/download?id=" + this.tips.id;
+    window.open(downloadURL, "_blank");
+  }
+  
+
   ngOnInit(): void {
 
     

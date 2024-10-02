@@ -9,7 +9,14 @@ export interface Tips {
     comments?: RetroComment[]
     hash?: string[]
     match?: number
+    file?: {
+        name: string;
+        type: string;
+        size: any;
+        content: string;  // Contenido en base64
+    };
 }
+
 
 export interface RetroComment {
     tipsId?: string

@@ -7,5 +7,6 @@ export const environment = {
         messagingSenderId: "109385850799",
         appId: "1:109385850799:web:63f7bad0fca7e4b1a0595a",
         measurementId: "G-5WQJL9NREW"
-    }
+    },
+    typeOfTips : ['youtube', 'url', 'tips','download']
 };

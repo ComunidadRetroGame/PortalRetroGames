@@ -30,8 +30,8 @@
                         <br>
                         <a href="https://chat.whatsapp.com/DlcyF6W8Fjx0zd603ZU4OQ" target="_blank"
                             class="title-psico">Whatsapp </a>
-    
-    
+
+
                     </small>
                 </span>
                 <hr>
@@ -90,6 +90,11 @@
                                         (change)="toggleSelection('tips', $event)">
                                     <small style="color: greenyellow;"> Tips </small>]
                                 </label>
+                                <label>[
+                                    <input type="checkbox" [checked]="isSelected('download')"
+                                        (change)="toggleSelection('download', $event)">
+                                    <small style="color: yellow;" lang="ACA"> Aportes/Descargas </small>]
+                                </label>
                             </form>
 
 
@@ -116,8 +121,8 @@
 
 
 <div class="row">
-    <span class="col-xs-12 col-4" *ngFor="let post of posts">
-        <app-tips [tips]="post"></app-tips>
+    <span class="col-xs-12 col-4" *ngFor="let post of posts" >
+        <app-tips  [tips]="post"></app-tips>
     </span>
 </div>
 

@@ -27,7 +27,7 @@ import { CreateComponent } from './page/news/create/create.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserModule } from '@angular/platform-browser';
 import { NoticeComponent } from './page/notice/notice.component';
-import { JustHostPipe, formatMiles,just400,TimeAgoPipe } from './safe.pipe';
+import { JustHostPipe, formatMiles, just400, TimeAgoPipe } from './safe.pipe';
 import { MobileHomeComponent } from './mobile/home/home.component';
 import { ListComponent } from './page/news/list/list.component';
 import { PerfilComponent } from './page/team/perfil/perfil.component';
@@ -35,12 +35,11 @@ import { environment } from '../environments/environment';
 import { QuillModule } from 'ngx-quill';
 
 import ImageCompress from 'quill-image-compress';
-//import { ImageResize } from 'quill-image-resize-module';
+
+
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
-
-
 
 import Quill from 'quill';
 import { StreamComponent } from './page/news/stream/stream.component';
@@ -53,17 +52,13 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 
 
-import { MatButtonModule } from
-  '@angular/material/button';
-import { MatButtonToggleModule } from
-  '@angular/material/button-toggle';
-import { MatDatepickerModule } from
-  '@angular/material/datepicker';
-import { MatInputModule } from
-  '@angular/material/input';
-import { MatFormFieldModule } from
-  '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { TeamMobileComponent } from './mobile/team-mobile/team-mobile.component';
+
 
 
 //Quill.register('modules/imageResize', ImageResize);
@@ -114,11 +109,11 @@ Quill.register('modules/imageCompress', ImageCompress);
     QuillModule.forRoot({
       modules: {
         imageCompress: {
-          quality: 0.7, // default
+          quality: 0.3, // default
           maxWidth: 800, // default
           maxHeight: 600, // default
           imageType: 'image/jpeg', // default
-          debug: true, // default
+          debug: false, // default
           suppressErrorLogging: false, // default
           insertIntoEditor: undefined, // default
         },

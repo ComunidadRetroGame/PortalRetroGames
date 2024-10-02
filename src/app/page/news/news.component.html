@@ -26,12 +26,12 @@
 
                 <label>[
                   <input type="checkbox" [checked]="isSelected('download')" (change)="toggleSelection('download', $event)">
-                  <small style="color: blueviolet;"> Aportes/Descargas </small>]
+                  <small style="color: yellow;" lang="ACA"> Aportes/Descargas </small>]
                 </label>                
               </form>
         </span>
     </span>
 
 
-    <app-post-list [typeOfTips]="typeOfTips" [isOnline]="online" [limit]="6"></app-post-list>
+    <app-post-list  [typeOfTips]="typeOfTips" [isOnline]="online" [limit]="6"></app-post-list>
 </span>

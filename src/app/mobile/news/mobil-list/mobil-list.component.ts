@@ -3,6 +3,9 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Tips } from '../../../interfaces/portal';
 import { PostService } from '../../../services/post.service';
+import { environment } from '../../../../environments/environment';
+
+
 @Component({
   selector: 'app-mobil-list',
   templateUrl: './mobil-list.component.html',
@@ -15,7 +18,7 @@ export class MobilListComponent implements OnInit {
   loading: boolean = false;
   allLoaded: boolean = false;
 
-  typeOfTips: string[] = ['youtube', 'url', 'tips'];
+  typeOfTips: string[] = environment.typeOfTips;;
 
   @Input() search: string | undefined;
 

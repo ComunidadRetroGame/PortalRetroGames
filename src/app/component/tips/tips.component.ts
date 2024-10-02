@@ -113,6 +113,13 @@ export class TipsComponent implements OnInit {
     return this.tips.title + ", " + url;
   }
 
+  download() {
+    var downloadURL:string = "/public/download?id=" + this.tips.id;
+    window.open(downloadURL, "_blank");
+  }
 
-
+  showNews() {
+    window.location.href="/#/notice?id=" + this.tips.id
+  }
+  
 }

@@ -1,4 +1,4 @@
-<section class="is-rounded scanlines rpgui-container framed-golden" style="min-width: 98%;">
+<section  class="is-rounded scanlines rpgui-container framed-golden" style="min-width: 98%;">
 
     <section *ngIf="tips.type=='tips'" class="nes-container is-rounded scanlines is-dark" [innerHTML]="tips.content"
         style="min-width: 100%;background-color: #FFF;color: #000;">
@@ -30,7 +30,27 @@
 
         <span class="content-tips" [innerHTML]="tips.content"></span>
         <hr>
-        <small style="color:#fff">Lo ideal seria que comentes el video en youtube</small>
+        <small style="color:yellow">Lo ideal seria que comentes el video en youtube</small>
+
+    </span>
+
+    <span *ngIf="tips.type=='download'">
+
+
+        <div class="rpgui-container  framed-grey with-title is-centered">
+            <p class="big_title neon-white" style="color: yellow;" lang="ACA">{{tips.title}}</p>
+            <span  style="color:yellow" [innerHTML]="tips.content"></span>
+            <hr>
+            <button type="button" class="nes-btn is-success" style="min-width: 100%;position:relative;top:10px;" (click)="download()"> DESCARGAR {{tips.title}}</button>
+            <section class="icon-list">
+                <!-- controllers -->
+                <i class="nes-logo"></i>
+                <i class="nes-jp-logo"></i>
+                <i class="snes-logo"></i>
+                <i class="snes-jp-logo"></i>
+            </section>
+    
+        </div>
 
     </span>
 
@@ -57,7 +77,7 @@
                     </p>
                 </span>
                 <span class="col-xs-12 col-2" *ngIf="commentTip.author!=author.alias"
-                    style="color:#fff; display: flex;flex-direction: column;justify-content: flex-end;height: 100%;">
+                    style="color:yellow; display: flex;flex-direction: column;justify-content: flex-end;height: 100%;">
                     <br>
                     <span class="neon-white"><a style="color: chartreuse;" target="_blank"
                             [href]="'/#/about/@' + commentTip.author">&#64;{{commentTip.author}}</a></span>
@@ -106,6 +126,7 @@
 
         </span>
     </div>
+
 
 </section>
 <br>

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Tips } from '../../../interfaces/portal';
 import { SesionService } from '../../../services/sesion.service';
 import { Router } from '@angular/router';
@@ -13,6 +13,10 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
   styleUrl: './create.component.scss'
 })
 export class CreateComponent implements OnInit {
+
+  archivo: string = ""
+
+  @ViewChild('tituloFileInput') tituloFileInput!: ElementRef;
 
   configDialog: MatSnackBarConfig = {
     duration: 10000, verticalPosition: 'top'
@@ -62,7 +66,7 @@ export class CreateComponent implements OnInit {
       this.cleanUrl();
     }
 
-    if (this.newTips.type == "tips") {
+    if (this.newTips.type == "tips" || this.newTips.type == "download") {
       this.newTips.content = ""
       window.localStorage.setItem("newTips", JSON.stringify(this.newTips))
       this.newTips.url = "/#/notice?id=new"
@@ -87,15 +91,15 @@ export class CreateComponent implements OnInit {
     if (this.url.length > 0) {
 
       if (this.newTips.type == "youtube" && this.url.split('=').length > 0) {
-        
+
         var idYoutube: string = ""
-        
+
         if (this.url.indexOf("shorts") > -1 || this.url.indexOf("live") > -1) {
-            //https://youtube.com/shorts/hLzj3wMmmRw?feature=share  
-            idYoutube = this.url.split('/')[4].split('?')[0]
+          //https://youtube.com/shorts/hLzj3wMmmRw?feature=share  
+          idYoutube = this.url.split('/')[4].split('?')[0]
         } else {
 
-          if (this.url.indexOf("youtu.be") > -1) {            
+          if (this.url.indexOf("youtu.be") > -1) {
             idYoutube = this.url.split('/')[3].split('?')[0]
           } else {
             idYoutube = this.url.split('=')[1]
@@ -153,7 +157,7 @@ export class CreateComponent implements OnInit {
     }
     this.newTips.date = new Date();//this.getCurrentFormattedDate();
 
-    if (this.newTips.type == "tips") {
+    if (this.newTips.type == "tips" || this.newTips.type == "download") {
       this.newTips.url = "/#/notice?id=" + this.newTips.id
     }
     if (!this.validateNewTips(this.newTips)) {
@@ -181,6 +185,75 @@ export class CreateComponent implements OnInit {
     const timestamp = Date.now(); // Obtener la marca de tiempo actual en milisegundos
     const randomSuffix = Math.random().toString(36).substr(2, 9); // Generar un sufijo aleatorio
     return `${timestamp}-${randomSuffix}`;
+  }
+
+  // Función para convertir bytes a KB, MB, etc.
+  formatFileSize(size: number): string {
+    if (size < 1024) {
+      return `${size} bytes`;
+    } else if (size < 1024 * 1024) {
+      return `${(size / 1024).toFixed(2)} KB`;
+    } else if (size < 1024 * 1024 * 1024) {
+      return `${(size / (1024 * 1024)).toFixed(2)} MB`;
+    } else {
+      return `${(size / (1024 * 1024 * 1024)).toFixed(2)} GB`;
+    }
+  }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+
+      const maxFileSize = 15 * 1024 * 1024;  // 15 MB
+      if (file.size > maxFileSize) {
+        this.dialogEvents.open('El archivo seleccionado supera el tamaño máximo permitido de 15 MB, lo sentimos =(', "cerrar", this.configDialog);
+
+        return; // Salir de la función si el archivo es demasiado grande
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        const result = reader.result as string;
+
+        // Eliminar el prefijo "data:[mime-type];base64,"
+        const base64Content = result.split(',')[1];  // Solo la parte base64
+
+        // Crear objeto con todas las propiedades del archivo
+        this.newTips.file = {
+          name: file.name,
+          type: file.type,
+          size: file.size,
+          content: base64Content
+        };
+
+        if (this.newTips.content.length < 4) {
+
+          // Usar la función para formatear el tamaño del archivo
+          const formattedSize = this.formatFileSize(file.size);
+
+          // Crear un string HTML formateado con los detalles del archivo
+          const fileDetailsHtml = `
+                <p></p>
+                <p></p>                
+                <p><strong>Nombre del archivo:</strong> ${file.name}</p>
+                <p><strong>Tipo:</strong> ${file.type}</p>
+                <p><strong>Tamaño:</strong> ${formattedSize}</p>
+                <p><strong>Fecha de última modificación:</strong> ${new Date(file.lastModified).toLocaleDateString()} ${new Date(file.lastModified).toLocaleTimeString()}</p>
+            `;
+
+          // Asignar el string HTML al contenido de newTips
+          this.newTips.content = fileDetailsHtml;
+        }
+      };
+      reader.readAsDataURL(file);
+
+      this.archivo = file.name;
+      this.newTips.title = this.archivo.split(".")[0];
+      setTimeout(() => {
+        this.tituloFileInput.nativeElement.focus();
+      }, 1000);
+      console.log('Archivo seleccionado:', file);
+    }
   }
 
 

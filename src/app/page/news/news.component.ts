@@ -3,7 +3,7 @@ import { SesionService } from '../../services/sesion.service';
 import { ListComponent } from './list/list.component';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import {environment} from '../../../environments/environment'
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
@@ -18,7 +18,7 @@ export class NewsComponent implements OnInit {
 
   @ViewChild(ListComponent) listTips!: ListComponent;
 
-  typeOfTips: string[] = ['youtube', 'url', 'tips'];
+  typeOfTips: string[] = environment.typeOfTips;
 
   
   isSelected(value: string): boolean {

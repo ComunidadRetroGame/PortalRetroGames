@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RetroComment, Tips } from '../interfaces/portal';
-
+import {environment} from '../../environments/environment'
 @Injectable({
   providedIn: 'root'
 })
@@ -56,7 +56,7 @@ export class PostService {
     return this.http.get<Tips[]>(`${this.loadTipsByPerfil}?page=${page}&limit=${limit}&alias=${alias}`, httpOptions);
   }
 
-  getPosts(page: number, limit: number = 10, typeOfTips: string[] = ['youtube', 'url', 'tips']): Observable<Tips[]> {
+  getPosts(page: number, limit: number = 10, typeOfTips: string[] = environment.typeOfTips): Observable<Tips[]> {
 
     var headersInCriteria = {
       'Access-Control-Allow-Origin': '*',

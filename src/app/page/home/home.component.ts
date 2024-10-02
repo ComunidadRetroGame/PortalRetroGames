@@ -4,7 +4,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { PostService } from '../../services/post.service';
 import { Router } from '@angular/router';
 import { Tips } from '../../interfaces/portal';
-
+import {environment} from '../../../environments/environment'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   lastSearch: string ="****"
 
 
-  typeOfTips: string[] = ['youtube', 'url', 'tips'];
+  typeOfTips: string[] = environment.typeOfTips;;
 
   posts: Tips[] = [];
   page: number = 0;
