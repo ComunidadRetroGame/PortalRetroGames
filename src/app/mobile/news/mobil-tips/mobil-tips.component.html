@@ -33,6 +33,21 @@
             </div>
         </span>
 
+        <span *ngIf="tips.type=='download'">
+
+            <p class="big_title neon-white" style="color:yellow;">{{tips.title}}</p>
+            <div class="nes-container mobilTips"
+                style="background-color: #FFF;color: #000;width: 100%;overflow-y: hidden;overflow-x:hidden;padding: 2px;"
+                [innerHTML]="tips.content">
+            </div>
+            <br>            
+            <div class="rpgui-container framed-golden framed-golden ">
+                <h1>RetroDescarga</h1>
+                <a [href]="'/public/download?id=' + this.tips.id" class="title-psico"  target="_blank">Descargar</a>
+            </div>
+        </span>
+
+
         <span *ngIf="tips.type=='url'">
             <p class="big_title neon" style="color:cyan;">{{tips.title}}</p>
 

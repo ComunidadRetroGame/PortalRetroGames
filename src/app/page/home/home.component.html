@@ -72,26 +72,26 @@
 
                     <span class="col-xs-12 col-12">
                         <span class="framed-grey">
-                            <form>
+                            <form style="position:relative;top:-10px;">
                                 <label>[
-                                    <input type="checkbox" [checked]="isSelected('youtube')"
+                                    <input rpgui-checkbox golden type="checkbox" [checked]="isSelected('youtube')"
                                         (change)="toggleSelection('youtube', $event)">
                                     <small style="color: red;"> Videos </small>]
                                 </label>
 
                                 <label>[
-                                    <input type="checkbox" [checked]="isSelected('url')"
+                                    <input rpgui-checkbox golden type="checkbox" [checked]="isSelected('url')"
                                         (change)="toggleSelection('url', $event)">
                                     <small style="color: cyan;"> Sitios </small>]
                                 </label>
 
                                 <label>[
-                                    <input type="checkbox" [checked]="isSelected('tips')"
+                                    <input rpgui-checkbox golden type="checkbox" [checked]="isSelected('tips')"
                                         (change)="toggleSelection('tips', $event)">
                                     <small style="color: greenyellow;"> Tips </small>]
                                 </label>
                                 <label>[
-                                    <input type="checkbox" [checked]="isSelected('download')"
+                                    <input rpgui-checkbox golden type="checkbox" [checked]="isSelected('download')"
                                         (change)="toggleSelection('download', $event)">
                                     <small style="color: yellow;" lang="ACA"> Aportes/Descargas </small>]
                                 </label>
