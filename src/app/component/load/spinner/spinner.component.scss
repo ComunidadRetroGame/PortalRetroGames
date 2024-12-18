@@ -1,0 +1,63 @@
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); /* Fondo oscuro tipo arcade */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+.arcade-spinner {
+  display: grid;
+  grid-template-columns: repeat(2, 20px);
+  gap: 10px;
+  animation: blink 0.8s infinite;
+}
+
+.pixel-block {
+  width: 20px;
+  height: 20px;
+  background: #ff004d; /* Rojo brillante tipo arcade */
+  box-shadow: 2px 2px 0 #000, -2px -2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000;
+  border-radius: 2px;
+}
+
+.arcade-text {
+  font-family: 'Press Start 2P', Arial, sans-serif; /* Fuente retro arcade */
+  color: #00e6e6;
+  font-size: 12px;
+  margin-top: 20px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px #000;
+  animation: text-flicker 1.5s infinite alternate;
+}
+
+/* Animación de parpadeo */
+@keyframes blink {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+/* Efecto flicker tipo arcade */
+@keyframes text-flicker {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
