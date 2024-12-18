@@ -1,4 +1,4 @@
-<section  class="is-rounded scanlines rpgui-container framed-golden" style="min-width: 98%;">
+<section class="is-rounded scanlines rpgui-container framed-golden" style="min-width: 98%;">
 
     <section *ngIf="tips.type=='tips'" class="nes-container is-rounded scanlines is-dark" [innerHTML]="tips.content"
         style="min-width: 100%;background-color: #FFF;color: #000;">
@@ -39,9 +39,13 @@
 
         <div class="rpgui-container  framed-grey with-title is-centered">
             <p class="big_title neon-white" style="color: yellow;" lang="ACA">{{tips.title}}</p>
-            <span  style="color:yellow" [innerHTML]="tips.content"></span>
+            <span style="color:yellow" [innerHTML]="tips.content"></span>
             <hr>
-            <button type="button" class="nes-btn is-success" style="min-width: 100%;position:relative;top:10px;" (click)="download()"> DESCARGAR {{tips.title}}</button>
+
+            <a class="nes-btn is-success" style="min-width: 100%;position:relative;top:10px;"
+                [href]="'/public/download?id=' + this.tips.id" 
+                download >DESCARGAR {{tips.title}}</a>
+
             <section class="icon-list">
                 <!-- controllers -->
                 <i class="nes-logo"></i>
@@ -49,7 +53,7 @@
                 <i class="snes-logo"></i>
                 <i class="snes-jp-logo"></i>
             </section>
-    
+
         </div>
 
     </span>

@@ -18,7 +18,7 @@ export class NewsComponent implements OnInit {
 
   @ViewChild(ListComponent) listTips!: ListComponent;
 
-  typeOfTips: string[] = environment.typeOfTips;
+  typeOfTips: string[] = [];
 
   
   isSelected(value: string): boolean {

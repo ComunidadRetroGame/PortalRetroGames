@@ -58,10 +58,12 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TeamMobileComponent } from './mobile/team-mobile/team-mobile.component';
+import { SpinnerComponent } from './component/load/spinner/spinner.component';
 
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoaderSpinnerInterceptor} from './component/load/loaderspinner.interceptor';
 
-//Quill.register('modules/imageResize', ImageResize);
 Quill.register('modules/imageCompress', ImageCompress);
 
 @NgModule({
@@ -93,7 +95,8 @@ Quill.register('modules/imageCompress', ImageCompress);
     CalendarComponent,
     MobilListComponent,
     MobilTipsComponent,
-    TeamMobileComponent
+    TeamMobileComponent,
+    SpinnerComponent
   ],
   imports: [
     MatButtonModule,
@@ -138,6 +141,11 @@ Quill.register('modules/imageCompress', ImageCompress);
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'es-CL' },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderSpinnerInterceptor,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent]
 })
