@@ -41,14 +41,17 @@
                             referencia a tus RRSS y contenidos, idealmente. Luego presiona el boton para validar tu
                             nombre.
                         </td>
-                        <td></td>
+                        <td>
+
+                        </td>
                     </tr>
                 </table>
                 <span class="nes-field" *ngIf="!showForm">
                     <span class="row">
+
                         <span class="col-xs-12 col-3">
                             <label for="alias_field" style="color: yellow;">Nuevo Player</label>
-                            <input type="text" (input)="toLowerCase($event)" maxlength="128" style="background-color: blue;" name="alias" id="alias_field"
+                            <input type="text" (input)="toLowerCase($event)" maxlength="128" style="background-color: blue;color:yellow" name="alias" id="alias_field"
                                 class="nes-input" [(ngModel)]="newUser.alias" (keydown)="preventSpace($event)" placeholder="INGRESE NOMBRE DE USUARIO"
                                 maxlength="128">
                         </span>
@@ -73,23 +76,30 @@
                         </span>
                         <span class="col-xs-12 col-3">
                             <label for="password_field" style="color: yellow;">Password</label>
-                            <input type="password" name="password" id="password_field" class="nes-input"
+                            <input type="password" style="color: blue;" name="password" id="password_field" class="nes-input"
                                 [(ngModel)]="newUser.password" maxlength="128">
                             <label for="password_field" style="color: yellow;">Repetir Password</label>
-                            <input type="password" name="password" id="password_field" class="nes-input"
+                            <input type="password" style="color: blue;" name="password" id="password_field" class="nes-input"
                                 [(ngModel)]="confirmPassword" maxlength="128">
                         </span>
                         <span class="col-xs-12 col-3">
                             <br><br><br>
                             <hr>
                             <button class="nes-btn  is-success" (click)="makeUser()"><img width="32px"
-                                    src="/assets/img/insert.gif"> Crear Clave</button>
+                                    src="/assets/img/insert.gif"> Crear Usuario!!!</button>
                         </span>
 
                     </span>
 
 
                 </span>
+                <span class="col-xs-12 col-3">
+                    <label for="alias_field" style="color: yellow;">Email</label>
+                    <input type="email"  maxlength="128" style="background-color: white;color:black" name="email" id="emails_field"
+                        class="nes-input" [(ngModel)]="email" placeholder="Para que podamos darte la bienvenida e instrucciones"
+                        maxlength="128">
+                        <small> recibiras novedades desde <strong>retromasterstreamers&#64;gmail.com</strong>, sacalo del spam :P</small>
+                </span>                
                 <span class="nes-balloon from-left nes-pointer" style="color: blue;">
 
                     <span href="#" class="nes-badge is-icon">

@@ -63,6 +63,7 @@ import { SpinnerComponent } from './component/load/spinner/spinner.component';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderSpinnerInterceptor} from './component/load/loaderspinner.interceptor';
+import { OpenborEmulatorComponent } from './games/openbor-emulator/openbor-emulator.component';
 
 Quill.register('modules/imageCompress', ImageCompress);
 
@@ -96,7 +97,8 @@ Quill.register('modules/imageCompress', ImageCompress);
     MobilListComponent,
     MobilTipsComponent,
     TeamMobileComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    OpenborEmulatorComponent
   ],
   imports: [
     MatButtonModule,

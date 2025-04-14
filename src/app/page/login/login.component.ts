@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   };
 
 
-  constructor(private sesionService: SesionService, private router: Router, private dialogEvents: MatSnackBar) { }
+  constructor(private readonly sesionService: SesionService, private readonly router: Router, private readonly dialogEvents: MatSnackBar) { }
   ngOnInit(): void {
     this.sesionService.sesionOnline().subscribe(
       response => {

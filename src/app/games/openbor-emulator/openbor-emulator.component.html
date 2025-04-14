@@ -1,0 +1,34 @@
+<div class="nes-container is-dark with-title emulator-container">
+  <!-- Mostrar cuenta regresiva -->
+  <div
+    [ngStyle]="{'display': showEmulator ? 'none' : 'block', 'pointer-events': showEmulator ? 'none' : 'auto', 'transition': 'opacity 0.5s ease'}"
+    class="countdown rpgui-container framed">
+    Cargando juego en <strong class="title-psico">{{ countdown }}</strong> segundos...
+
+    <p style="color:aliceblue">Use las flechas del teclado y las teclas [Z], [X], [C] para jugar.</p>
+  </div>
+
+  <!-- Mostrar emulador cuando el tiempo llegue a 0 -->
+  <div
+    [ngStyle]="{'opacity': showEmulator ? '1' : '0', 'pointer-events': showEmulator ? 'auto' : 'none', 'transition': 'opacity 0.5s ease'}"
+    class="arcade">
+    <div class="scanlines container screen" id="game"></div>
+  </div>
+
+  <!-- Enlace de descarga -->
+  <div>
+    <a [href]="downloadRomLink" class="nes-btn is-success" download>
+      Descargar {{ gameFile }}
+    </a>
+  </div>
+
+  <div *ngIf="showEmulator">
+    <div id="overlay" *ngIf="!isStartGame" >
+      <div id="overlay-content">
+        <p>Cuando la carga termine presiona</p>
+        <h2 class="blink">PLAY NOW</h2>
+      </div>
+    </div>
+  </div>
+
+</div>

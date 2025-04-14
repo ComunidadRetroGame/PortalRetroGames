@@ -14,8 +14,13 @@ import { StreamComponent } from './page/news/stream/stream.component';
 import { CalendarComponent } from './page/news/events/calendar/calendar.component';
 import { MobilTipsComponent } from './mobile/news/mobil-tips/mobil-tips.component';
 import { TeamMobileComponent } from './mobile/team-mobile/team-mobile.component';
+import { OpenborEmulatorComponent } from './games/openbor-emulator/openbor-emulator.component';
 
 const routes: Routes = [
+    {
+        path: 'games',
+        component: OpenborEmulatorComponent,
+    },
     {
         path: 'events',
         component: CalendarComponent,

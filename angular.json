@@ -27,7 +27,7 @@
             "allowedCommonJsDependencies": [
               "lodash"
             ],
-            "outputPath": "../../backend/PortalCRG/static",
+            "outputPath": "../../../RetroMaster1981XD/RetroMasterPortal/static",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [

@@ -1,0 +1,104 @@
+.emulator-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+
+  box-shadow: 4px 4px 8px #000, -4px -4px 8px #333;
+}
+
+.countdown {
+  font-size: 24px;
+  color: #ffee00;
+
+  margin-bottom: 20px;
+}
+
+#game {
+
+  width: 640px;
+  height: 480px;
+  max-width: 100%;
+}
+
+.download-section {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.download-section a {
+
+  text-decoration: none;
+
+  padding: 5px 10px;
+
+}
+
+.download-section a:hover {
+  color: #ffffff;
+}
+
+.arcade {
+  width: 640px;
+  height: 480px;
+  max-width: 100%;
+  position: relative;
+}
+
+/* Estilo del overlay para centrar el contenido flotante */
+#overlay {
+  position: fixed !important;
+  top: 40% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 400px !important;
+  height: 330px !important;
+  background-color: #000 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 9999 !important;
+}
+
+/* Estilo del contenido del overlay */
+#overlay-content {
+  background-color: rgb(253, 236, 0) !important;
+  /* Color de fondo */
+  padding: 20px !important;
+  color: #000 !important;
+  /* Color del texto */
+  border-radius: 10px !important;
+  /* Bordes redondeados */
+  text-align: center !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+  /* Sombra para el contenido */
+}
+
+/* Clase para el texto que parpadea */
+.blink {
+  font-size: 24px;
+  /* Tamaño del texto */
+  font-weight: bold;
+  /* Negrita */
+  color: #ff0000;
+  /* Color del texto */
+  animation: blink-animation 1s step-start infinite;
+  /* Aplicar la animación */
+}
+
+/* Definir la animación para hacer parpadear el texto */
+@keyframes blink-animation {
+  0% {
+    visibility: visible;
+  }
+
+  50% {
+    visibility: hidden;
+    /* Hace que el texto sea invisible a la mitad del ciclo */
+  }
+
+  100% {
+    visibility: visible;
+  }
+}
